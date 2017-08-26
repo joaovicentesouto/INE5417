@@ -9,13 +9,11 @@ using namespace std;
 
 namespace project {
 
-class Wallet : private Account  {
+class Wallet : public Account  {
 public:
-  explicit Wallet(string _name);
   Wallet(string _name, double _balance);
   ~Wallet();
 
-  int test();
 };
 
 }  // namespace project

@@ -4,12 +4,6 @@
 namespace project
 {
 
-Account::Account(string _name) :
-  name(_name)
-{
-
-}
-
 Account::Account(string _name, double _balance) :
   name(_name),
   balance(_balance)
@@ -17,14 +11,36 @@ Account::Account(string _name, double _balance) :
 
 }
 
-Account::~Account()
-{
+Account::~Account() {
 
 }
 
-int Account::test()
-{
-  return 0;
+size_t Account::getId() {
+  return id;
+}
+
+string Account::getName() {
+  return name;
+}
+
+double Account::getBalance() {
+  return balance;
+}
+
+list<string> Account::getReleases() {
+  return releases;
+}
+
+void Account::changeName(string _newName) {
+    name = _newName;
+}
+
+void Account::insertRelease(string _release) {
+  releases.push_front(_release);
+}
+
+void Account::removeRelease(string _release) {
+  releases.remove(_release);
 }
 
 }  // namespace project

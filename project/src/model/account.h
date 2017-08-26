@@ -4,7 +4,7 @@
 #define PROJECT_ACCOUNT_H
 
 #include <string>
-#include <vector>
+#include <list>
 
 using namespace std;
 
@@ -12,16 +12,23 @@ namespace project {
 
 class Account {
 public:
-  explicit Account(string _name);
   Account(string _name, double _balance);
   ~Account();
 
-  int test();
+  size_t getId();
+  string getName();
+  double getBalance();
+  list<string> getReleases();
+
+  void changeName(string _newName);
+  void insertRelease(string _release);
+  void removeRelease(string _release);
 
 private:
+  size_t id{0};
   double balance{0.0};
   string name;
-  vector<string> releases;
+  list<string> releases;
 
 };
 

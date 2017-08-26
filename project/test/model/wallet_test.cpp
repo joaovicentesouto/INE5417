@@ -8,23 +8,56 @@ namespace
 class WalletFixture
 {
 public:
-  double balance{0.0};
-  string name;
-  vector<string> releases;
+  string name{"João"};
+  double balance{100};
+  list<string> releases;
 
 	WalletFixture()
-    : balance(100),
-      name("João")
   {
-    releases.push_back("Água");
-    releases.push_back("Comida");
-    releases.push_back("Netflix");
+    releases.push_front("Água");
+    releases.push_front("Comida");
+    releases.push_front("Netflix");
 	}
 };
 } // namespace
 
-TEST_CASE_METHOD(WalletFixture, "Test: w", "[attribute]")
+TEST_CASE_METHOD(WalletFixture, "Wallet: Checking attributes after the construction", "[attribute]")
 {
-  Wallet conta("João");
-  REQUIRE(0 == conta.test());
+  Wallet account(name, balance);
+
+  REQUIRE(name == account.getName());
+	REQUIRE(balance == account.getBalance());
+}
+
+TEST_CASE_METHOD(WalletFixture, "Wallet: Changing name", "[attribute]")
+{
+  Wallet account(name, balance);
+
+	name = "Bruno";
+	account.changeName(name);
+
+	REQUIRE(name == account.getName());
+}
+
+TEST_CASE_METHOD(WalletFixture, "Wallet: Inserting releases", "[releases]")
+{
+  Wallet account(name, balance);
+  account.insertRelease("Água");
+  account.insertRelease("Comida");
+  account.insertRelease("Netflix");
+
+	REQUIRE(releases == account.getReleases());
+}
+
+TEST_CASE_METHOD(WalletFixture, "Wallet: Removing releases", "[releases]")
+{
+  Wallet account(name, balance);
+  account.insertRelease("Água");
+  account.insertRelease("Comida");
+  account.insertRelease("Netflix");
+
+	releases.remove("Netflix");
+	account.removeRelease("Netflix");
+
+	REQUIRE(releases == account.getReleases());
 }

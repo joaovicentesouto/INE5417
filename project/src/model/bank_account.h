@@ -9,18 +9,22 @@ using namespace std;
 
 namespace project {
 
-class BankAccount : private Account  {
+class BankAccount : public Account {
 public:
-  explicit BankAccount(string _name);
   BankAccount(string _name, double _balance);
-  BankAccount(string _name, string _number, string _agency, string _bank);
-  BankAccount(string _name, string _number, string _agency, string _bank, double _balance);
+  BankAccount(string _name, double _balance, string _number, string _agency, string _bank);
   ~BankAccount();
 
-  int test();
+  string getAccountNumber();
+  string getAgency();
+  string getBank();
+
+  void changeAccountNumber(string _newNumber);
+  void changeAgency(string _newAgency);
+  void changeBank(string _newBank);
 
 private:
-  string account_number, agency, bank;
+  string accountNumber, agency, bank;
 };
 
 }  // namespace project

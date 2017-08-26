@@ -4,31 +4,17 @@
 namespace project
 {
 
-BankAccount::BankAccount(string _name) :
-  Account::Account(_name)
-{
-
-}
-
 BankAccount::BankAccount(string _name, double _balance) :
   Account::Account(_name, _balance)
 {
 
 }
 
-BankAccount::BankAccount(string _name, string _number, string _agency, string _bank) :
-  Account::Account(_name)
-{
-  agency = _agency;
-  account_number = _number;
-  bank = _bank;
-}
-
-BankAccount::BankAccount(string _name, string _number, string _agency, string _bank, double _balance) :
+BankAccount::BankAccount(string _name, double _balance, string _number, string _agency, string _bank) :
   Account::Account(_name, _balance)
 {
   agency = _agency;
-  account_number = _number;
+  accountNumber = _number;
   bank = _bank;
 }
 
@@ -37,9 +23,29 @@ BankAccount::~BankAccount()
 
 }
 
-int BankAccount::test()
-{
-  return 0;
+string BankAccount::getAccountNumber() {
+  return accountNumber;
 }
+
+string BankAccount::getAgency() {
+  return agency;
+}
+
+string BankAccount::getBank() {
+  return bank;
+}
+
+void BankAccount::changeAccountNumber(string _newNumber) {
+  accountNumber = _newNumber;
+}
+
+void BankAccount::changeAgency(string _newAgency) {
+  agency = _newAgency;
+}
+
+void BankAccount::changeBank(string _newBank) {
+  bank = _newBank;
+}
+
 
 }  // namespace project
