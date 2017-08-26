@@ -23,7 +23,7 @@ public:
 };
 } // namespace
 
-TEST_CASE_METHOD(ReportFixture, "Construction", "[attribute]")
+TEST_CASE_METHOD(ReportFixture, "Report: mConstruction", "[attribute]")
 {
   Report rep(accounts);
 

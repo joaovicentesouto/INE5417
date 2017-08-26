@@ -7,14 +7,14 @@ namespace project {
 
 Release::Release(double _value,
                  Account& _account,
-                 string _typeRelease,
-                 string _typePayment,
+                 string _releaseType,
+                 string _paymentType,
                  string _description,
                  time_t _date) :
   value{_value},
   account{&_account},
-  typeRelease{_typeRelease},
-  typePayment{_typePayment},
+  releaseType{_releaseType},
+  paymentType{_paymentType},
   description{_description},
   date{_date}
 {
@@ -35,12 +35,12 @@ Account& Release::getAccount() {
   return *account;
 }
 
-string Release::getTypeRelease() {
-  return typeRelease;
+string Release::getReleaseType() {
+  return releaseType;
 }
 
-string Release::getTypePayment() {
-  return typePayment;
+string Release::getPaymentType() {
+  return paymentType;
 }
 
 string Release::getDescription() {
@@ -59,12 +59,12 @@ void Release::changeAccount(Account& _account) {
     account = &_account;
 }
 
-void Release::changeTypeRelease(string _type) {
-  typeRelease = _type;
+void Release::changeReleaseType(string _type) {
+  releaseType = _type;
 }
 
-void Release::changeTypePayment(string _type) {
-  typePayment = _type;
+void Release::changePaymentType(string _type) {
+  paymentType = _type;
 }
 
 void Release::changeDescription(string _description) {

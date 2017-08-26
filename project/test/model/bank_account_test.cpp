@@ -54,7 +54,7 @@ TEST_CASE_METHOD(BankAccountFixture, "BankAccount: Changing name, number, agency
 
 TEST_CASE_METHOD(BankAccountFixture, "BankAccount: Inserting releases", "[releases]")
 {
-  BankAccount account(name, balance);
+  BankAccount account(name, balance, accountNumber, agency, bank);
   account.insertRelease("Água");
   account.insertRelease("Comida");
   account.insertRelease("Netflix");
@@ -64,7 +64,7 @@ TEST_CASE_METHOD(BankAccountFixture, "BankAccount: Inserting releases", "[releas
 
 TEST_CASE_METHOD(BankAccountFixture, "BankAccount: Removing releases", "[releases]")
 {
-  BankAccount account(name, balance);
+  BankAccount account(name, balance, accountNumber, agency, bank);
   account.insertRelease("Água");
   account.insertRelease("Comida");
   account.insertRelease("Netflix");

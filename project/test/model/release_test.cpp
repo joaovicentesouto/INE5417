@@ -23,8 +23,8 @@ TEST_CASE_METHOD(ReleaseFixture, "Attributes after construction", "[attribute]")
 
   REQUIRE(value == rel.getValue());
   REQUIRE(&account == &(rel.getAccount()));
-  REQUIRE(typeRelease == rel.getTypeRelease());
-  REQUIRE(typePayment == rel.getTypePayment());
+  REQUIRE(typeRelease == rel.getReleaseType());
+  REQUIRE(typePayment == rel.getPaymentType());
   REQUIRE(description == rel.getDescription());
   REQUIRE(date == rel.getDate());
 }
@@ -42,15 +42,15 @@ TEST_CASE_METHOD(ReleaseFixture, "Changes", "[attribute]")
 
   rel.changeValue(value);
   rel.changeAccount(newAccount);
-  rel.changeTypeRelease(typeRelease);
-  rel.changeTypePayment(typePayment);
+  rel.changeReleaseType(typeRelease);
+  rel.changePaymentType(typePayment);
   rel.changeDescription(description);
   rel.changeDate(date);
 
   REQUIRE(value == rel.getValue());
   REQUIRE(&newAccount == &(rel.getAccount()));
-  REQUIRE(typeRelease == rel.getTypeRelease());
-  REQUIRE(typePayment == rel.getTypePayment());
+  REQUIRE(typeRelease == rel.getReleaseType());
+  REQUIRE(typePayment == rel.getPaymentType());
   REQUIRE(description == rel.getDescription());
   REQUIRE(date == rel.getDate());
 }
