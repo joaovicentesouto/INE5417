@@ -6,18 +6,22 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 namespace project {
 
 class Account {
 public:
-  Account(std:string _name);
-  Account(std:string _name, double _balance);
+  explicit Account(string _name);
+  Account(string _name, double _balance);
   ~Account();
+
+  int test();
 
 private:
   double balance{0.0};
-  std::string name;
-  std::vector<T> releases;
+  string name;
+  vector<string> releases;
 
 };
 
