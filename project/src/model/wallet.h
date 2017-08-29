@@ -11,11 +11,11 @@ namespace project {
 
 class Wallet : public Account  {
 public:
-  Wallet(string _name, double _balance);
-  ~Wallet();
-
+    Wallet(string _name, double _balance);
+    ~Wallet();
+    
 };
-
+    
 }  // namespace project
 
 #endif

@@ -16,23 +16,23 @@ namespace project {
 
 class Report {
 public:
-  Report(list<Account*> &_accounts);
-  ~Report();
-
-  void searchByReleasesType(list<string> &_releasesTypes);
-  void searchByPaymentType(list<string> &_paymentTypes);
-  void searchByDate(time_t _begin, time_t _end);
-  void searchByValue(double _lowerValue, double _upperValue);
-
+    Report(list<Account*> &_accounts);
+    ~Report();
+    
+    void searchByReleasesType(list<string> &_releasesTypes);
+    void searchByPaymentType(list<string> &_paymentTypes);
+    void searchByDate(time_t _begin, time_t _end);
+    void searchByValue(double _lowerValue, double _upperValue);
+    
 private:
-  time_t begin, end;
-  double lowerValue, upperValue;
-  list<Account*> accounts;        //!< Immutables
-  list<Release*> releases;
-  list<string> releasesTypes, paymentTypes;
-
+    time_t begin, end;
+    double lowerValue, upperValue;
+    list<Account*> accounts;        //!< Immutables
+    list<Release*> releases;
+    list<string> releasesTypes, paymentTypes;
+    
 };
-
+    
 }  // namespace project
 
 #endif

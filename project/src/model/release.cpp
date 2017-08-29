@@ -5,54 +5,53 @@ using namespace std;
 
 namespace project {
 
-Release::Release(double _value,
-                 Account& _account,
-                 string _releaseType,
-                 string _paymentType,
-                 string _description,
-                 time_t _date) :
-  value{_value},
-  account{&_account},
-  releaseType{_releaseType},
-  paymentType{_paymentType},
-  description{_description},
-  date{_date}
+Release::Release(double _value, Account& _account,
+                 string _releaseType, string _paymentType,
+                 string _description, time_t _date) :
+    value{_value},
+    account{&_account},
+    releaseType{_releaseType},
+    paymentType{_paymentType},
+    description{_description},
+    date{_date}
 {
-
+    
 }
 
-Release::~Release() {}
+Release::~Release() {
+
+}
 
 size_t Release::getId() {
     return id;
 }
 
 double Release::getValue() {
-  return value;
+    return value;
 }
 
 Account& Release::getAccount() {
-  return *account;
+    return *account;
 }
 
 string Release::getReleaseType() {
-  return releaseType;
+    return releaseType;
 }
 
 string Release::getPaymentType() {
-  return paymentType;
+    return paymentType;
 }
 
 string Release::getDescription() {
-  return description;
+    return description;
 }
 
 time_t Release::getDate() {
-  return date;
+    return date;
 }
 
 void Release::changeValue(double _value) {
-  value = _value;
+    value = _value;
 }
 
 void Release::changeAccount(Account& _account) {
@@ -60,19 +59,19 @@ void Release::changeAccount(Account& _account) {
 }
 
 void Release::changeReleaseType(string _type) {
-  releaseType = _type;
+    releaseType = _type;
 }
 
 void Release::changePaymentType(string _type) {
-  paymentType = _type;
+    paymentType = _type;
 }
 
 void Release::changeDescription(string _description) {
-  description = _description;
+    description = _description;
 }
 
 void Release::changeDate(time_t _date) {
-  date = _date;
+    date = _date;
 }
-
+    
 }  // namespace project

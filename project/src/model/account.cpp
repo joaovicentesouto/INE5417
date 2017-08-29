@@ -5,42 +5,42 @@ namespace project
 {
 
 Account::Account(string _name, double _balance) :
-  name(_name),
-  balance(_balance)
+name(_name),
+balance(_balance)
 {
-
+    
 }
 
 Account::~Account() {
-
+    
 }
 
 size_t Account::getId() {
-  return id;
+    return id;
 }
 
 string Account::getName() {
-  return name;
+    return name;
 }
 
 double Account::getBalance() {
-  return balance;
+    return balance;
 }
 
-list<string> Account::getReleases() {
-  return releases;
+list<Release*> Account::getReleases() {
+    return releases;
 }
 
 void Account::changeName(string _newName) {
     name = _newName;
 }
 
-void Account::insertRelease(string _release) {
-  releases.push_front(_release);
+void Account::insertRelease(Release& _release) {
+    releases.push_front(&_release);
 }
 
-void Account::removeRelease(string _release) {
-  releases.remove(_release);
+void Account::removeRelease(Release& _release) {
+    releases.remove(&_release);
 }
-
+    
 }  // namespace project
