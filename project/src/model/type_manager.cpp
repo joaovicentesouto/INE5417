@@ -12,15 +12,26 @@ TypeManager::TypeManager() {
     paymentTypes.push_front("Crédito");
     paymentTypes.push_front("Débito");
     paymentTypes.push_front("Cheque");
-    
+    paymentTypes.push_front("Outros");
+
     // Release Types possible change
     releaseTypes.push_front("Água");
-    releaseTypes.push_front("Comida");
+    releaseTypes.push_front("Energia");
+    releaseTypes.push_front("Internet");
     releaseTypes.push_front("Transporte");
+    releaseTypes.push_front("Alimentação");
 }
 
 TypeManager::~TypeManager() {
 
+}
+
+list<string> TypeManager::getReleaseTypes() {
+  return releaseTypes;
+}
+
+list<string> TypeManager::getPaymentTypes() {
+  return paymentTypes;
 }
 
 void TypeManager::addReleaseType(string _type) {
@@ -35,5 +46,5 @@ void TypeManager::changeReleaseType(string _old, string _new) {
     releaseTypes.remove(_old);
     releaseTypes.push_front(_new);
 }
-    
+
 }  // namespace project

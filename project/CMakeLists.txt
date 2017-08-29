@@ -5,7 +5,6 @@ project (PROJECT_NAME)
 
 set(CMAKE_CXX_STANDARD 14)
 
-find_package(Boost 1.58 REQUIRED)
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")

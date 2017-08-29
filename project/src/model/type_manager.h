@@ -14,14 +14,17 @@ class TypeManager {
 public:
     TypeManager();
     ~TypeManager();
-    
+
+    list<string> getReleaseTypes();
+    list<string> getPaymentTypes();
+
     void addReleaseType(string _type);
     void deleteReleaseType(string _type);
     void changeReleaseType(string _old, string _new);
-    
+
 private:
     list<string> releaseTypes, paymentTypes;
-    
+
 };
 
 }  // namespace project

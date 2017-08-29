@@ -12,26 +12,58 @@ namespace {
 class TypeManagerFixture {
 public:
     list<string> releaseTypes, paymentTypes;
-    
+
     TypeManagerFixture() {
-        paymentTypes.push_front("Dinheiro");
-        paymentTypes.push_front("Crédito");
-        paymentTypes.push_front("Débito");
-        paymentTypes.push_front("Cheque");
-        
-        releaseTypes.push_front("Água");
-        releaseTypes.push_front("Comida");
-        releaseTypes.push_front("Transporte");
+      paymentTypes.push_front("Dinheiro");
+      paymentTypes.push_front("Crédito");
+      paymentTypes.push_front("Débito");
+      paymentTypes.push_front("Cheque");
+      paymentTypes.push_front("Outros");
+
+      releaseTypes.push_front("Água");
+      releaseTypes.push_front("Energia");
+      releaseTypes.push_front("Internet");
+      releaseTypes.push_front("Transporte");
+      releaseTypes.push_front("Alimentação");
     }
-    
+
 };
 } // namespace
 
 TEST_CASE_METHOD(TypeManagerFixture, "Type Manager: Construction", "[attribute]")
 {
     TypeManager manager = TypeManager();
-    
-    REQUIRE(0 == 0);
+
+    REQUIRE(releaseTypes == manager.getReleaseTypes());
+    REQUIRE(paymentTypes == manager.getPaymentTypes());
+}
+
+TEST_CASE_METHOD(TypeManagerFixture, "Type Manager: Inserting release types", "[attribute]")
+{
+    TypeManager manager = TypeManager();
+    manager.addReleaseType("Teste");
+    releaseTypes.push_front("Teste");
+
+    REQUIRE(releaseTypes == manager.getReleaseTypes());
+}
+
+TEST_CASE_METHOD(TypeManagerFixture, "Type Manager: Removing release types", "[attribute]")
+{
+    TypeManager manager = TypeManager();
+    manager.deleteReleaseType("Energia");
+    releaseTypes.remove("Energia");
+
+    REQUIRE(releaseTypes == manager.getReleaseTypes());
+}
+
+TEST_CASE_METHOD(TypeManagerFixture, "Type Manager: Changing release types", "[attribute]")
+{
+    TypeManager manager = TypeManager();
+    manager.changeReleaseType("Energia", "Teste");
+    releaseTypes.remove("Energia");
+    releaseTypes.push_front("Teste");
+
+    REQUIRE(releaseTypes == manager.getReleaseTypes());
 }
 
 #endif

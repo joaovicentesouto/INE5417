@@ -6,6 +6,9 @@
 #include "../../src/model/user.h"
 #include "../../src/model/account.h"
 
+#include "../../src/model/bank_account.h"
+#include "../../src/model/wallet.h"
+
 using namespace project;
 
 namespace {
@@ -15,70 +18,111 @@ public:
     string name{"João"};
     string password{"1234"};
     list<Account*> accounts;
-    
-    AccountFixture() {
-        
+
+    UserFixture() {
+
     }
 };
 } // namespace
 
-TEST_CASE_METHOD(AccountFixture, "User: Checking attributes after the construction", "[attribute]")
+TEST_CASE_METHOD(UserFixture, "User: Checking attributes after the construction", "[attribute]")
 {
     User user(name, password);
-    
+
     REQUIRE(name == user.getName());
     REQUIRE(password == user.getPassword());
 }
 
-TEST_CASE_METHOD(AccountFixture, "User: Changing name", "[attribute]")
+TEST_CASE_METHOD(UserFixture, "User: Changing name", "[attribute]")
 {
     User user(name, password);
-    
+
     name = "Bruno";
     user.changeName(name);
-    
+
     REQUIRE(name == user.getName());
 }
 
-TEST_CASE_METHOD(AccountFixture, "User: Inserting accounts", "[user]")
+TEST_CASE_METHOD(UserFixture, "User: Inserting bank accounts", "[user]")
 {
     User user(name, password);
-    
-    Account one("João", 100);
-    Account two("Bruno", 200);
-    Account three("Fabiola", 300);
-    
+
+    BankAccount one("João", 100);
+    BankAccount two("Bruno", 200);
+    BankAccount three("Fabiola", 300);
+
     accounts.push_front(&one);
     accounts.push_front(&two);
     accounts.push_front(&three);
-    
-    user.insertRelease(one);
-    user.insertRelease(two);
-    user.insertRelease(three);
-    
-    REQUIRE(accounts == user.getReleases());
+
+    user.insertAccount(one);
+    user.insertAccount(two);
+    user.insertAccount(three);
+
+    REQUIRE(accounts == user.getAccounts());
 }
 
-TEST_CASE_METHOD(AccountFixture, "User: Removing accounts", "[user]")
+TEST_CASE_METHOD(UserFixture, "User: Removing bank accounts", "[user]")
 {
     User user(name, password);
-    
-    Account one("João", 100);
-    Account two("Bruno", 200);
-    Account three("Fabiola", 300);
-    
+
+    BankAccount one("João", 100);
+    BankAccount two("Bruno", 200);
+    BankAccount three("Fabiola", 300);
+
     accounts.push_front(&one);
     accounts.push_front(&two);
     accounts.push_front(&three);
-    
-    user.insertRelease(one);
-    user.insertRelease(two);
-    user.insertRelease(three);
-    
+
+    user.insertAccount(one);
+    user.insertAccount(two);
+    user.insertAccount(three);
+
     accounts.remove(&three);
-    user.removeRelease(three);
-    
-    REQUIRE(accounts == user.getReleases());
+    user.removeAccount(three);
+
+    REQUIRE(accounts == user.getAccounts());
+}
+
+TEST_CASE_METHOD(UserFixture, "User: Inserting Wallet accounts", "[user]")
+{
+    User user(name, password);
+
+    Wallet one("João", 100);
+    Wallet two("Bruno", 200);
+    Wallet three("Fabiola", 300);
+
+    accounts.push_front(&one);
+    accounts.push_front(&two);
+    accounts.push_front(&three);
+
+    user.insertAccount(one);
+    user.insertAccount(two);
+    user.insertAccount(three);
+
+    REQUIRE(accounts == user.getAccounts());
+}
+
+TEST_CASE_METHOD(UserFixture, "User: Removing Wallet accounts", "[user]")
+{
+    User user(name, password);
+
+    Wallet one("João", 100);
+    Wallet two("Bruno", 200);
+    Wallet three("Fabiola", 300);
+
+    accounts.push_front(&one);
+    accounts.push_front(&two);
+    accounts.push_front(&three);
+
+    user.insertAccount(one);
+    user.insertAccount(two);
+    user.insertAccount(three);
+
+    accounts.remove(&three);
+    user.removeAccount(three);
+
+    REQUIRE(accounts == user.getAccounts());
 }
 
 #endif
