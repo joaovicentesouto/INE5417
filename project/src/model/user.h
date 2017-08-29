@@ -16,21 +16,22 @@ class User {
 public:
     User(string _name, string _password);
     ~User();
-    
+
     size_t getId();
     string getName();
     string getPassword();
     list<Account*> getAccounts();
-    
+
     void changeName(string _newName);
     void insertAccount(Account& _account);
     void removeAccount(Account& _account);
-    
+
 private:
     size_t id{0};
     string name, password;
+    TypeManager manager;
     list<Account*> accounts;
-    
+
 };
 
 }  // namespace project

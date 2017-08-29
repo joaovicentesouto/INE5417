@@ -1,10 +1,9 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
 #ifndef PROJECT_USER_TEST_H
-#define PROJECT_ACCOUNT_TEST_H
+#define PROJECT_USER_TEST_H
 
 #include <catch.hpp>
 #include "../../src/model/user.h"
-#include "../../src/model/account.h"
 
 #include "../../src/model/bank_account.h"
 #include "../../src/model/wallet.h"
