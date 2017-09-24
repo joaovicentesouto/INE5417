@@ -1,8 +1,7 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
-#include "account.h"
+#include "Account.h"
 
-namespace project
-{
+namespace project {
 
 Account::Account(string _name, double _balance) :
 name(_name),
@@ -42,5 +41,5 @@ void Account::insertRelease(Release& _release) {
 void Account::removeRelease(Release& _release) {
     releases.remove(&_release);
 }
-    
+
 }  // namespace project

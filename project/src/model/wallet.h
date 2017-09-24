@@ -3,7 +3,7 @@
 #ifndef PROJECT_WALLET_H
 #define PROJECT_WALLET_H
 
-#include "account.h"
+#include "Account.h"
 
 using namespace std;
 

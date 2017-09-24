@@ -5,8 +5,8 @@
 
 #include <string>
 #include <list>
-#include "account.h"
-#include "type_manager.h"
+#include "Account.h"
+#include "TypeManager.h"
 
 using namespace std;
 

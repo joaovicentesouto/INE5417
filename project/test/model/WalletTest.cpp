@@ -1,39 +1,40 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
-#ifndef PROJECT_ACCOUNT_TEST_H
-#define PROJECT_ACCOUNT_TEST_H
+#ifndef PROJECT_WALLET_TEST_H
+#define PROJECT_WALLET_TEST_H
 
 #include <catch.hpp>
-#include "../../src/model/release.h"
-#include "../../src/model/account.h"
-
+#include "../../src/model/Wallet.h"
 
 using namespace project;
 
-namespace {
+namespace
+{
 
-class AccountFixture {
+class WalletFixture
+{
 public:
     string name{"João"};
     double balance{100};
     list<Release*> releases;
     
-    AccountFixture() {
+    WalletFixture()
+    {
         
     }
 };
 } // namespace
 
-TEST_CASE_METHOD(AccountFixture, "Account: Checking attributes after the construction", "[attribute]")
+TEST_CASE_METHOD(WalletFixture, "Wallet: Checking attributes after the construction", "[attribute]")
 {
-    Account account(name, balance);
+    Wallet account(name, balance);
     
     REQUIRE(name == account.getName());
     REQUIRE(balance == account.getBalance());
 }
 
-TEST_CASE_METHOD(AccountFixture, "Account: Changing name", "[attribute]")
+TEST_CASE_METHOD(WalletFixture, "Wallet: Changing name", "[attribute]")
 {
-    Account account(name, balance);
+    Wallet account(name, balance);
     
     name = "Bruno";
     account.changeName(name);
@@ -41,9 +42,9 @@ TEST_CASE_METHOD(AccountFixture, "Account: Changing name", "[attribute]")
     REQUIRE(name == account.getName());
 }
 
-TEST_CASE_METHOD(AccountFixture, "Account: Inserting releases", "[releases]")
+TEST_CASE_METHOD(WalletFixture, "Wallet: Inserting releases", "[releases]")
 {
-    Account account(name, balance);
+    Wallet account(name, balance);
     
     Release agua(100, account, "Água", "Dinheiro", "Teste1", time(0));
     Release comida(100, account, "Comida", "Crédito", "Teste1", time(0));
@@ -60,9 +61,9 @@ TEST_CASE_METHOD(AccountFixture, "Account: Inserting releases", "[releases]")
     REQUIRE(releases == account.getReleases());
 }
 
-TEST_CASE_METHOD(AccountFixture, "Account: Removing releases", "[releases]")
+TEST_CASE_METHOD(WalletFixture, "Wallet: Removing releases", "[releases]")
 {
-    Account account(name, balance);
+    Wallet account(name, balance);
     
     Release agua(100, account, "Água", "Dinheiro", "Teste1", time(0));
     Release comida(100, account, "Comida", "Crédito", "Teste1", time(0));

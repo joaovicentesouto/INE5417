@@ -1,50 +1,63 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
-#ifndef PROJECT_WALLET_TEST_H
-#define PROJECT_WALLET_TEST_H
+#ifndef PROJECT_BANK_ACCOUNT_TEST_H
+#define PROJECT_BANK_ACCOUNT_TEST_H
 
 #include <catch.hpp>
-#include "../../src/model/wallet.h"
+#include "../../src/model/BankAccount.h"
 
 using namespace project;
 
 namespace
 {
-
-class WalletFixture
-{
+    
+class BankAccountFixture {
 public:
-    string name{"João"};
+    string name{"João"}, accountNumber{"123"}, agency{"0000-8"}, bank{"BB"};
     double balance{100};
     list<Release*> releases;
     
-    WalletFixture()
+    BankAccountFixture()
     {
         
     }
 };
+
 } // namespace
 
-TEST_CASE_METHOD(WalletFixture, "Wallet: Checking attributes after the construction", "[attribute]")
+TEST_CASE_METHOD(BankAccountFixture, "BankAccount: Checking attributes after the construction", "[attribute]")
 {
-    Wallet account(name, balance);
+    BankAccount account(name, balance, accountNumber, agency, bank);
     
     REQUIRE(name == account.getName());
     REQUIRE(balance == account.getBalance());
+    REQUIRE(accountNumber == account.getAccountNumber());
+    REQUIRE(agency == account.getAgency());
+    REQUIRE(bank == account.getBank());
 }
 
-TEST_CASE_METHOD(WalletFixture, "Wallet: Changing name", "[attribute]")
+TEST_CASE_METHOD(BankAccountFixture, "BankAccount: Changing name, number, agency and bank", "[attribute]")
 {
-    Wallet account(name, balance);
+    BankAccount account(name, balance, accountNumber, agency, bank);
     
     name = "Bruno";
+    accountNumber = "456";
+    agency = "1111-0";
+    bank = "Caixa";
+    
     account.changeName(name);
+    account.changeAccountNumber(accountNumber);
+    account.changeAgency(agency);
+    account.changeBank(bank);
     
     REQUIRE(name == account.getName());
+    REQUIRE(accountNumber == account.getAccountNumber());
+    REQUIRE(agency == account.getAgency());
+    REQUIRE(bank == account.getBank());
 }
 
-TEST_CASE_METHOD(WalletFixture, "Wallet: Inserting releases", "[releases]")
+TEST_CASE_METHOD(BankAccountFixture, "BankAccount: Inserting releases", "[releases]")
 {
-    Wallet account(name, balance);
+    BankAccount account(name, balance, accountNumber, agency, bank);
     
     Release agua(100, account, "Água", "Dinheiro", "Teste1", time(0));
     Release comida(100, account, "Comida", "Crédito", "Teste1", time(0));
@@ -61,9 +74,9 @@ TEST_CASE_METHOD(WalletFixture, "Wallet: Inserting releases", "[releases]")
     REQUIRE(releases == account.getReleases());
 }
 
-TEST_CASE_METHOD(WalletFixture, "Wallet: Removing releases", "[releases]")
+TEST_CASE_METHOD(BankAccountFixture, "BankAccount: Removing releases", "[releases]")
 {
-    Wallet account(name, balance);
+    BankAccount account(name, balance, accountNumber, agency, bank);
     
     Release agua(100, account, "Água", "Dinheiro", "Teste1", time(0));
     Release comida(100, account, "Comida", "Crédito", "Teste1", time(0));

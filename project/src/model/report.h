@@ -7,8 +7,8 @@
 #include <list>
 #include <ctime>
 
-#include "account.h"
-#include "release.h"
+#include "Account.h"
+#include "Release.h"
 
 using namespace std;
 
@@ -32,7 +32,7 @@ private:
     list<string> releasesTypes, paymentTypes;
     
 };
-    
+
 }  // namespace project
 
 #endif

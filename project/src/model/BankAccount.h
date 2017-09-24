@@ -3,7 +3,7 @@
 #ifndef PROJECT_BANK_ACCOUNT_H
 #define PROJECT_BANK_ACCOUNT_H
 
-#include "account.h"
+#include "Account.h"
 
 using namespace std;
 
@@ -26,7 +26,7 @@ public:
 private:
     string accountNumber, agency, bank;
 };
-    
+
 }  // namespace project
 
 #endif

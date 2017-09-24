@@ -3,10 +3,10 @@
 #define PROJECT_USER_TEST_H
 
 #include <catch.hpp>
-#include "../../src/model/user.h"
+#include "../../src/model/User.h"
 
-#include "../../src/model/bank_account.h"
-#include "../../src/model/wallet.h"
+#include "../../src/model/BankAccount.h"
+#include "../../src/model/Wallet.h"
 
 using namespace project;
 

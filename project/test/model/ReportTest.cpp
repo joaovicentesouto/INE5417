@@ -3,7 +3,7 @@
 #define PROJECT_REPORT_TEST_H
 
 #include <catch.hpp>
-#include "../../src/model/report.h"
+#include "../../src/model/Report.h"
 
 using namespace project;
 

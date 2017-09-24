@@ -1,5 +1,5 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
-#include "type_manager.h"
+#include "TypeManager.h"
 
 using namespace std;
 

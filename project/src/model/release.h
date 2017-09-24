@@ -42,7 +42,7 @@ private:
     time_t date;
     
 };
-    
+
 }  // namespace project
 
 #endif

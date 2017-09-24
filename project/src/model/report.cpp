@@ -1,5 +1,5 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
-#include "report.h"
+#include "Report.h"
 
 namespace project {
 
@@ -34,5 +34,5 @@ void Report::searchByValue(double _lowerValue, double _upperValue) {
     upperValue = _upperValue;
     //...
 }
-    
+
 }  // namespace project

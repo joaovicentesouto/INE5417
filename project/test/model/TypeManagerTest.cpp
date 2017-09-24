@@ -3,7 +3,7 @@
 #define PROJECT_TYPE_MANAGER_TEST_H
 
 #include <catch.hpp>
-#include "../../src/model/type_manager.h"
+#include "../../src/model/TypeManager.h"
 
 using namespace project;
 

@@ -1,5 +1,5 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
-#include "release.h"
+#include "Release.h"
 
 using namespace std;
 
@@ -73,5 +73,5 @@ void Release::changeDescription(string _description) {
 void Release::changeDate(time_t _date) {
     date = _date;
 }
-    
+
 }  // namespace project

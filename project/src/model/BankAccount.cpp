@@ -1,8 +1,7 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
-#include "bank_account.h"
+#include "BankAccount.h"
 
-namespace project
-{
+namespace project {
 
 BankAccount::BankAccount(string _name, double _balance) :
     Account::Account(_name, _balance)
@@ -47,5 +46,4 @@ void BankAccount::changeBank(string _newBank) {
     bank = _newBank;
 }
 
-    
 }  // namespace project

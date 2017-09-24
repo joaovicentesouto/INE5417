@@ -3,8 +3,8 @@
 #define PROJECT_RELEASE_TEST_H
 
 #include <catch.hpp>
-#include "../../src/model/account.h"
-#include "../../src/model/release.h"
+#include "../../src/model/Account.h"
+#include "../../src/model/Release.h"
 
 using namespace project;
 

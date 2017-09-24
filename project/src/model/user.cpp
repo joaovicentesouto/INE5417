@@ -1,5 +1,5 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
-#include "user.h"
+#include "User.h"
 
 namespace project {
 
@@ -41,5 +41,5 @@ void User::insertAccount(Account& _account) {
 void User::removeAccount(Account& _account) {
     accounts.remove(&_account);
 }
-    
+
 }  // namespace project
