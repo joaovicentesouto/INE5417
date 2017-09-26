@@ -3,7 +3,7 @@ file(GLOB_RECURSE control_SRC
 )
 
 file(GLOB_RECURSE control_H
-"*.h"
+    "*.h"
 )
 
 add_library(lib_control ${control_SRC})

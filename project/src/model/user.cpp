@@ -5,13 +5,18 @@ namespace project {
 
 User::User(string _name, string _password) :
     name(_name),
-    password(_password)
+    password(_password),
+    manager(),
+    accounts()
 {
 
 }
 
 User::~User() {
-
+    //while (!accounts.empty()) {
+    //    delete accounts.front();
+    //    accounts.pop_front();
+    //}
 }
 
 size_t User::getId() {
