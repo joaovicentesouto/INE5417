@@ -7,10 +7,10 @@
 
 namespace project {
 
-class ReleaseTypeCreator {
+class ReleaseTypeBuilder {
 public:
-    ReleaseTypeCreator(std::string _name);
-    ~ReleaseTypeCreator();
+    ReleaseTypeBuilder(std::string _name);
+    ~ReleaseTypeBuilder();
 
     bool isValid();
     std::string build();

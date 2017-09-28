@@ -8,10 +8,10 @@
 
 namespace project {
 
-class UserCreator {
+class UserBuilder {
 public:
-    UserCreator(std::string _name, std::string _password);
-    ~UserCreator();
+    UserBuilder(std::string _name, std::string _password);
+    ~UserBuilder();
 
     bool isValid();
     User* build();

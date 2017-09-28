@@ -6,9 +6,9 @@
 #include <list>
 #include <string>
 #include "../model/User.h"
-#include "WalletCreator.h"
-#include "BankAccountCreator.h"
-#include "ReleaseTypeCreator.h"
+#include "WalletBuilder.h"
+#include "BankAccountBuilder.h"
+#include "ReleaseTypeBuilder.h"
 
 namespace project {
 

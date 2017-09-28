@@ -9,10 +9,10 @@
 
 namespace project {
 
-class BankAccountCreator {
+class BankAccountBuilder {
 public:
-    BankAccountCreator(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank);
-    ~BankAccountCreator();
+    BankAccountBuilder(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank);
+    ~BankAccountBuilder();
 
     bool isValid();
     BankAccount* build();

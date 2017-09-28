@@ -1,23 +1,23 @@
-#include "WalletCreator.h"
+#include "WalletBuilder.h"
 
 namespace project {
 
-WalletCreator::WalletCreator(std::string _name, double _balance) :
+WalletBuilder::WalletBuilder(std::string _name, double _balance) :
     name(_name),
     balance(_balance)
 {
 
 }
 
-WalletCreator::~WalletCreator() {
+WalletBuilder::~WalletBuilder() {
     
 }
 
-bool WalletCreator::isValid() {
+bool WalletBuilder::isValid() {
     return !name.empty() && balance >= 0;
 }
 
-Wallet* WalletCreator::build() {
+Wallet* WalletBuilder::build() {
     if (!isValid())
         throw std::out_of_range("Os parâmetros para a criação não são validos!");
     return new Wallet(name, balance);

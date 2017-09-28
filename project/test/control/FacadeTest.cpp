@@ -1,6 +1,6 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
-#ifndef PROJECT_BANK_ACCOUNT_CREATOR_TEST_H
-#define PROJECT_BANK_ACCOUNT_CREATOR_TEST_H
+#ifndef PROJECT_BANK_ACCOUNT_BUILDER_TEST_H
+#define PROJECT_BANK_ACCOUNT_BUILDER_TEST_H
 
 #include <catch.hpp>
 #include "../../src/model/BankAccount.h"

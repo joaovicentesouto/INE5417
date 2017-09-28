@@ -1,23 +1,23 @@
-#include "UserCreator.h"
+#include "UserBuilder.h"
 
 namespace project {
 
-UserCreator::UserCreator(string _name, string _password) :
+UserBuilder::UserBuilder(string _name, string _password) :
     name(_name),
     password(_password)
 {
 
 }
 
-UserCreator::~UserCreator() {
+UserBuilder::~UserBuilder() {
     
 }
 
-bool UserCreator::isValid() {
+bool UserBuilder::isValid() {
     return !name.empty() && !password.empty();
 }
 
-User* UserCreator::build() {
+User* UserBuilder::build() {
     if (!isValid())
         throw std::out_of_range("Os parâmetros para a criação não são validos!");
     return new User(name, password);

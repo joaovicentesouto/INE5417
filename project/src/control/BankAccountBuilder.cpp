@@ -1,8 +1,8 @@
-#include "BankAccountCreator.h"
+#include "BankAccountBuilder.h"
 
 namespace project {
 
-BankAccountCreator::BankAccountCreator(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank) :
+BankAccountBuilder::BankAccountBuilder(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank) :
     name(_name),
     balance(_balance),
     accountNumber(_accountNumber),
@@ -12,15 +12,15 @@ BankAccountCreator::BankAccountCreator(std::string _name, double _balance, std::
 
 }
 
-BankAccountCreator::~BankAccountCreator() {
+BankAccountBuilder::~BankAccountBuilder() {
     
 }
 
-bool BankAccountCreator::isValid() {
+bool BankAccountBuilder::isValid() {
     return !name.empty() && balance >= 0 && !accountNumber.empty() && !agency.empty() && !bank.empty();
 }
 
-BankAccount* BankAccountCreator::build() {
+BankAccount* BankAccountBuilder::build() {
     if (!isValid())
         throw std::out_of_range("Os parâmetros para a criação não são validos!");
     return new BankAccount(name, balance, accountNumber, agency, bank);

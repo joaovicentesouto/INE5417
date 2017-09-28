@@ -9,10 +9,10 @@
 
 namespace project {
 
-class WalletCreator {
+class WalletBuilder {
 public:
-    WalletCreator(std::string _name, double _balance);
-    ~WalletCreator();
+    WalletBuilder(std::string _name, double _balance);
+    ~WalletBuilder();
 
     bool isValid();
     Wallet* build();
