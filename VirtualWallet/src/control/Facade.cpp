@@ -6,8 +6,8 @@ Facade::Facade() {
 
 }
 
-Facade::Facade(std::string name, std::string password) {
-    user = new User(name, password);
+Facade::Facade(std::string _name, std::string _password) {
+    user = new User(_name, _password);
 }
 
 Facade::~Facade() {
@@ -48,6 +48,11 @@ size_t Facade::accountsAmount() {
 size_t Facade::releasesAmount(std::string name) {
     //user->getAccount(name).getReleases().size();
     return 0;
+}
+
+bool Facade::login(std::string _name, std::string _password)
+{
+    return user->verifyUser(_name, _password);
 }
 
 }
