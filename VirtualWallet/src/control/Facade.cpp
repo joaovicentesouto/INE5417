@@ -45,6 +45,15 @@ size_t Facade::accountsAmount() {
     return user->getAccounts().size();
 }
 
+double Facade::accountsBalance() {
+    double totalBalance = 0;
+    list<Account*> accounts = user->getAccounts();
+    for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
+        totalBalance += (*i)->getBalance();
+    }
+    return totalBalance;
+}
+
 size_t Facade::releasesAmount(std::string name) {
     //user->getAccount(name).getReleases().size();
     return 0;
@@ -53,6 +62,11 @@ size_t Facade::releasesAmount(std::string name) {
 bool Facade::login(std::string _name, std::string _password)
 {
     return user->verifyUser(_name, _password);
+}
+
+std::string Facade::getUserName()
+{
+    return user->getName();
 }
 
 }
