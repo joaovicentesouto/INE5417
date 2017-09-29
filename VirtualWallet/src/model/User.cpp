@@ -35,6 +35,10 @@ list<Account*> User::getAccounts() {
     return accounts;
 }
 
+bool User::login(std::string _name, std::string _password) {
+    return (name == _name && password == _password);
+}
+
 void User::changeName(string _newName) {
     name = _newName;
 }
