@@ -72,8 +72,9 @@
            <property name="styleSheet">
             <string notr="true">#LoginErrorMessage
 {
-background-color: transparent;
-border: none;
+	color:  rgb(250, 0, 0);
+	background-color: transparent;
+	border: none;
 }</string>
            </property>
            <property name="text">
@@ -218,42 +219,24 @@ border: none;
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="home">
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>180</y>
-        <width>461</width>
-        <height>391</height>
-       </rect>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>518</width>
-         <height>738</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QTextEdit" name="textEdit">
-          <property name="minimumSize">
-           <size>
-            <width>500</width>
-            <height>720</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+    <widget class="QWidget" name="Home">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QWidget" name="HomeContent" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QWidget" name="HomeAccounts" native="true"/>
+         </item>
+         <item>
+          <widget class="QWidget" name="HomeGraphic" native="true"/>
+         </item>
+        </layout>
+        <zorder>widget</zorder>
+        <zorder>HomeAccounts</zorder>
+        <zorder>HomeGraphic</zorder>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QWidget" name="Menu" native="true">
@@ -297,19 +280,19 @@ border: none;
       <rect>
        <x>70</x>
        <y>15</y>
-       <width>200</width>
+       <width>180</width>
        <height>20</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
-       <width>200</width>
+       <width>180</width>
        <height>20</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>200</width>
+       <width>180</width>
        <height>20</height>
       </size>
      </property>
@@ -317,6 +300,7 @@ border: none;
       <string notr="true">#MenuUser
 {
 	font-size: 12px;
+	qproperty-alignment: AlignCenter;
 }</string>
      </property>
      <property name="text">
@@ -326,21 +310,21 @@ border: none;
     <widget class="QLabel" name="MenuTotal">
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>250</x>
        <y>15</y>
-       <width>230</width>
+       <width>250</width>
        <height>20</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
-       <width>230</width>
+       <width>250</width>
        <height>20</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>230</width>
+       <width>250</width>
        <height>20</height>
       </size>
      </property>
@@ -354,6 +338,7 @@ border: none;
       <string notr="true">#MenuTotal
 {
 	font-size: 12px;
+	qproperty-alignment: AlignCenter;
 }</string>
      </property>
      <property name="text">
@@ -369,16 +354,194 @@ border: none;
      <rect>
       <x>0</x>
       <y>50</y>
-      <width>411</width>
-      <height>561</height>
+      <width>250</width>
+      <height>670</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>250</width>
+      <height>670</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>250</width>
+      <height>670</height>
+     </size>
+    </property>
     <property name="styleSheet">
-     <string notr="true">#WMenu
+     <string notr="true">#MenuWidget
 {
     background-color: #a3f48a;
 }</string>
     </property>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <widget class="QLabel" name="MenuTitle">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Opçoes:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuReleases">
+       <property name="styleSheet">
+        <string notr="true">#MenuReleases
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Lançamentos Financeiros:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuNewReleaseType">
+       <property name="styleSheet">
+        <string notr="true">#MenuNewReleaseType
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>               Cadastrar Tipo de Lançamento</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuNewRelease">
+       <property name="styleSheet">
+        <string notr="true">#MenuNewRelease
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>               Novo Lançamento</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuReport">
+       <property name="styleSheet">
+        <string notr="true">#MenuReport
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>               Relatorio</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuBankAccounts">
+       <property name="styleSheet">
+        <string notr="true">#MenuBankAccounts
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Bank Accounts</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuWallets">
+       <property name="styleSheet">
+        <string notr="true">#MenuWallets
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Wallets</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuUserDatas">
+       <property name="styleSheet">
+        <string notr="true">#MenuUserDatas
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Dados do Usuario</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuAbout">
+       <property name="styleSheet">
+        <string notr="true">#MenuAbout
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Sobre o Aplicativo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuOut">
+       <property name="styleSheet">
+        <string notr="true">#MenuOut
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Sair</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="MenuComplement">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

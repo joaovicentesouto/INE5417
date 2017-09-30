@@ -34,14 +34,10 @@ void MainWindow::on_ConfirmButton_clicked()
     std::string name = ui->LoginName->text().toStdString();
     std::string password = ui->LoginPassword->text().toStdString();
     if (facade.login(name, password)) {
-        ui->Menu->show();
-        ui->MenuWidget->hide();
         configureMenu();
-        ui->Stack->setCurrentWidget(ui->home);
     } else {
         on_CleanButton_clicked();
         ui->LoginErrorMessage->setText("Usuario ou Senha Invalidos!");
-        ui->LoginErrorMessage->setStyleSheet("color: rgb(250, 0, 0); border: none;");
     }
 }
 
@@ -76,7 +72,12 @@ void MainWindow::on_MenuButton_clicked()
 
 void MainWindow::configureMenu()
 {
+    std::string accauntsBalance(24, '\0');
+    std::snprintf(&accauntsBalance[0], 24, "%.2f", facade.accountsBalance());
+
+    ui->Menu->show();
     ui->MenuButton->setIcon(QIcon("../Images/menubutton.png"));
     ui->MenuUser->setText(QString::fromStdString(facade.getUserName()));
-    ui->MenuTotal->setText(QString::fromStdString("Total R$ " + std::to_string(facade.accountsBalance())));
+    ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
+    ui->Stack->setCurrentWidget(ui->Home);
 }
