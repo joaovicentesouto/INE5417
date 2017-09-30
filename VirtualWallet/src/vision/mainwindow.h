@@ -20,11 +20,19 @@ public:
 
 private:
     Facade facade;
+    bool nome{false};
+    bool senha{false};
 
 private slots:
     void on_Limpar_clicked();
 
     void on_Confirmar_clicked();
+
+    void on_Nome_textEdited(const QString &arg1);
+
+    void on_Senha_textEdited(const QString &arg1);
+
+    void on_MenuButton_clicked();
 
 private:
     Ui::MainWindow *ui;

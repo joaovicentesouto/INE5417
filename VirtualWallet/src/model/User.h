@@ -22,7 +22,7 @@ public:
     string getPassword();
     list<Account*> getAccounts();
 
-    bool login(std::string _name, std::string _password);
+    bool verifyUser(std::string _name, std::string _password);
 
     void changeName(string _newName);
     void insertAccount(Account& _account);
