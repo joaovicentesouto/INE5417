@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->NewWallet->setFacade(facade);
 
     connect(ui->NewWallet, SIGNAL(goToHome()), this, SLOT(goToHome()));
+    ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
 }
 
 MainWindow::~MainWindow()
@@ -314,4 +315,5 @@ void MainWindow::on_ForgotNameConfirmButton_clicked()
 void MainWindow::goToHome()
 {
     ui->Stack->setCurrentWidget(ui->Home);
+    ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
 }

@@ -50,12 +50,21 @@ void WNewWallet::on_Balance_valueChanged(const QString &arg1)
 
 void WNewWallet::on_Confirm_clicked()
 {
-    QString _name = ui->Name->text();
-    double _balance = ui->Balance->value();
-    if (facade->registerWallet(_name.toStdString(), _balance)) {
-        on_Clean_clicked();
-        emit goToHome();
-    } else {
+    if (!name) {
+        return ;
+    }
 
+    std::string finalName = ui->Name->text().toStdString();
+    double _balance = ui->Balance->value();
+
+    if (ui->Name->text().toInt() != 0) {
+        if (facade->registerWallet(finalName, _balance)) {
+            on_Clean_clicked();
+            emit goToHome();
+        } else {
+            ui->Erro->setText("Nome invalido!");
+        }
+    } else {
+        ui->Erro->setText("Nome invalido!");
     }
 }

@@ -567,7 +567,21 @@
        <widget class="QWidget" name="HomeContent" native="true">
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QWidget" name="HomeAccounts" native="true"/>
+          <widget class="QWidget" name="HomeAccounts" native="true">
+           <widget class="QLabel" name="AccountAmount">
+            <property name="geometry">
+             <rect>
+              <x>280</x>
+              <y>90</y>
+              <width>58</width>
+              <height>14</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </widget>
          </item>
          <item>
           <widget class="QWidget" name="HomeGraphic" native="true"/>
