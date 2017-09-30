@@ -24,8 +24,9 @@ void WNewWallet::on_Name_textEdited(const QString &arg1)
     if (!name) {
         QString last(arg1.toStdString().back());
         ui->Name->setText(last);
+        name = true;
     }
-    name = true;
+
     ui->Name->setStyleSheet("color: rgb(0, 0, 0); border: none;");
 }
 
@@ -35,6 +36,7 @@ void WNewWallet::on_Clean_clicked()
     ui->Name->setStyleSheet("color: #565656; border: none;");
     ui->Balance->setValue(0.0);
     ui->Balance->setStyleSheet("color: #565656; border: none;");
+    ui->Erro->setText("");
     name = balance = false;
 }
 
@@ -57,7 +59,7 @@ void WNewWallet::on_Confirm_clicked()
     std::string finalName = ui->Name->text().toStdString();
     double _balance = ui->Balance->value();
 
-    if (ui->Name->text().toInt() != 0) {
+    if (finalName != "") {
         if (facade->registerWallet(finalName, _balance)) {
             on_Clean_clicked();
             emit goToHome();
