@@ -3,9 +3,10 @@
 
 namespace project {
 
-User::User(string _name, string _password) :
+User::User(string _name, string _password, string _code) :
     name(_name),
     password(_password),
+    code(_code),
     manager(),
     accounts()
 {
@@ -27,6 +28,10 @@ string User::getName() {
     return name;
 }
 
+string User::getCode() {
+    return code;
+}
+
 string User::getPassword() {
     return password;
 }
@@ -41,6 +46,10 @@ bool User::verifyUser(std::string _name, std::string _password) {
 
 void User::changeName(string _newName) {
     name = _newName;
+}
+
+void User::changePassword(string _newPassword) {
+    password = _newPassword;
 }
 
 void User::insertAccount(Account& _account) {
