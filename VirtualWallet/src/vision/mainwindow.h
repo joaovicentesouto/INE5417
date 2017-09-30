@@ -36,6 +36,22 @@ private slots:
 
     void configureMenu();
 
+    void on_MenuNewReleaseType_clicked();
+
+    void on_MenuNewRelease_clicked();
+
+    void on_MenuReport_clicked();
+
+    void on_MenuBankAccounts_clicked();
+
+    void on_MenuWallets_clicked();
+
+    void on_MenuUserDatas_clicked();
+
+    void on_MenuAbout_clicked();
+
+    void on_MenuOut_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
