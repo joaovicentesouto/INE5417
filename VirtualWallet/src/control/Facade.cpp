@@ -69,4 +69,20 @@ std::string Facade::getUserName()
     return user->getName();
 }
 
+bool Facade::verifyNewPass(std::string _name, std::string _code, std::string _newPassword, std::string _confirm) {
+    return _name == user->getName() && _code == user->getCode() && _newPassword == _confirm;
+}
+
+void Facade::refreshPass(std::string _newPassword) {
+    user->changePassword(_newPassword);
+}
+
+bool Facade::verifyNewName(std::string _code, std::string _password, std::string _newName, std::string _confirm) {
+    return _code == user->getCode() && _password == user->getPassword() && _newName == _confirm;
+}
+
+void Facade::refreshName(std::string _newName) {
+    user->changeName(_newName);
+}
+
 }
