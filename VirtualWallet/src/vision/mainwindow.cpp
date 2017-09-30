@@ -6,12 +6,13 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    facade("Usuario", "123456")
+    facade("Usuario", "123456"),
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->Menu->hide();
     ui->WMenu->hide();
+    ui->Senha->setInputMethodHints(Qt::ImhHiddenText| Qt::ImhNoPredictiveText|Qt::ImhNoAutoUppercase);
 }
 
 MainWindow::~MainWindow()
@@ -21,6 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Limpar_clicked()
 {
+    ui->Senha->setEchoMode(QLineEdit::Normal);
     nome = false;
     senha = false;
     ui->Nome->setText("Nome");
@@ -59,6 +61,7 @@ void MainWindow::on_Nome_textEdited(const QString &arg1)
 void MainWindow::on_Senha_textEdited(const QString &arg1)
 {
     if (!senha) {
+        ui->Senha->setEchoMode(QLineEdit::Password);
         QString last(arg1.toStdString().back());
         ui->Senha->setText(last);
     }
