@@ -81,3 +81,43 @@ void MainWindow::configureMenu()
     ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
     ui->Stack->setCurrentWidget(ui->Home);
 }
+
+void MainWindow::on_MenuNewReleaseType_clicked()
+{
+    ui->Stack->setCurrentWidget(ui->NewTypeRelease);
+}
+
+void MainWindow::on_MenuNewRelease_clicked()
+{
+    ui->Stack->setCurrentWidget(ui->NewRelease);
+}
+
+void MainWindow::on_MenuReport_clicked()
+{
+    ui->Stack->setCurrentWidget(ui->Report);
+}
+
+void MainWindow::on_MenuBankAccounts_clicked()
+{
+    ui->Stack->setCurrentWidget(ui->NewBankAccount);
+}
+
+void MainWindow::on_MenuWallets_clicked()
+{
+    ui->Stack->setCurrentWidget(ui->NewWallet);
+}
+
+void MainWindow::on_MenuUserDatas_clicked()
+{
+    ui->Stack->setCurrentWidget(ui->UserData);
+}
+
+void MainWindow::on_MenuAbout_clicked()
+{
+    ui->Stack->setCurrentWidget(ui->AppAbout);
+}
+
+void MainWindow::on_MenuOut_clicked()
+{
+    QCoreApplication::quit();
+}
