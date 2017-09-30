@@ -57,7 +57,7 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Login">
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -637,21 +637,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="NewWallet">
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>220</y>
-        <width>101</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>newWallet</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="WNewWallet" name="NewWallet"/>
     <widget class="QWidget" name="UserData">
      <widget class="QLabel" name="label_6">
       <property name="geometry">
@@ -987,12 +973,17 @@
      </item>
     </layout>
    </widget>
-   <zorder>MenuWidget</zorder>
-   <zorder>Stack</zorder>
-   <zorder>Menu</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>WNewWallet</class>
+   <extends>QWidget</extends>
+   <header>./src/vision/wnewwallet.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

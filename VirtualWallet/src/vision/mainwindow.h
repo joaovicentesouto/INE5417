@@ -86,6 +86,8 @@ private slots:
 
     void on_ForgotNameConfirmButton_clicked();
 
+    void goToHome();
+
 private:
     Ui::MainWindow *ui;
 };

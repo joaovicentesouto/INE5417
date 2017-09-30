@@ -5,12 +5,15 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    facade("Nome", "Senha", "Codigo")
+    facade("Nome", "Senha", "Codigo"),
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->Menu->hide();
     ui->MenuWidget->hide();
+    ui->NewWallet->setFacade(facade);
+
+    connect(ui->NewWallet, SIGNAL(goToHome()), this, SLOT(goToHome()));
 }
 
 MainWindow::~MainWindow()
@@ -85,36 +88,43 @@ void MainWindow::configureMenu()
 void MainWindow::on_MenuNewReleaseType_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewTypeRelease);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuNewRelease_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewRelease);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuReport_clicked()
 {
     ui->Stack->setCurrentWidget(ui->Report);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuBankAccounts_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewBankAccount);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuWallets_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewWallet);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuUserDatas_clicked()
 {
     ui->Stack->setCurrentWidget(ui->UserData);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuAbout_clicked()
 {
     ui->Stack->setCurrentWidget(ui->AppAbout);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuOut_clicked()
@@ -299,4 +309,9 @@ void MainWindow::on_ForgotNameConfirmButton_clicked()
         ui->ForgotNameErrorMsg->setStyleSheet("color: rgb(250, 0, 0); border: none;");
         ui->ForgotNameErrorMsg->setText("Dados Invalidos!");
     }
+}
+
+void MainWindow::goToHome()
+{
+    ui->Stack->setCurrentWidget(ui->Home);
 }
