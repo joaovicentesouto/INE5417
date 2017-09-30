@@ -57,7 +57,7 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Login">
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -216,6 +216,348 @@
       </item>
       <item>
        <widget class="QWidget" name="SouthWidget" native="true"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="ForgotPassword">
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
+       <widget class="QWidget" name="ForgotPassNorth" native="true"/>
+      </item>
+      <item>
+       <widget class="QWidget" name="ForgotPassCenter" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QPushButton" name="ForgotPassErrorMsg">
+           <property name="styleSheet">
+            <string notr="true">#ForgotPassErrorMsg
+{
+	background-color: transparent;
+	border: none;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ForgotPassName">
+           <property name="styleSheet">
+            <string notr="true">#ForgotPassName
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+           </property>
+           <property name="text">
+            <string>Nome</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ForgotPassCode">
+           <property name="styleSheet">
+            <string notr="true">#ForgotPassCode
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+           </property>
+           <property name="text">
+            <string>Codigo</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ForgotPassNewPass">
+           <property name="styleSheet">
+            <string notr="true">#ForgotPassNewPass
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+           </property>
+           <property name="text">
+            <string>Nova Senha</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ForgotPassConfirm">
+           <property name="styleSheet">
+            <string notr="true">#ForgotPassConfirm
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+           </property>
+           <property name="text">
+            <string>Confirme a Nova Senha</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="ForgotPassButtons" native="true">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QPushButton" name="ForgotPassCleanButton">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#ForgotPassCleanButton
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+              </property>
+              <property name="text">
+               <string>Limpar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ForgotPassConfirmButton">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#ForgotPassConfirmButton
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+              </property>
+              <property name="text">
+               <string>Confirmar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ForgotPassBack">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#ForgotPassBack
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+              </property>
+              <property name="text">
+               <string>Voltar</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="ForgotPassSouth" native="true"/>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="ForgotName">
+     <layout class="QVBoxLayout" name="verticalLayout_9">
+      <item>
+       <widget class="QWidget" name="ForgotNameNorth" native="true"/>
+      </item>
+      <item>
+       <widget class="QWidget" name="ForgotNameCente" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QPushButton" name="ForgotNameErrorMsg">
+           <property name="styleSheet">
+            <string notr="true">#ForgotNameErrorMsg
+{
+	background-color: transparent;
+	border: none;
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ForgotNameCode">
+           <property name="styleSheet">
+            <string notr="true">#ForgotNameCode
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+           </property>
+           <property name="text">
+            <string>Codigo</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ForgotNamePassword">
+           <property name="styleSheet">
+            <string notr="true">#ForgotNamePassword
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+           </property>
+           <property name="text">
+            <string>Senha</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ForgotNameNewName">
+           <property name="styleSheet">
+            <string notr="true">#ForgotNameNewName
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+           </property>
+           <property name="text">
+            <string>Novo Nome</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="ForgotNameConfirm">
+           <property name="styleSheet">
+            <string notr="true">#ForgotNameConfirm
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+           </property>
+           <property name="text">
+            <string>Confirme o Novo Nome</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="ForgotNameButtons" native="true">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>50</height>
+            </size>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QPushButton" name="ForgotNameCleanButton">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#ForgotNameCleanButton
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+              </property>
+              <property name="text">
+               <string>Limpar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ForgotNameConfirmButton">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#ForgotNameConfirmButton
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+              </property>
+              <property name="text">
+               <string>Confirmar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="ForgotNameBack">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">#ForgotNameBack
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+              </property>
+              <property name="text">
+               <string>Voltar</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="ForgotNameSouth" native="true"/>
       </item>
      </layout>
     </widget>
@@ -645,6 +987,9 @@
      </item>
     </layout>
    </widget>
+   <zorder>MenuWidget</zorder>
+   <zorder>Stack</zorder>
+   <zorder>Menu</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

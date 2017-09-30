@@ -21,6 +21,8 @@ public:
 private:
     Facade facade;
     bool name{false};
+    bool code{false};
+    bool confirm{false};
     bool password{false};
 
 private slots:
@@ -51,6 +53,38 @@ private slots:
     void on_MenuAbout_clicked();
 
     void on_MenuOut_clicked();
+
+    void on_LoginPasswordForgot_clicked();
+
+    void on_ForgotPassCleanButton_clicked();
+
+    void on_ForgotPassName_textEdited(const QString &arg1);
+
+    void on_ForgotPassCode_textEdited(const QString &arg1);
+
+    void on_ForgotPassNewPass_textEdited(const QString &arg1);
+
+    void on_ForgotPassConfirm_textEdited(const QString &arg1);
+
+    void on_ForgotPassBack_clicked();
+
+    void on_ForgotPassConfirmButton_clicked();
+
+    void on_ForgotNameCode_textEdited(const QString &arg1);
+
+    void on_ForgotNamePassword_textEdited(const QString &arg1);
+
+    void on_ForgotNameNewName_textEdited(const QString &arg1);
+
+    void on_ForgotNameConfirm_textEdited(const QString &arg1);
+
+    void on_ForgotNameCleanButton_clicked();
+
+    void on_LoginNameForgot_clicked();
+
+    void on_ForgotNameBack_clicked();
+
+    void on_ForgotNameConfirmButton_clicked();
 
 private:
     Ui::MainWindow *ui;

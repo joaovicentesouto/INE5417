@@ -29,6 +29,11 @@ public:
 
     double accountsBalance();
     std::string getUserName();
+
+    bool verifyNewPass(std::string _name, std::string _code, std::string _newPassword, std::string _confirm);
+    void refreshPass(std::string _newPassword);
+    bool verifyNewName(std::string _code, std::string _password, std::string _newName, std::string _confirm);
+    void refreshName(std::string _newName);
     
 private:
     User * user;
