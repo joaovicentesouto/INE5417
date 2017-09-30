@@ -15,7 +15,7 @@ namespace project {
 class Facade {
 public:
     Facade();
-    Facade(std::string _name, std::string _password);
+    Facade(std::string _name, std::string _password, std::string _code);
     ~Facade();
 
     bool registerWallet(std::string _name, double _balance);

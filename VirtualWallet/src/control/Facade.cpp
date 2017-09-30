@@ -6,8 +6,8 @@ Facade::Facade() {
 
 }
 
-Facade::Facade(std::string _name, std::string _password) {
-    user = new User(_name, _password);
+Facade::Facade(std::string _name, std::string _password, std::string _code) {
+    user = new User(_name, _password, _code);
 }
 
 Facade::~Facade() {
