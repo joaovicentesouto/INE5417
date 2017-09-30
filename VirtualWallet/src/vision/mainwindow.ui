@@ -32,7 +32,7 @@
    <property name="enabled">
     <bool>true</bool>
    </property>
-   <widget class="QStackedWidget" name="stack">
+   <widget class="QStackedWidget" name="Stack">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -59,22 +59,22 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="login">
+    <widget class="QWidget" name="Login">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QWidget" name="LWidgetTop" native="true"/>
+       <widget class="QWidget" name="NorthWidget" native="true"/>
       </item>
       <item>
-       <widget class="QWidget" name="LWidgetCenter" native="true">
+       <widget class="QWidget" name="CenterWidget" native="true">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QPushButton" name="MsgErro">
+          <widget class="QPushButton" name="LoginErrorMessage">
            <property name="styleSheet">
-            <string notr="true">#MsgErro
+            <string notr="true">#LoginErrorMessage
 {
-background-color: transparent;
-background: none;
-border: none;
+	color:  rgb(250, 0, 0);
+	background-color: transparent;
+	border: none;
 }</string>
            </property>
            <property name="text">
@@ -83,9 +83,9 @@ border: none;
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="Nome">
+          <widget class="QLineEdit" name="LoginName">
            <property name="styleSheet">
-            <string notr="true">#Nome
+            <string notr="true">#LoginName
 {
 	border: none;
     color: #565656;
@@ -98,9 +98,9 @@ border: none;
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="Senha">
+          <widget class="QLineEdit" name="LoginPassword">
            <property name="styleSheet">
-            <string notr="true">#Senha
+            <string notr="true">#LoginPassword
 {
 	border: none;
     color: #565656;
@@ -113,7 +113,7 @@ border: none;
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_4" native="true">
+          <widget class="QWidget" name="LoginButtons" native="true">
            <property name="maximumSize">
             <size>
              <width>16777215</width>
@@ -122,7 +122,7 @@ border: none;
            </property>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
-             <widget class="QPushButton" name="Limpar">
+             <widget class="QPushButton" name="CleanButton">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -130,11 +130,10 @@ border: none;
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">#Limpar
+               <string notr="true">#CleanButton
 {
     background-color: #a3f48a;
     color: black;
-    text-align: center;
     font-size: 12px;
 }</string>
               </property>
@@ -144,7 +143,7 @@ border: none;
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="Confirmar">
+             <widget class="QPushButton" name="ConfirmButton">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -152,11 +151,10 @@ border: none;
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">#Confirmar
+               <string notr="true">#ConfirmButton
 {
     background-color: #a3f48a;
     color: black;
-    text-align: center;
     font-size: 12px;
 }</string>
               </property>
@@ -169,13 +167,13 @@ border: none;
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="EsqSenha">
+          <widget class="QPushButton" name="LoginPasswordForgot">
            <property name="styleSheet">
-            <string notr="true">#EsqSenha
+            <string notr="true">#LoginPasswordForgot
 {
-background-color: transparent;
-background: none;
-border: none;
+	background-color: transparent;
+	border: none;
+	font-size: 12px;
 }</string>
            </property>
            <property name="text">
@@ -184,13 +182,13 @@ border: none;
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="EsqNome">
+          <widget class="QPushButton" name="LoginNameForgot">
            <property name="styleSheet">
-            <string notr="true">#EsqNome
+            <string notr="true">#LoginNameForgot
 {
-background-color: transparent;
-background: none;
-border: none;
+	background-color: transparent;
+	border: none;
+	font-size: 12px;
 }</string>
            </property>
            <property name="text">
@@ -199,13 +197,13 @@ border: none;
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="CriarUsuario">
+          <widget class="QPushButton" name="LoginNewUser">
            <property name="styleSheet">
-            <string notr="true">#CriarUsuario
+            <string notr="true">#LoginNewUser
 {
-background-color: transparent;
-background: none;
-border: none;
+	background-color: transparent;
+	border: none;
+	font-size: 12px;
 }</string>
            </property>
            <property name="text">
@@ -217,52 +215,31 @@ border: none;
        </widget>
       </item>
       <item>
-       <widget class="QWidget" name="LWidgetBotton" native="true"/>
+       <widget class="QWidget" name="SouthWidget" native="true"/>
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="home">
-     <widget class="QScrollArea" name="scrollArea">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>180</y>
-        <width>461</width>
-        <height>391</height>
-       </rect>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>518</width>
-         <height>738</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QTextEdit" name="textEdit">
-          <property name="minimumSize">
-           <size>
-            <width>500</width>
-            <height>720</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+    <widget class="QWidget" name="Home">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QWidget" name="HomeContent" native="true">
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QWidget" name="HomeAccounts" native="true"/>
+         </item>
+         <item>
+          <widget class="QWidget" name="HomeGraphic" native="true"/>
+         </item>
+        </layout>
+        <zorder>widget</zorder>
+        <zorder>HomeAccounts</zorder>
+        <zorder>HomeGraphic</zorder>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QWidget" name="Menu" native="true">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -272,12 +249,9 @@ border: none;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#Menu	
+     <string notr="true">#Menu
 {
     background-color: #a3f48a;
-    color: black;
-    text-align: center;
-    font-size: 12px;
 }</string>
     </property>
     <widget class="QPushButton" name="MenuButton">
@@ -292,44 +266,87 @@ border: none;
      <property name="styleSheet">
       <string notr="true">#MenuButton
 {
-    background-color: #a3f48a;
     color: black;
-    text-align: center;
+	border: none;
     font-size: 12px;
 }</string>
      </property>
      <property name="text">
-      <string>Menu</string>
+      <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="MUser">
+    <widget class="QLabel" name="MenuUser">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>17</y>
-       <width>71</width>
-       <height>17</height>
+       <x>70</x>
+       <y>15</y>
+       <width>180</width>
+       <height>20</height>
       </rect>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>180</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>180</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#MenuUser
+{
+	font-size: 12px;
+	qproperty-alignment: AlignCenter;
+}</string>
+     </property>
      <property name="text">
-      <string>User Name</string>
+      <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="MTotal">
+    <widget class="QLabel" name="MenuTotal">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>17</y>
-       <width>71</width>
-       <height>17</height>
+       <x>250</x>
+       <y>15</y>
+       <width>250</width>
+       <height>20</height>
       </rect>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>250</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>250</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="sizeIncrement">
+      <size>
+       <width>250</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#MenuTotal
+{
+	font-size: 12px;
+	qproperty-alignment: AlignCenter;
+}</string>
+     </property>
      <property name="text">
-      <string>User Total</string>
+      <string/>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="WMenu" native="true">
+   <widget class="QWidget" name="MenuWidget" native="true">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -338,54 +355,193 @@ border: none;
       <x>0</x>
       <y>50</y>
       <width>250</width>
-      <height>150</height>
+      <height>670</height>
      </rect>
     </property>
+    <property name="minimumSize">
+     <size>
+      <width>250</width>
+      <height>670</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>250</width>
+      <height>670</height>
+     </size>
+    </property>
     <property name="styleSheet">
-     <string notr="true">#WMenu
+     <string notr="true">#MenuWidget
 {
     background-color: #a3f48a;
 }</string>
     </property>
-    <widget class="QPushButton" name="WMNewAccount">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>230</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Cadastrar Nova Conta</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="WMNewRelease">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>230</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Realizar Novo Lançamento</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="WMNewTypeRelease">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>70</y>
-       <width>230</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Inserir Novo Tipo de Lançamento</string>
-     </property>
-    </widget>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <item>
+      <widget class="QLabel" name="MenuTitle">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Opçoes:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuReleases">
+       <property name="styleSheet">
+        <string notr="true">#MenuReleases
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Lançamentos Financeiros:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuNewReleaseType">
+       <property name="styleSheet">
+        <string notr="true">#MenuNewReleaseType
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>               Cadastrar Tipo de Lançamento</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuNewRelease">
+       <property name="styleSheet">
+        <string notr="true">#MenuNewRelease
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>               Novo Lançamento</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuReport">
+       <property name="styleSheet">
+        <string notr="true">#MenuReport
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>               Relatorio</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuBankAccounts">
+       <property name="styleSheet">
+        <string notr="true">#MenuBankAccounts
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Bank Accounts</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuWallets">
+       <property name="styleSheet">
+        <string notr="true">#MenuWallets
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Wallets</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuUserDatas">
+       <property name="styleSheet">
+        <string notr="true">#MenuUserDatas
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Dados do Usuario</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuAbout">
+       <property name="styleSheet">
+        <string notr="true">#MenuAbout
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Sobre o Aplicativo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuOut">
+       <property name="styleSheet">
+        <string notr="true">#MenuOut
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Sair</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="MenuComplement">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

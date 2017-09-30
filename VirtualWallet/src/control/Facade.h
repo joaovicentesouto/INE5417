@@ -26,6 +26,9 @@ public:
     size_t accountsAmount();
     size_t releasesAmount(std::string name);
     bool login(std::string _name, std::string _password);
+
+    double accountsBalance();
+    std::string getUserName();
     
 private:
     User * user;

@@ -1,18 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <iostream>
 #include <stdio.h>
 #include <string>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    facade("Usuario", "123456"),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    facade("Nome", "Senha")
 {
     ui->setupUi(this);
     ui->Menu->hide();
-    ui->WMenu->hide();
-    ui->Senha->setInputMethodHints(Qt::ImhHiddenText| Qt::ImhNoPredictiveText|Qt::ImhNoAutoUppercase);
+    ui->MenuWidget->hide();
 }
 
 MainWindow::~MainWindow()
@@ -20,60 +18,66 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_Limpar_clicked()
+void MainWindow::on_CleanButton_clicked()
 {
-    ui->Senha->setEchoMode(QLineEdit::Normal);
-    nome = false;
-    senha = false;
-    ui->Nome->setText("Nome");
-    ui->Senha->setText("Senha");
-    ui->Nome->setStyleSheet("color: #565656; border: none;");
-    ui->Senha->setStyleSheet("color: #565656; border: none;");
-    ui->MsgErro->setText("");
+    name = false;
+    password = false;
+    ui->LoginName->setText("Nome");
+    ui->LoginPassword->setText("Senha");
+    ui->LoginName->setStyleSheet("color: #565656; border: none;");
+    ui->LoginPassword->setStyleSheet("color: #565656; border: none;");
+    ui->LoginErrorMessage->setText("");
 }
 
-void MainWindow::on_Confirmar_clicked()
+void MainWindow::on_ConfirmButton_clicked()
 {
-    QString name = ui->Nome->text();
-    QString password = ui->Senha->text();
-    if (facade.login(name.toStdString(), password.toStdString())) {
-        ui->Menu->show();
-        ui->WMenu->hide();
-        ui->MUser->setText(name);
-        ui->stack->setCurrentWidget(ui->home);
+    std::string name = ui->LoginName->text().toStdString();
+    std::string password = ui->LoginPassword->text().toStdString();
+    if (facade.login(name, password)) {
+        configureMenu();
     } else {
-        on_Limpar_clicked();
-        ui->MsgErro->setText("Usuario ou Senha Invalidos!");
-        ui->MsgErro->setStyleSheet("color: rgb(250, 0, 0); border: none;");
+        on_CleanButton_clicked();
+        ui->LoginErrorMessage->setText("Usuario ou Senha Invalidos!");
     }
 }
 
-void MainWindow::on_Nome_textEdited(const QString &arg1)
+void MainWindow::on_LoginName_textEdited(const QString &arg1)
 {
-    if (!nome) {
+    if (!name) {
         QString last(arg1.toStdString().back());
-        ui->Nome->setText(last);
+        ui->LoginName->setText(last);
     }
-    nome = true;
-    ui->Nome->setStyleSheet("color: rgb(0, 0, 0); border: none;");
+    name = true;
+    ui->LoginName->setStyleSheet("color: rgb(0, 0, 0); border: none;");
 }
 
-void MainWindow::on_Senha_textEdited(const QString &arg1)
+void MainWindow::on_LoginPassword_textEdited(const QString &arg1)
 {
-    if (!senha) {
-        ui->Senha->setEchoMode(QLineEdit::Password);
+    if (!password) {
         QString last(arg1.toStdString().back());
-        ui->Senha->setText(last);
+        ui->LoginPassword->setText(last);
     }
-    senha = true;
-    ui->Senha->setStyleSheet("color: rgb(0, 0, 0); border: none;");
+    password = true;
+    ui->LoginPassword->setStyleSheet("color: rgb(0, 0, 0); border: none;");
 }
 
 void MainWindow::on_MenuButton_clicked()
 {
-    if (ui->WMenu->isHidden()) {
-        ui->WMenu->show();
+    if (ui->MenuWidget->isHidden()) {
+        ui->MenuWidget->show();
     } else {
-        ui->WMenu->hide();
+        ui->MenuWidget->hide();
     }
+}
+
+void MainWindow::configureMenu()
+{
+    std::string accauntsBalance(24, '\0');
+    std::snprintf(&accauntsBalance[0], 24, "%.2f", facade.accountsBalance());
+
+    ui->Menu->show();
+    ui->MenuButton->setIcon(QIcon("../Images/menubutton.png"));
+    ui->MenuUser->setText(QString::fromStdString(facade.getUserName()));
+    ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
+    ui->Stack->setCurrentWidget(ui->Home);
 }
