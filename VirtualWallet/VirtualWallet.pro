@@ -40,7 +40,9 @@ SOURCES += \
         ./src/vision/mainwindow.cpp \
     src/vision/wnewwallet.cpp \
     src/vision/wnewbankaccount.cpp \
-    src/vision/wnewreleasetype.cpp
+    src/vision/wnewreleasetype.cpp \
+    src/control/ReleaseBuilder.cpp \
+    src/vision/wnewrelease.cpp
 
 HEADERS += \
         ./src/model/Account.h \
@@ -58,10 +60,13 @@ HEADERS += \
         ./src/vision/mainwindow.h \
     src/vision/wnewwallet.h \
     src/vision/wnewbankaccount.h \
-    src/vision/wnewreleasetype.h
+    src/vision/wnewreleasetype.h \
+    src/control/ReleaseBuilder.h \
+    src/vision/wnewrelease.h
 
 FORMS += \
         ./src/vision/mainwindow.ui \
     src/vision/wnewwallet.ui \
     src/vision/wnewbankaccount.ui \
-    src/vision/wnewreleasetype.ui
+    src/vision/wnewreleasetype.ui \
+    src/vision/wnewrelease.ui
