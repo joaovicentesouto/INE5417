@@ -36,6 +36,12 @@ bool Facade::registerBankAccount(std::string _name, double _balance, std::string
 }
 
 bool Facade::registerReleaseType(std::string _name) {
+    ReleaseTypeBuilder builder(_name);
+
+    if (!builder.isValid())
+        return false;
+
+    user->insertReleaseType(_name);
     return true;
 }
 

@@ -16,10 +16,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->NewWallet->setFacade(facade);
     ui->NewBankAccount->setFacade(facade);
+    ui->NewReleaseType->setFacade(facade);
 
     // Connects
     connect(ui->NewWallet, SIGNAL(goToHome()), this, SLOT(goToHome()));
     connect(ui->NewBankAccount, SIGNAL(goToHome()), this, SLOT(goToHome()));
+    connect(ui->NewReleaseType, SIGNAL(goToHome()), this, SLOT(goToHome()));
 
     // Soh para ver se esta add contas
     ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
@@ -98,7 +100,7 @@ void MainWindow::configureMenu()
 
 void MainWindow::on_MenuNewReleaseType_clicked()
 {
-    ui->Stack->setCurrentWidget(ui->NewTypeRelease);
+    ui->Stack->setCurrentWidget(ui->NewReleaseType);
     ui->MenuWidget->hide();
 }
 

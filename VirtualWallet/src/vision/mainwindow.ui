@@ -57,7 +57,7 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="Login">
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -723,21 +723,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="NewTypeRelease">
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>170</y>
-        <width>131</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>NewTypeRelease</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="WNewReleaseType" name="NewReleaseType"/>
     <widget class="QWidget" name="NewRelease">
      <widget class="QLabel" name="label_2">
       <property name="geometry">
@@ -1119,6 +1105,12 @@
    <class>WNewBankAccount</class>
    <extends>QWidget</extends>
    <header>./src/vision/wnewbankaccount.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WNewReleaseType</class>
+   <extends>QWidget</extends>
+   <header>./src/vision/wnewreleasetype.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
