@@ -26,6 +26,11 @@ public slots:
 signals:
     void goToHome();
 
+private slots:
+    void on_Clean_clicked();
+
+    void on_Confirm_clicked();
+
 private:
     Ui::WNewRelease *ui;
     Facade * facade;

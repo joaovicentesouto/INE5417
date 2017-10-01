@@ -118,11 +118,18 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">#ValueBox
+{
+	color: black;
+	border: none;
+}</string>
+   </property>
    <property name="maximum">
     <double>99999999999999995287335453651211007997446182781858083179085387749785952239205787068995699003416510776387310061494932420984963311567802202010637287727642443776.000000000000000</double>
    </property>
   </widget>
-  <widget class="QRadioButton" name="Entrada">
+  <widget class="QRadioButton" name="In">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -135,7 +142,7 @@
     <string>Entrada</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="Saida">
+  <widget class="QRadioButton" name="Out">
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -183,6 +190,12 @@
      <height>91</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">#Name
+{
+	border: none;
+}</string>
+   </property>
   </widget>
   <widget class="QLabel" name="Erro">
    <property name="geometry">
@@ -212,6 +225,12 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">#DateEdit
+{
+	border: none;
+}</string>
+   </property>
   </widget>
   <widget class="QLabel" name="Date">
    <property name="geometry">
@@ -234,6 +253,9 @@
      <width>441</width>
      <height>22</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <item>
     <property name="text">
@@ -270,7 +292,8 @@
      <string>Tipo de Pagamento</string>
     </property>
     <property name="icon">
-     <iconset theme="color:red;"/>
+     <iconset theme="color:red;">
+      <normaloff>.</normaloff>.</iconset>
     </property>
    </item>
   </widget>

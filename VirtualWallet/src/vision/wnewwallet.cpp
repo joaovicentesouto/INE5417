@@ -34,8 +34,6 @@ void WNewWallet::on_Confirm_clicked()
     std::string name = ui->Name->text().toStdString();
     double balance = ui->Balance->value();
 
-    std::cout << name << std::endl;
-
     if (facade->registerWallet(name, balance)) {
         on_Clean_clicked();
         emit goToHome();

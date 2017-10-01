@@ -55,6 +55,26 @@ bool Facade::registerUser(std::string _name, std::string _code, std::string _pas
     return true;
 }
 
+bool Facade::registerRelease(double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
+                     std::string _description, std::string _op, std::string _date) {
+    if (!containsAccount(_accountName))
+        return false;
+
+    list<Account*> accs = user->getAccounts();
+    Account * _account;
+    for (list<Account*>::iterator it = accs.begin(); it != accs.end(); ++it) {
+        if ((*it)->getName() == _accountName)
+            _account = *it;
+    }
+
+    ReleaseBuilder builder(_value, _account, _releaseT, _paymentT, _description, _op, _date);
+    if (!builder.isValid())
+        return false;
+
+    _account->insertRelease(*builder.build());
+    return true;
+}
+
 bool Facade::containsAccount(std::string name) {
     list<Account*> accounts = user->getAccounts();
     for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
