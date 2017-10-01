@@ -34,13 +34,9 @@ void WNewWallet::on_Confirm_clicked()
     std::string finalName = ui->Name->text().toStdString();
     double _balance = ui->Balance->value();
 
-    if (finalName != "") {
-        if (facade->registerWallet(finalName, _balance)) {
-            on_Clean_clicked();
-            emit goToHome();
-        } else {
-            ui->Erro->setText("Nome invalido!");
-        }
+    if (facade->registerWallet(finalName, _balance)) {
+        on_Clean_clicked();
+        emit goToHome();
     } else {
         ui->Erro->setText("Nome invalido!");
     }

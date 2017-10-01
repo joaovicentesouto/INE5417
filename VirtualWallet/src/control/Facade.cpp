@@ -17,22 +17,21 @@ Facade::~Facade() {
 bool Facade::registerWallet(std::string _name, double _balance) {
     WalletBuilder creator(_name, _balance);
 
-    if (creator.isValid()) {
-        user->insertAccount(*creator.build());
-        return true;
-    }
+    if (creator.isValid())
+        return false;
 
-    return false;
+    user->insertAccount(*creator.build());
+    return true;
+
 }
 
 bool Facade::registerBankAccount(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank) {
     BankAccountBuilder creator(_name, _balance, _accountNumber, _agency, _bank);
 
-    if (creator.isValid()) {
-        user->insertAccount(*creator.build());
-        return true;
-    }
+    if (!creator.isValid())
+        return false;
 
+    user->insertAccount(*creator.build());
     return true;
 }
 
@@ -42,8 +41,10 @@ bool Facade::registerReleaseType(std::string _name) {
 
 bool Facade::registerUser(std::string _name, std::string _code, std::string _password, std::string _confirm) {
     UserBuilder creator(_name, _code, _password, _confirm);
+
     if (!creator.isValid())
         return false;
+
     insertUser(creator.build());
     return true;
 }
