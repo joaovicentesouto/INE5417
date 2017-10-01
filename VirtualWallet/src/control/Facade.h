@@ -38,6 +38,7 @@ public:
     list<std::string> * accountsNames();
     list<std::string> * releaseTypesNames();
     list<std::string> * paymentTypesNames();
+    list<Account*> userAccounts();
 
     bool verifyNewPass(std::string _name, std::string _code, std::string _newPassword, std::string _confirm);
     void refreshPass(std::string _newPassword);

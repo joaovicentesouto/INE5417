@@ -142,6 +142,11 @@ list<std::string> * Facade::paymentTypesNames()
     return names;
 }
 
+list<Account*> Facade::userAccounts()
+{
+    return user->getAccounts();
+}
+
 bool Facade::verifyNewPass(std::string _name, std::string _code, std::string _newPassword, std::string _confirm) {
     return _name == user->getName() && _code == user->getCode() && _newPassword == _confirm;
 }

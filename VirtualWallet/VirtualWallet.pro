@@ -44,7 +44,9 @@ SOURCES += \
     	./src/vision/wnewreleasetype.cpp \
     	./src/control/ReleaseBuilder.cpp \
     	./src/vision/wnewrelease.cpp \
-    	./src/vision/wuserdata.cpp
+    	./src/vision/wuserdata.cpp \
+    src/vision/whome.cpp \
+    src/vision/waccount.cpp
 
 HEADERS += \
         ./src/model/Account.h \
@@ -66,7 +68,9 @@ HEADERS += \
     	./src/vision/wnewreleasetype.h \
     	./src/control/ReleaseBuilder.h \
     	./src/vision/wnewrelease.h \
-    	./src/vision/wuserdata.h
+    	./src/vision/wuserdata.h \
+    src/vision/whome.h \
+    src/vision/waccount.h
 
 FORMS += \
         ./src/vision/mainwindow.ui \
@@ -75,4 +79,6 @@ FORMS += \
     	./src/vision/wnewbankaccount.ui \
     	./src/vision/wnewreleasetype.ui \
     	./src/vision/wnewrelease.ui \
-    	./src/vision/wuserdata.ui
+    	./src/vision/wuserdata.ui \
+    src/vision/whome.ui \
+    src/vision/waccount.ui
