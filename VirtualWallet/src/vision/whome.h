@@ -3,8 +3,6 @@
 
 #include <QWidget>
 #include "./src/control/Facade.h"
-#include "waccount.h"
-
 using namespace project;
 
 namespace Ui {
