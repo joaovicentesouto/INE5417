@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WNewWallet</class>
+ <widget class="QWidget" name="WNewWallet">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>670</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>500</width>
+    <height>670</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>500</width>
+    <height>670</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="Title">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>20</y>
+     <width>271</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt;</string>
+   </property>
+   <property name="text">
+    <string>Cadastrar Nova Carteira</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="Name">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>60</y>
+     <width>441</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Name
+{
+	color: #565656;
+	border: none;
+}</string>
+   </property>
+   <property name="text">
+    <string>Nome</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="Balance">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>100</y>
+     <width>341</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Balance
+{
+	color: #565656;
+	border: none;
+}</string>
+   </property>
+   <property name="maximum">
+    <double>1000000000000000049861653971908893017010268485438462151574892930611988399099305815384459015356416.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Description">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>230</y>
+     <width>441</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Descricao:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Description_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>250</y>
+     <width>441</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Carteira eh a forma mais simples para voce organizar seu dinheiro.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="DescBalance">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>100</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Balanco Inicial:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Confirm">
+   <property name="geometry">
+    <rect>
+     <x>257</x>
+     <y>140</y>
+     <width>215</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Confirm
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Confirmar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Clean">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>140</y>
+     <width>215</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Clean
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Limpar</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Erro">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>200</y>
+     <width>441</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Erro
+{
+	color: red;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

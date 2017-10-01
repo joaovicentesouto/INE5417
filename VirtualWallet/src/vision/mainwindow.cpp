@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->MenuWidget->hide();
     if(facade.getUserName() == "")
         ui->Stack->setCurrentWidget(ui->NewUser);
+    ui->NewWallet->setFacade(facade);
+    connect(ui->NewWallet, SIGNAL(goToHome()), this, SLOT(goToHome()));
+    ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
 }
 
 MainWindow::~MainWindow()
@@ -89,36 +92,43 @@ void MainWindow::configureMenu()
 void MainWindow::on_MenuNewReleaseType_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewTypeRelease);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuNewRelease_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewRelease);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuReport_clicked()
 {
     ui->Stack->setCurrentWidget(ui->Report);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuBankAccounts_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewBankAccount);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuWallets_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewWallet);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuUserDatas_clicked()
 {
     ui->Stack->setCurrentWidget(ui->UserData);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuAbout_clicked()
 {
     ui->Stack->setCurrentWidget(ui->AppAbout);
+    ui->MenuWidget->hide();
 }
 
 void MainWindow::on_MenuOut_clicked()
@@ -380,5 +390,12 @@ void MainWindow::on_NewUserConfirmButton_clicked()
         on_NewUserCleanButton_clicked();
         ui->NewUserMsg->setStyleSheet("color: rgb(250, 0, 0); border: none;");
         ui->NewUserMsg->setText("Dados Invalidos!");
-    }
+    }   
+}
+
+void MainWindow::goToHome()
+{
+    ui->Stack->setCurrentWidget(ui->Home);
+    ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
+
 }

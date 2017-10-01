@@ -699,7 +699,21 @@
        <widget class="QWidget" name="HomeContent" native="true">
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QWidget" name="HomeAccounts" native="true"/>
+          <widget class="QWidget" name="HomeAccounts" native="true">
+           <widget class="QLabel" name="AccountAmount">
+            <property name="geometry">
+             <rect>
+              <x>280</x>
+              <y>90</y>
+              <width>58</width>
+              <height>14</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </widget>
          </item>
          <item>
           <widget class="QWidget" name="HomeGraphic" native="true"/>
@@ -769,21 +783,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="NewWallet">
-     <widget class="QLabel" name="label_5">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>220</y>
-        <width>101</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>newWallet</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="WNewWallet" name="NewWallet"/>
     <widget class="QWidget" name="UserData">
      <widget class="QLabel" name="label_6">
       <property name="geometry">
@@ -1122,6 +1122,14 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>WNewWallet</class>
+   <extends>QWidget</extends>
+   <header>./src/vision/wnewwallet.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

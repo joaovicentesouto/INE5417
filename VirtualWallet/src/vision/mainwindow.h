@@ -98,6 +98,8 @@ private slots:
 
     void on_NewUserConfirmButton_clicked();
 
+    void goToHome();
+
 private:
     Ui::MainWindow *ui;
 };

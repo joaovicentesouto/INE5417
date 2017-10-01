@@ -37,7 +37,8 @@ SOURCES += \
         ./src/control/ReleaseTypeBuilder.cpp \
         ./src/control/UserBuilder.cpp \
         ./src/control/WalletBuilder.cpp \
-        ./src/vision/mainwindow.cpp
+        ./src/vision/mainwindow.cpp \
+    src/vision/wnewwallet.cpp
 
 HEADERS += \
         ./src/model/Account.h \
@@ -52,7 +53,9 @@ HEADERS += \
         ./src/control/ReleaseTypeBuilder.h \
         ./src/control/UserBuilder.h \
         ./src/control/WalletBuilder.h \
-        ./src/vision/mainwindow.h
+        ./src/vision/mainwindow.h \
+    src/vision/wnewwallet.h
 
 FORMS += \
-        ./src/vision/mainwindow.ui
+        ./src/vision/mainwindow.ui \
+    src/vision/wnewwallet.ui
