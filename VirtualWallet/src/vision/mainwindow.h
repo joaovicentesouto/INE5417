@@ -86,6 +86,18 @@ private slots:
 
     void on_ForgotNameConfirmButton_clicked();
 
+    void on_NewUserName_textEdited(const QString &arg1);
+
+    void on_NewUserCode_textEdited(const QString &arg1);
+
+    void on_NewUserPassword_textEdited(const QString &arg1);
+
+    void on_NewUserConfirm_textEdited(const QString &arg1);
+
+    void on_NewUserCleanButton_clicked();
+
+    void on_NewUserConfirmButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

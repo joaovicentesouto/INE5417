@@ -6,11 +6,13 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    facade("Nome", "Senha", "Codigo")
+    facade("", "", "")
 {
     ui->setupUi(this);
     ui->Menu->hide();
     ui->MenuWidget->hide();
+    if(facade.getUserName() == "")
+        ui->Stack->setCurrentWidget(ui->NewUser);
 }
 
 MainWindow::~MainWindow()
@@ -26,18 +28,20 @@ void MainWindow::on_CleanButton_clicked()
     ui->LoginPassword->setText("Senha");
     ui->LoginName->setStyleSheet("color: #565656; border: none;");
     ui->LoginPassword->setStyleSheet("color: #565656; border: none;");
-    ui->LoginErrorMessage->setText("");
+    ui->LoginMsg->setStyleSheet("color: black; border: none;");
+    ui->LoginMsg->setText("Login");
 }
 
 void MainWindow::on_ConfirmButton_clicked()
 {
     std::string name = ui->LoginName->text().toStdString();
     std::string password = ui->LoginPassword->text().toStdString();
+    on_CleanButton_clicked();
     if (facade.login(name, password)) {
         configureMenu();
     } else {
-        on_CleanButton_clicked();
-        ui->LoginErrorMessage->setText("Usuario ou Senha Invalidos!");
+        ui->LoginMsg->setStyleSheet("color: rgb(250, 0, 0); border: none;");
+        ui->LoginMsg->setText("Usuario ou Senha Invalidos!");
     }
 }
 
@@ -145,7 +149,8 @@ void MainWindow::on_ForgotPassCleanButton_clicked()
     ui->ForgotPassCode->setStyleSheet("color: #565656; border: none;");
     ui->ForgotPassNewPass->setStyleSheet("color: #565656; border: none;");
     ui->ForgotPassConfirm->setStyleSheet("color: #565656; border: none;");
-    ui->ForgotPassErrorMsg->setText("");
+    ui->ForgotPassErrorMsg->setStyleSheet("color: black; border: none;");
+    ui->ForgotPassErrorMsg->setText("Altere sua Senha");
 }
 
 void MainWindow::on_ForgotPassName_textEdited(const QString &arg1)
@@ -221,7 +226,6 @@ void MainWindow::on_ForgotNameCode_textEdited(const QString &arg1)
     }
     code = true;
     ui->ForgotNameCode->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-
 }
 
 void MainWindow::on_ForgotNamePassword_textEdited(const QString &arg1)
@@ -268,7 +272,8 @@ void MainWindow::on_ForgotNameCleanButton_clicked()
     ui->ForgotNamePassword->setStyleSheet("color: #565656; border: none;");
     ui->ForgotNameNewName->setStyleSheet("color: #565656; border: none;");
     ui->ForgotNameConfirm->setStyleSheet("color: #565656; border: none;");
-    ui->ForgotNameErrorMsg->setText("");
+    ui->ForgotNameErrorMsg->setStyleSheet("color: black; border: none;");
+    ui->ForgotNameErrorMsg->setText("Altere seu Nome");
 }
 
 void MainWindow::on_LoginNameForgot_clicked()
@@ -298,5 +303,82 @@ void MainWindow::on_ForgotNameConfirmButton_clicked()
         on_ForgotNameCleanButton_clicked();
         ui->ForgotNameErrorMsg->setStyleSheet("color: rgb(250, 0, 0); border: none;");
         ui->ForgotNameErrorMsg->setText("Dados Invalidos!");
+    }
+}
+
+void MainWindow::on_NewUserName_textEdited(const QString &arg1)
+{
+    if (!name) {
+        QString last(arg1.toStdString().back());
+        ui->NewUserName->setText(last);
+    }
+    name = true;
+    ui->NewUserName->setStyleSheet("color: rgb(0, 0, 0); border: none;");
+}
+
+void MainWindow::on_NewUserCode_textEdited(const QString &arg1)
+{
+    if (!code) {
+        QString last(arg1.toStdString().back());
+        ui->NewUserCode->setText(last);
+    }
+    code = true;
+    ui->NewUserCode->setStyleSheet("color: rgb(0, 0, 0); border: none;");
+}
+
+void MainWindow::on_NewUserPassword_textEdited(const QString &arg1)
+{
+    if (!password) {
+        QString last(arg1.toStdString().back());
+        ui->NewUserPassword->setText(last);
+    }
+    password = true;
+    ui->NewUserPassword->setStyleSheet("color: rgb(0, 0, 0); border: none;");
+}
+
+void MainWindow::on_NewUserConfirm_textEdited(const QString &arg1)
+{
+    if (!confirm) {
+        QString last(arg1.toStdString().back());
+        ui->NewUserConfirm->setText(last);
+    }
+    confirm = true;
+    ui->NewUserConfirm->setStyleSheet("color: rgb(0, 0, 0); border: none;");
+}
+
+void MainWindow::on_NewUserCleanButton_clicked()
+{
+    name = false;
+    code = false;
+    confirm = false;
+    password = false;
+    ui->NewUserName->setText("Nome");
+    ui->NewUserCode->setText("Codigo");
+    ui->NewUserPassword->setText("Senha");
+    ui->NewUserConfirm->setText("Confirme a Senha");
+    ui->NewUserName->setStyleSheet("color: #565656; border: none;");
+    ui->NewUserCode->setStyleSheet("color: #565656; border: none;");
+    ui->NewUserPassword->setStyleSheet("color: #565656; border: none;");
+    ui->NewUserConfirm->setStyleSheet("color: #565656; border: none;");
+    ui->NewUserMsg->setStyleSheet("color: black; border: none;");
+    ui->NewUserMsg->setText("Crie seu Usuario");
+}
+
+void MainWindow::on_NewUserConfirmButton_clicked()
+{
+    std::string name = ui->NewUserName->text().toStdString();
+    std::string code = ui->NewUserCode->text().toStdString();
+    std::string password = ui->NewUserPassword->text().toStdString();
+    std::string confirm = ui->NewUserConfirm->text().toStdString();
+    if (facade.registerUser(name, code, password, confirm)) {
+        on_NewUserCleanButton_clicked();
+        on_CleanButton_clicked();
+        ui->LoginMsg->setStyleSheet("color: #00c10d; border: none;");
+        ui->LoginMsg->setText("Usuario Criado com Sucesso!");
+        ui->Stack->setCurrentWidget(ui->Login);
+    } else {
+        on_NewUserCleanButton_clicked();
+        ui->NewUserMsg->setStyleSheet("color: rgb(250, 0, 0); border: none;");
+        ui->NewUserMsg->setText("Dados Invalidos!");
     }
 }

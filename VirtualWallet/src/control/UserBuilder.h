@@ -11,14 +11,14 @@ namespace project {
 
 class UserBuilder {
 public:
-    UserBuilder(std::string _name, std::string _password, std::string _code);
+    UserBuilder(std::string _name, std::string _code, std::string _password, std::string _confirm);
     ~UserBuilder();
 
     bool isValid();
     User* build();
 
 private:
-    std::string name, password, code;
+    std::string name, code, password, confirm;
 
 };
 

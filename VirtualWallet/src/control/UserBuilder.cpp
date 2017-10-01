@@ -2,10 +2,11 @@
 
 namespace project {
 
-UserBuilder::UserBuilder(string _name, string _password, string _code) :
+UserBuilder::UserBuilder(string _name, string _code, string _password, string _confirm) :
     name(_name),
+    code(_code),
     password(_password),
-    code(_code)
+    confirm(_confirm)
 {
 
 }
@@ -15,7 +16,7 @@ UserBuilder::~UserBuilder() {
 }
 
 bool UserBuilder::isValid() {
-    return !name.empty() && !password.empty() && !code.empty();
+    return !name.empty() && !code.empty() && !password.empty() && password == confirm;
 }
 
 User* UserBuilder::build() {
