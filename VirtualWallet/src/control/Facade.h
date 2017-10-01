@@ -9,6 +9,7 @@
 #include "WalletBuilder.h"
 #include "BankAccountBuilder.h"
 #include "ReleaseTypeBuilder.h"
+#include "UserBuilder.h"
 
 namespace project {
 
@@ -21,6 +22,7 @@ public:
     bool registerWallet(std::string _name, double _balance);
     bool registerBankAccount(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank);
     bool registerReleaseType(std::string _name);
+    bool registerUser(std::string _name,std::string _code, std::string _password, std::string _confirm);
 
     bool containsAccount(std::string name);
     size_t accountsAmount();
@@ -35,6 +37,8 @@ public:
     bool verifyNewName(std::string _code, std::string _password, std::string _newName, std::string _confirm);
     void refreshName(std::string _newName);
     
+    void insertUser(User* _user);
+
 private:
     User * user;
 };
