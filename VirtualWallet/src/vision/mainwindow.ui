@@ -62,145 +62,16 @@
     <widget class="QWidget" name="Login">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QWidget" name="NorthWidget" native="true"/>
+       <widget class="QWidget" name="LoginNorthWidget" native="true"/>
       </item>
       <item>
-       <widget class="QWidget" name="CenterWidget" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QPushButton" name="LoginMsg">
-           <property name="styleSheet">
-            <string notr="true">#LoginMsg
-{
-	color:  black;
-	background-color: transparent;
-	border: none;
-}</string>
-           </property>
-           <property name="text">
-            <string>Login</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="LoginName">
-           <property name="styleSheet">
-            <string notr="true">#LoginName
-{
-	border: none;
-    color: #565656;
-    font-size: 12px;
-}</string>
-           </property>
-           <property name="text">
-            <string>Nome</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="LoginPassword">
-           <property name="styleSheet">
-            <string notr="true">#LoginPassword
-{
-	border: none;
-    color: #565656;
-    font-size: 12px;
-}</string>
-           </property>
-           <property name="text">
-            <string>Senha</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QWidget" name="LoginButtons" native="true">
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>50</height>
-            </size>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout">
-            <item>
-             <widget class="QPushButton" name="CleanButton">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>40</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">#CleanButton
-{
-    background-color: #a3f48a;
-    color: black;
-    font-size: 12px;
-}</string>
-              </property>
-              <property name="text">
-               <string>Limpar</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="ConfirmButton">
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>40</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">#ConfirmButton
-{
-    background-color: #a3f48a;
-    color: black;
-    font-size: 12px;
-}</string>
-              </property>
-              <property name="text">
-               <string>Entrar</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="LoginPasswordForgot">
-           <property name="styleSheet">
-            <string notr="true">#LoginPasswordForgot
-{
-	background-color: transparent;
-	border: none;
-	font-size: 12px;
-}</string>
-           </property>
-           <property name="text">
-            <string>Esqueci Minha Senha</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="LoginNameForgot">
-           <property name="styleSheet">
-            <string notr="true">#LoginNameForgot
-{
-	background-color: transparent;
-	border: none;
-	font-size: 12px;
-}</string>
-           </property>
-           <property name="text">
-            <string>Esqueci Meu Usuario</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       <widget class="loginwidget" name="LoginCenterWidget" native="true"/>
       </item>
       <item>
-       <widget class="QWidget" name="SouthWidget" native="true"/>
+       <widget class="QWidget" name="LoginComplement" native="true"/>
+      </item>
+      <item>
+       <widget class="QWidget" name="LoginSouthWidget" native="true"/>
       </item>
      </layout>
     </widget>
@@ -1119,6 +990,9 @@
      </item>
     </layout>
    </widget>
+   <zorder>Menu</zorder>
+   <zorder>Stack</zorder>
+   <zorder>MenuWidget</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
@@ -1127,6 +1001,12 @@
    <class>WNewWallet</class>
    <extends>QWidget</extends>
    <header>./src/vision/wnewwallet.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>loginwidget</class>
+   <extends>QWidget</extends>
+   <header location="global">./src/vision/loginwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

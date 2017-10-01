@@ -26,17 +26,7 @@ private:
     bool password{false};
 
 private slots:
-    void on_CleanButton_clicked();
-
-    void on_ConfirmButton_clicked();
-
-    void on_LoginName_textEdited(const QString &arg1);
-
-    void on_LoginPassword_textEdited(const QString &arg1);
-
     void on_MenuButton_clicked();
-
-    void configureMenu();
 
     void on_MenuNewReleaseType_clicked();
 
@@ -54,7 +44,23 @@ private slots:
 
     void on_MenuOut_clicked();
 
-    void on_LoginPasswordForgot_clicked();
+    void goToHome();
+
+    void configureMenu();
+
+    void changeStack(std::string _stack);
+
+
+
+
+
+
+
+
+
+
+
+
 
     void on_ForgotPassCleanButton_clicked();
 
@@ -80,8 +86,6 @@ private slots:
 
     void on_ForgotNameCleanButton_clicked();
 
-    void on_LoginNameForgot_clicked();
-
     void on_ForgotNameBack_clicked();
 
     void on_ForgotNameConfirmButton_clicked();
@@ -97,8 +101,6 @@ private slots:
     void on_NewUserCleanButton_clicked();
 
     void on_NewUserConfirmButton_clicked();
-
-    void goToHome();
 
 private:
     Ui::MainWindow *ui;

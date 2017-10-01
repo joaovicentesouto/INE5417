@@ -6,66 +6,31 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    facade("", "", "")
+    facade("Nome", "Senha", "Codigo")
 {
     ui->setupUi(this);
     ui->Menu->hide();
     ui->MenuWidget->hide();
+
     if(facade.getUserName() == "")
         ui->Stack->setCurrentWidget(ui->NewUser);
+
     ui->NewWallet->setFacade(facade);
+    ui->LoginCenterWidget->setFacade(facade);
+
     connect(ui->NewWallet, SIGNAL(goToHome()), this, SLOT(goToHome()));
     ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
+
+    connect(ui->LoginCenterWidget, SIGNAL(configureMenu()), this, SLOT(configureMenu()));
+    connect(ui->LoginCenterWidget, SIGNAL(cleanForgotName()), this, SLOT(on_ForgotNameCleanButton_clicked()));
+    connect(ui->LoginCenterWidget, SIGNAL(cleanForgotPassword()), this, SLOT(on_ForgotPassCleanButton_clicked()));
+    connect(ui->LoginCenterWidget, SIGNAL(changeStackToForgotName(std::string)), this, SLOT(changeStack(std::string)));
+    connect(ui->LoginCenterWidget, SIGNAL(changeStackToForgotPassword(std::string)), this, SLOT(changeStack(std::string)));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::on_CleanButton_clicked()
-{
-    name = false;
-    password = false;
-    ui->LoginName->setText("Nome");
-    ui->LoginPassword->setText("Senha");
-    ui->LoginName->setStyleSheet("color: #565656; border: none;");
-    ui->LoginPassword->setStyleSheet("color: #565656; border: none;");
-    ui->LoginMsg->setStyleSheet("color: black; border: none;");
-    ui->LoginMsg->setText("Login");
-}
-
-void MainWindow::on_ConfirmButton_clicked()
-{
-    std::string name = ui->LoginName->text().toStdString();
-    std::string password = ui->LoginPassword->text().toStdString();
-    on_CleanButton_clicked();
-    if (facade.login(name, password)) {
-        configureMenu();
-    } else {
-        ui->LoginMsg->setStyleSheet("color: rgb(250, 0, 0); border: none;");
-        ui->LoginMsg->setText("Usuario ou Senha Invalidos!");
-    }
-}
-
-void MainWindow::on_LoginName_textEdited(const QString &arg1)
-{
-    if (!name) {
-        QString last(arg1.toStdString().back());
-        ui->LoginName->setText(last);
-    }
-    name = true;
-    ui->LoginName->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-}
-
-void MainWindow::on_LoginPassword_textEdited(const QString &arg1)
-{
-    if (!password) {
-        QString last(arg1.toStdString().back());
-        ui->LoginPassword->setText(last);
-    }
-    password = true;
-    ui->LoginPassword->setStyleSheet("color: rgb(0, 0, 0); border: none;");
 }
 
 void MainWindow::on_MenuButton_clicked()
@@ -75,18 +40,6 @@ void MainWindow::on_MenuButton_clicked()
     } else {
         ui->MenuWidget->hide();
     }
-}
-
-void MainWindow::configureMenu()
-{
-    std::string accauntsBalance(24, '\0');
-    std::snprintf(&accauntsBalance[0], 24, "%.2f", facade.accountsBalance());
-
-    ui->Menu->show();
-    ui->MenuButton->setIcon(QIcon("../Images/menubutton.png"));
-    ui->MenuUser->setText(QString::fromStdString(facade.getUserName()));
-    ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
-    ui->Stack->setCurrentWidget(ui->Home);
 }
 
 void MainWindow::on_MenuNewReleaseType_clicked()
@@ -139,11 +92,44 @@ void MainWindow::on_MenuOut_clicked()
 
 }
 
-void MainWindow::on_LoginPasswordForgot_clicked()
+void MainWindow::goToHome()
 {
-    on_ForgotPassCleanButton_clicked();
-    ui->Stack->setCurrentWidget(ui->ForgotPassword);
+    ui->Stack->setCurrentWidget(ui->Home);
+    ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
+
 }
+
+void MainWindow::configureMenu()
+{
+    std::string accauntsBalance(24, '\0');
+    std::snprintf(&accauntsBalance[0], 24, "%.2f", facade.accountsBalance());
+
+    ui->Menu->show();
+    ui->MenuButton->setIcon(QIcon("../Images/menubutton.png"));
+    ui->MenuUser->setText(QString::fromStdString(facade.getUserName()));
+    ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
+    ui->Stack->setCurrentWidget(ui->Home);
+}
+
+void MainWindow::changeStack(std::string _stack)
+{
+    if (_stack == "ForgotName")
+        ui->Stack->setCurrentWidget(ui->ForgotName);
+    if (_stack == "ForgotPassword")
+        ui->Stack->setCurrentWidget(ui->ForgotPassword);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 void MainWindow::on_ForgotPassCleanButton_clicked()
 {
@@ -206,7 +192,7 @@ void MainWindow::on_ForgotPassConfirm_textEdited(const QString &arg1)
 void MainWindow::on_ForgotPassBack_clicked()
 {
     on_ForgotPassCleanButton_clicked();
-    on_CleanButton_clicked();
+    //on_CleanButton_clicked();
     ui->Stack->setCurrentWidget(ui->Login);
 }
 
@@ -286,15 +272,10 @@ void MainWindow::on_ForgotNameCleanButton_clicked()
     ui->ForgotNameErrorMsg->setText("Altere seu Nome");
 }
 
-void MainWindow::on_LoginNameForgot_clicked()
-{
-    ui->Stack->setCurrentWidget(ui->ForgotName);
-}
-
 void MainWindow::on_ForgotNameBack_clicked()
 {
     on_ForgotNameCleanButton_clicked();
-    on_CleanButton_clicked();
+    //on_CleanButton_clicked();
     ui->Stack->setCurrentWidget(ui->Login);
 }
 
@@ -382,20 +363,13 @@ void MainWindow::on_NewUserConfirmButton_clicked()
     std::string confirm = ui->NewUserConfirm->text().toStdString();
     if (facade.registerUser(name, code, password, confirm)) {
         on_NewUserCleanButton_clicked();
-        on_CleanButton_clicked();
-        ui->LoginMsg->setStyleSheet("color: #00c10d; border: none;");
-        ui->LoginMsg->setText("Usuario Criado com Sucesso!");
+        //on_CleanButton_clicked();
+        //ui->LoginMsg->setStyleSheet("color: #00c10d; border: none;");
+        //ui->LoginMsg->setText("Usuario Criado com Sucesso!");
         ui->Stack->setCurrentWidget(ui->Login);
     } else {
         on_NewUserCleanButton_clicked();
         ui->NewUserMsg->setStyleSheet("color: rgb(250, 0, 0); border: none;");
         ui->NewUserMsg->setText("Dados Invalidos!");
     }   
-}
-
-void MainWindow::goToHome()
-{
-    ui->Stack->setCurrentWidget(ui->Home);
-    ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
-
 }
