@@ -31,10 +31,12 @@ void WNewWallet::on_Clean_clicked()
 
 void WNewWallet::on_Confirm_clicked()
 {
-    std::string finalName = ui->Name->text().toStdString();
-    double _balance = ui->Balance->value();
+    std::string name = ui->Name->text().toStdString();
+    double balance = ui->Balance->value();
 
-    if (facade->registerWallet(finalName, _balance)) {
+    std::cout << name << std::endl;
+
+    if (facade->registerWallet(name, balance)) {
         on_Clean_clicked();
         emit goToHome();
     } else {

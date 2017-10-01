@@ -22,6 +22,8 @@ public:
     string getName();
     string getPassword();
     list<Account*> getAccounts();
+    list<string> getReleaseTypesNames();
+    list<string> getPaymentTypesNames();
 
     bool verifyUser(std::string _name, std::string _password);
 

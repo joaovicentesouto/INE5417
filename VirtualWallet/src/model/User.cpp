@@ -72,4 +72,12 @@ void User::changeReleaseType(std::string _old, std::string _new) {
     manager.changeReleaseType(_old, _new);
 }
 
+list<string> User::getReleaseTypesNames() {
+    return manager.getReleaseTypes();
+}
+
+list<string> User::getPaymentTypesNames() {
+    return manager.getPaymentTypes();
+}
+
 }  // namespace project

@@ -29,7 +29,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>220</y>
+     <y>333</y>
      <width>215</width>
      <height>36</height>
     </rect>
@@ -50,7 +50,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>330</y>
+     <y>420</y>
      <width>441</width>
      <height>16</height>
     </rect>
@@ -79,7 +79,7 @@
    <property name="geometry">
     <rect>
      <x>257</x>
-     <y>220</y>
+     <y>333</y>
      <width>215</width>
      <height>36</height>
     </rect>
@@ -100,7 +100,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>350</y>
+     <y>440</y>
      <width>441</width>
      <height>16</height>
     </rect>
@@ -109,7 +109,7 @@
     <string>Lancamento que registra as operacoes feitas sobre a tua conta.</string>
    </property>
   </widget>
-  <widget class="QDoubleSpinBox" name="doubleSpinBox">
+  <widget class="QDoubleSpinBox" name="ValueBox">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -118,12 +118,15 @@
      <height>22</height>
     </rect>
    </property>
+   <property name="maximum">
+    <double>99999999999999995287335453651211007997446182781858083179085387749785952239205787068995699003416510776387310061494932420984963311567802202010637287727642443776.000000000000000</double>
+   </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton">
+  <widget class="QRadioButton" name="Entrada">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>90</y>
+     <x>110</x>
+     <y>197</y>
      <width>71</width>
      <height>20</height>
     </rect>
@@ -132,11 +135,11 @@
     <string>Entrada</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_2">
+  <widget class="QRadioButton" name="Saida">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>90</y>
+     <x>190</x>
+     <y>197</y>
      <width>61</width>
      <height>20</height>
     </rect>
@@ -145,11 +148,11 @@
     <string>Saida</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="Operation">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>90</y>
+     <y>197</y>
      <width>71</width>
      <height>20</height>
     </rect>
@@ -158,7 +161,7 @@
     <string>Operacao:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="Value">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -171,11 +174,11 @@
     <string>Valor:</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="DescRelease">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>120</y>
+     <y>230</y>
      <width>441</width>
      <height>91</height>
     </rect>
@@ -185,7 +188,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>280</y>
+     <y>390</y>
      <width>441</width>
      <height>16</height>
     </rect>
@@ -199,6 +202,77 @@
    <property name="text">
     <string/>
    </property>
+  </widget>
+  <widget class="QDateEdit" name="DateEdit">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>197</y>
+     <width>110</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Date">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>197</y>
+     <width>41</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Data:</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="Accounts">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>94</y>
+     <width>441</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Conta</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="ReleaseType">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>128</y>
+     <width>441</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string notr="true">Tipo de Lancamento</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="PaymentType">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>163</y>
+     <width>441</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Tipo de Pagamento</string>
+    </property>
+    <property name="icon">
+     <iconset theme="color:red;"/>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

@@ -25,6 +25,9 @@ private:
     bool confirm{false};
     bool password{false};
 
+signals:
+    void update();
+
 private slots:
     void on_CleanButton_clicked();
 

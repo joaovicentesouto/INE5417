@@ -17,7 +17,7 @@ Facade::~Facade() {
 bool Facade::registerWallet(std::string _name, double _balance) {
     WalletBuilder creator(_name, _balance);
 
-    if (creator.isValid())
+    if (!creator.isValid())
         return false;
 
     user->insertAccount(*creator.build());
@@ -90,6 +90,36 @@ bool Facade::login(std::string _name, std::string _password)
 std::string Facade::getUserName()
 {
     return user->getName();
+}
+
+list<std::string> * Facade::accountsNames()
+{
+    list<std::string> *names = new list<std::string>();
+    list<Account*> &&accounts = user->getAccounts();
+    for (list<Account*>::iterator it = accounts.begin(); it != accounts.end(); ++it) {
+        names->push_front((*it)->getName());
+    }
+
+    names->sort();
+    return names;
+}
+
+list<std::string> * Facade::releaseTypesNames()
+{
+    list<std::string> *names = new list<std::string>();
+    *names = user->getReleaseTypesNames();
+
+    names->sort();
+    return names;
+}
+
+list<std::string> * Facade::paymentTypesNames()
+{
+    list<std::string> *names = new list<std::string>();
+    *names = user->getPaymentTypesNames();
+
+    names->sort();
+    return names;
 }
 
 bool Facade::verifyNewPass(std::string _name, std::string _code, std::string _newPassword, std::string _confirm) {
