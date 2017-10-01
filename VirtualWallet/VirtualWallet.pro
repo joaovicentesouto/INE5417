@@ -38,12 +38,13 @@ SOURCES += \
         ./src/control/UserBuilder.cpp \
         ./src/control/WalletBuilder.cpp \
         ./src/vision/mainwindow.cpp \
-    src/vision/wnewwallet.cpp \
-    src/vision/wnewbankaccount.cpp \
-    src/vision/wnewreleasetype.cpp \
-    src/control/ReleaseBuilder.cpp \
-    src/vision/wnewrelease.cpp \
-    src/vision/wuserdata.cpp
+    	./src/vision/wnewwallet.cpp \
+    	./src/vision/loginwidget.cpp \
+    	./src/vision/wnewbankaccount.cpp \
+    	./src/vision/wnewreleasetype.cpp \
+    	./src/control/ReleaseBuilder.cpp \
+    	./src/vision/wnewrelease.cpp \
+    	./src/vision/wuserdata.cpp
 
 HEADERS += \
         ./src/model/Account.h \
@@ -59,17 +60,19 @@ HEADERS += \
         ./src/control/UserBuilder.h \
         ./src/control/WalletBuilder.h \
         ./src/vision/mainwindow.h \
-    src/vision/wnewwallet.h \
-    src/vision/wnewbankaccount.h \
-    src/vision/wnewreleasetype.h \
-    src/control/ReleaseBuilder.h \
-    src/vision/wnewrelease.h \
-    src/vision/wuserdata.h
+    	./src/vision/wnewwallet.h \
+    	./src/vision/loginwidget.h \
+    	./src/vision/wnewbankaccount.h \
+    	./src/vision/wnewreleasetype.h \
+    	./src/control/ReleaseBuilder.h \
+    	./src/vision/wnewrelease.h \
+    	./src/vision/wuserdata.h
 
 FORMS += \
         ./src/vision/mainwindow.ui \
-    src/vision/wnewwallet.ui \
-    src/vision/wnewbankaccount.ui \
-    src/vision/wnewreleasetype.ui \
-    src/vision/wnewrelease.ui \
-    src/vision/wuserdata.ui
+    	./src/vision/wnewwallet.ui \
+    	./src/vision/loginwidget.ui \
+    	./src/vision/wnewbankaccount.ui \
+    	./src/vision/wnewreleasetype.ui \
+    	./src/vision/wnewrelease.ui \
+    	./src/vision/wuserdata.ui
