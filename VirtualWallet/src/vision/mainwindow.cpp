@@ -13,11 +13,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->MenuWidget->hide();
     if(facade.getUserName() == "")
         ui->Stack->setCurrentWidget(ui->NewUser);
+
     ui->NewWallet->setFacade(facade);
+    ui->NewBankAccount->setFacade(facade);
 
     // Connects
     connect(ui->NewWallet, SIGNAL(goToHome()), this, SLOT(goToHome()));
-    connect(ui->NewBankAccount, SIGNAL(goToH()), this, SLOT(goToHome()));
+    connect(ui->NewBankAccount, SIGNAL(goToHome()), this, SLOT(goToHome()));
 
     // Soh para ver se esta add contas
     ui->AccountAmount->setText(QString::number(facade.accountsAmount()));

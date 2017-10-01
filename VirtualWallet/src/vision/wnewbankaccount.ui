@@ -241,6 +241,18 @@
     <string/>
    </property>
   </widget>
+  <zorder>Clean</zorder>
+  <zorder>Title</zorder>
+  <zorder>Confirm</zorder>
+  <zorder>Balance</zorder>
+  <zorder>DescBalance</zorder>
+  <zorder>Description</zorder>
+  <zorder>Name</zorder>
+  <zorder>Description_2</zorder>
+  <zorder>Number</zorder>
+  <zorder>Agency</zorder>
+  <zorder>Bank</zorder>
+  <zorder>Erro</zorder>
  </widget>
  <resources/>
  <connections/>

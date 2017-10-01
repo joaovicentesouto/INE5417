@@ -36,17 +36,17 @@ void WNewBankAccount::on_Clean_clicked()
 
 void WNewBankAccount::on_Confirm_clicked()
 {
-    //std::cout << "aaa" << std::endl;
     std::string name = ui->Name->text().toStdString();
     std::string number = ui->Number->text().toStdString();
     std::string agency = ui->Agency->text().toStdString();
     std::string bank = ui->Bank->text().toStdString();
     double balance = ui->Balance->value();
-    //std::cout << "bbb" << std::endl;
+
     if (facade->registerBankAccount(name, balance, number, agency, bank)) {
         on_Clean_clicked();
-        emit goToH();
+        emit goToHome();
     } else {
-        ui->Erro->setText("Dados Invalidos");
+        ui->Erro->setText("Dados invalidos!");
     }
+
 }
