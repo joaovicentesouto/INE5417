@@ -594,36 +594,8 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="NewTypeRelease">
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>170</y>
-        <width>131</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>NewTypeRelease</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="NewRelease">
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>220</y>
-        <width>101</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>NewRelease</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="WNewReleaseType" name="NewReleaseType"/>
+    <widget class="WNewRelease" name="NewRelease"/>
     <widget class="QWidget" name="Report">
      <widget class="QLabel" name="label_3">
       <property name="geometry">
@@ -639,21 +611,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="NewBankAccount">
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>220</y>
-        <width>121</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>NewBankAccount</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="WNewBankAccount" name="NewBankAccount"/>
     <widget class="WNewWallet" name="NewWallet"/>
     <widget class="QWidget" name="UserData">
      <widget class="QLabel" name="label_6">
@@ -1004,10 +962,27 @@
    <container>1</container>
   </customwidget>
   <customwidget>
+   <class>WNewBankAccount</class>
+   <extends>QWidget</extends>
+   <header>./src/vision/wnewbankaccount.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WNewReleaseType</class>
+   <extends>QWidget</extends>
+   <header>./src/vision/wnewreleasetype.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WNewRelease</class>
+   <extends>QWidget</extends>
+   <header>./src/vision/wnewrelease.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>loginwidget</class>
    <extends>QWidget</extends>
-   <header location="global">./src/vision/loginwidget.h</header>
-   <container>1</container>
+   <header>loginwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

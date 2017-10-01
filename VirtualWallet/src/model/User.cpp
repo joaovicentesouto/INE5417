@@ -60,4 +60,24 @@ void User::removeAccount(Account& _account) {
     accounts.remove(&_account);
 }
 
+void User::insertReleaseType(std::string _type) {
+    manager.addReleaseType(_type);
+}
+
+void User::removeReleaseType(std::string _type) {
+    manager.deleteReleaseType(_type);
+}
+
+void User::changeReleaseType(std::string _old, std::string _new) {
+    manager.changeReleaseType(_old, _new);
+}
+
+list<string> User::getReleaseTypesNames() {
+    return manager.getReleaseTypes();
+}
+
+list<string> User::getPaymentTypesNames() {
+    return manager.getPaymentTypes();
+}
+
 }  // namespace project

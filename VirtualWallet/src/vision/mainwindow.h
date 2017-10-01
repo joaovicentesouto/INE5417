@@ -25,6 +25,9 @@ private:
     bool confirm{false};
     bool password{false};
 
+signals:
+    void update();
+
 private slots:
     void on_MenuButton_clicked();
 
@@ -49,18 +52,6 @@ private slots:
     void configureMenu();
 
     void changeStack(std::string _stack);
-
-
-
-
-
-
-
-
-
-
-
-
 
     void on_ForgotPassCleanButton_clicked();
 

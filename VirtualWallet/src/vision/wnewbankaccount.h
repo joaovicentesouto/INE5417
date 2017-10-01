@@ -1,5 +1,5 @@
-#ifndef WNEWWALLET_H
-#define WNEWWALLET_H
+#ifndef WNEWBANKACCOUNT_H
+#define WNEWBANKACCOUNT_H
 
 #include <QWidget>
 #include "./src/control/Facade.h"
@@ -7,16 +7,16 @@
 using namespace project;
 
 namespace Ui {
-class WNewWallet;
+class WNewBankAccount;
 }
 
-class WNewWallet : public QWidget
+class WNewBankAccount : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit WNewWallet(QWidget *parent = 0);
-    ~WNewWallet();
+    explicit WNewBankAccount(QWidget *parent = 0);
+    ~WNewBankAccount();
 
     void setFacade(Facade &_facade);
 
@@ -29,9 +29,8 @@ signals:
     void goToHome();
 
 private:
-    Ui::WNewWallet *ui;
+    Ui::WNewBankAccount *ui;
     Facade * facade;
-
 };
 
-#endif // WNEWWALLET_H
+#endif // WNEWBANKACCOUNT_H

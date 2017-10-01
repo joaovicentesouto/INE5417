@@ -17,15 +17,27 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->NewWallet->setFacade(facade);
     ui->LoginCenterWidget->setFacade(facade);
+    ui->NewBankAccount->setFacade(facade);
+    ui->NewReleaseType->setFacade(facade);
+    ui->NewRelease->setFacade(facade);
+
+    // Connects
 
     connect(ui->NewWallet, SIGNAL(goToHome()), this, SLOT(goToHome()));
-    ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
+    connect(ui->NewBankAccount, SIGNAL(goToHome()), this, SLOT(goToHome()));
+    connect(ui->NewReleaseType, SIGNAL(goToHome()), this, SLOT(goToHome()));
+    connect(ui->NewRelease, SIGNAL(goToHome()), this, SLOT(goToHome()));
 
     connect(ui->LoginCenterWidget, SIGNAL(configureMenu()), this, SLOT(configureMenu()));
     connect(ui->LoginCenterWidget, SIGNAL(cleanForgotName()), this, SLOT(on_ForgotNameCleanButton_clicked()));
     connect(ui->LoginCenterWidget, SIGNAL(cleanForgotPassword()), this, SLOT(on_ForgotPassCleanButton_clicked()));
     connect(ui->LoginCenterWidget, SIGNAL(changeStackToForgotName(std::string)), this, SLOT(changeStack(std::string)));
     connect(ui->LoginCenterWidget, SIGNAL(changeStackToForgotPassword(std::string)), this, SLOT(changeStack(std::string)));
+
+    connect(this, SIGNAL(update()), ui->NewRelease, SLOT(update()));
+
+    // Soh para ver se esta add contas
+    ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
 }
 
 MainWindow::~MainWindow()
@@ -42,9 +54,23 @@ void MainWindow::on_MenuButton_clicked()
     }
 }
 
+void MainWindow::configureMenu()
+{
+    std::string accauntsBalance(24, '\0');
+    std::snprintf(&accauntsBalance[0], 24, "%.2f", facade.accountsBalance());
+
+    ui->Menu->show();
+    ui->MenuButton->setIcon(QIcon("../Images/menubutton.png"));
+    ui->MenuUser->setText(QString::fromStdString(facade.getUserName()));
+    ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
+    ui->Stack->setCurrentWidget(ui->Home);
+
+    emit update();
+}
+
 void MainWindow::on_MenuNewReleaseType_clicked()
 {
-    ui->Stack->setCurrentWidget(ui->NewTypeRelease);
+    ui->Stack->setCurrentWidget(ui->NewReleaseType);
     ui->MenuWidget->hide();
 }
 
@@ -94,21 +120,10 @@ void MainWindow::on_MenuOut_clicked()
 
 void MainWindow::goToHome()
 {
+    emit update();
     ui->Stack->setCurrentWidget(ui->Home);
     ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
 
-}
-
-void MainWindow::configureMenu()
-{
-    std::string accauntsBalance(24, '\0');
-    std::snprintf(&accauntsBalance[0], 24, "%.2f", facade.accountsBalance());
-
-    ui->Menu->show();
-    ui->MenuButton->setIcon(QIcon("../Images/menubutton.png"));
-    ui->MenuUser->setText(QString::fromStdString(facade.getUserName()));
-    ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
-    ui->Stack->setCurrentWidget(ui->Home);
 }
 
 void MainWindow::changeStack(std::string _stack)
@@ -118,18 +133,6 @@ void MainWindow::changeStack(std::string _stack)
     if (_stack == "ForgotPassword")
         ui->Stack->setCurrentWidget(ui->ForgotPassword);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 void MainWindow::on_ForgotPassCleanButton_clicked()
 {
