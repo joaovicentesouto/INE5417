@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WForgotName</class>
+ <widget class="QWidget" name="WForgotName">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>719</width>
+    <height>376</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QPushButton" name="Title">
+     <property name="styleSheet">
+      <string notr="true">#Title
+{
+	background-color: transparent;
+	border: none;
+	color: black;
+	font: 16pt;
+}</string>
+     </property>
+     <property name="text">
+      <string>Altere seu Nome</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="Msg">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="sizeIncrement">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="baseSize">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#Msg
+{
+	background-color: transparent;
+	border: none;
+	color: black;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="Code">
+     <property name="styleSheet">
+      <string notr="true">#Code
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Codigo</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="Password">
+     <property name="styleSheet">
+      <string notr="true">#Password
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Senha</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="NewName">
+     <property name="styleSheet">
+      <string notr="true">#NewName
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Novo Nome</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="NameConfirm">
+     <property name="styleSheet">
+      <string notr="true">#NameConfirm
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Confirme o Novo Nome</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="ForgotNameButtons" native="true">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>50</height>
+      </size>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <widget class="QPushButton" name="Clean">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#Clean
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Limpar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="Confirm">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#Confirm
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Confirmar</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="Back">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">#Back
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+        </property>
+        <property name="text">
+         <string>Voltar</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

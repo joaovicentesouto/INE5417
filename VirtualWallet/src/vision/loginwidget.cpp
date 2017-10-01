@@ -60,15 +60,22 @@ void loginwidget::on_ConfirmButton_clicked()
 void loginwidget::on_LoginPasswordForgot_clicked()
 {
     emit cleanForgotPassword();
-    emit changeStackToForgotPassword("ForgotPassword");
+    emit changeStack(1);
 }
 
 void loginwidget::on_LoginNameForgot_clicked()
 {
     emit cleanForgotName();
-    emit changeStackToForgotName("ForgotName");
+    emit changeStack(2);
 }
 
 void loginwidget::setFacade(Facade & _facade) {
     facade = &_facade;
+}
+
+void loginwidget::changeToNewUserMsg()
+{
+    on_CleanButton_clicked();
+    ui->LoginMsg->setStyleSheet("color: #00c10d; border: none;");
+    ui->LoginMsg->setText("Usuario Criado com Sucesso!");
 }

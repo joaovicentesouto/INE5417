@@ -51,47 +51,7 @@ private slots:
 
     void configureMenu();
 
-    void changeStack(std::string _stack);
-
-    void on_ForgotPassCleanButton_clicked();
-
-    void on_ForgotPassName_textEdited(const QString &arg1);
-
-    void on_ForgotPassCode_textEdited(const QString &arg1);
-
-    void on_ForgotPassNewPass_textEdited(const QString &arg1);
-
-    void on_ForgotPassConfirm_textEdited(const QString &arg1);
-
-    void on_ForgotPassBack_clicked();
-
-    void on_ForgotPassConfirmButton_clicked();
-
-    void on_ForgotNameCode_textEdited(const QString &arg1);
-
-    void on_ForgotNamePassword_textEdited(const QString &arg1);
-
-    void on_ForgotNameNewName_textEdited(const QString &arg1);
-
-    void on_ForgotNameConfirm_textEdited(const QString &arg1);
-
-    void on_ForgotNameCleanButton_clicked();
-
-    void on_ForgotNameBack_clicked();
-
-    void on_ForgotNameConfirmButton_clicked();
-
-    void on_NewUserName_textEdited(const QString &arg1);
-
-    void on_NewUserCode_textEdited(const QString &arg1);
-
-    void on_NewUserPassword_textEdited(const QString &arg1);
-
-    void on_NewUserConfirm_textEdited(const QString &arg1);
-
-    void on_NewUserCleanButton_clicked();
-
-    void on_NewUserConfirmButton_clicked();
+    void changeStack(int _stack);
 
 private:
     Ui::MainWindow *ui;
