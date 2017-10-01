@@ -21,11 +21,7 @@ public:
     void setFacade(Facade &_facade);
 
 private slots:
-    void on_Name_textEdited(const QString &arg1);
-
     void on_Clean_clicked();
-
-    void on_Balance_valueChanged(const QString &arg1);
 
     void on_Confirm_clicked();
 
@@ -35,7 +31,6 @@ signals:
 private:
     Ui::WNewWallet *ui;
     Facade * facade;
-    bool name{false}, balance{false};
 
 };
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>WNewWallet</class>
- <widget class="QWidget" name="WNewWallet">
+ <class>WNewBankAccount</class>
+ <widget class="QWidget" name="WNewBankAccount">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -30,7 +30,7 @@
     <rect>
      <x>30</x>
      <y>20</y>
-     <width>271</width>
+     <width>291</width>
      <height>31</height>
     </rect>
    </property>
@@ -38,7 +38,74 @@
     <string notr="true">font: 16pt;</string>
    </property>
    <property name="text">
-    <string>Cadastrar Nova Carteira</string>
+    <string>Cadastrar Nova Conta Bancaria</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Confirm">
+   <property name="geometry">
+    <rect>
+     <x>257</x>
+     <y>220</y>
+     <width>215</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Confirm
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Confirmar</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="Balance">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>180</y>
+     <width>341</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Balance
+{
+	color: #565656;
+	border: none;
+}</string>
+   </property>
+   <property name="maximum">
+    <double>1000000000000000049861653971908893017010268485438462151574892930611988399099305815384459015356416.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="DescBalance">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>180</y>
+     <width>91</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Balanco Inicial:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Description">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>330</y>
+     <width>441</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Descricao:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="Name">
@@ -61,91 +128,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QDoubleSpinBox" name="Balance">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>100</y>
-     <width>341</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">#Balance
-{
-	color: #565656;
-	border: none;
-}</string>
-   </property>
-   <property name="maximum">
-    <double>1000000000000000049861653971908893017010268485438462151574892930611988399099305815384459015356416.000000000000000</double>
-   </property>
-  </widget>
-  <widget class="QLabel" name="Description">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>230</y>
-     <width>441</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Descricao:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="Description_2">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>250</y>
-     <width>441</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Carteira eh a forma mais simples para voce organizar seu dinheiro.</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="DescBalance">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>100</y>
-     <width>91</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Balanco Inicial:</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="Confirm">
-   <property name="geometry">
-    <rect>
-     <x>257</x>
-     <y>140</y>
-     <width>215</width>
-     <height>36</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">#Confirm
-{
-    background-color: #a3f48a;
-    color: black;
-    font-size: 12px;
-}</string>
-   </property>
-   <property name="text">
-    <string>Confirmar</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="Clean">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>140</y>
+     <y>220</y>
      <width>215</width>
      <height>36</height>
     </rect>
@@ -162,19 +149,73 @@
     <string>Limpar</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Erro">
+  <widget class="QLabel" name="Description_2">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>200</y>
+     <y>350</y>
      <width>441</width>
      <height>16</height>
     </rect>
    </property>
+   <property name="text">
+    <string>Conta Bancaria eh o jeito mais completo de se ...</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="Number">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>90</y>
+     <width>441</width>
+     <height>22</height>
+    </rect>
+   </property>
    <property name="styleSheet">
-    <string notr="true">#Erro
+    <string notr="true">#Number
 {
-	color: red;
+	color: #565656;
+	border: none;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="Agency">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>120</y>
+     <width>441</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Agency
+{
+	color: #565656;
+	border: none;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="Bank">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>150</y>
+     <width>441</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Bank
+{
+	color: #565656;
+	border: none;
 }</string>
    </property>
    <property name="text">

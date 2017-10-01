@@ -636,21 +636,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="NewBankAccount">
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>220</y>
-        <width>121</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>NewBankAccount</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="WNewBankAccount" name="NewBankAccount"/>
     <widget class="WNewWallet" name="NewWallet"/>
     <widget class="QWidget" name="UserData">
      <widget class="QLabel" name="label_6">
@@ -995,6 +981,12 @@
    <class>WNewWallet</class>
    <extends>QWidget</extends>
    <header>./src/vision/wnewwallet.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WNewBankAccount</class>
+   <extends>QWidget</extends>
+   <header>./src/vision/wnewbankaccount.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
