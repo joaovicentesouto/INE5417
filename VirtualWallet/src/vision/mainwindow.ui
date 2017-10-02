@@ -66,7 +66,7 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Login">
      <property name="styleSheet">
@@ -468,7 +468,7 @@
 }</string>
        </property>
        <property name="text">
-        <string>    » Bank Accounts</string>
+        <string>    » Contas Bancarias</string>
        </property>
       </widget>
      </item>
@@ -484,7 +484,7 @@
 }</string>
        </property>
        <property name="text">
-        <string>    » Wallets</string>
+        <string>    » Carteiras</string>
        </property>
       </widget>
      </item>

@@ -25,9 +25,6 @@ private slots:
 
     void on_Confirm_clicked();
 
-signals:
-    void goToHome();
-
 private:
     Ui::WNewWallet *ui;
     Facade * facade;

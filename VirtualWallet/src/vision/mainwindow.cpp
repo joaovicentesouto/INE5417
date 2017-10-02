@@ -28,12 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Connects
 
-    connect(ui->NewWallet, SIGNAL(goToHome()), this, SLOT(goToHome()));
-    connect(ui->NewBankAccount, SIGNAL(goToHome()), this, SLOT(goToHome()));
-    connect(ui->NewReleaseType, SIGNAL(goToHome()), this, SLOT(goToHome()));
-    connect(ui->NewRelease, SIGNAL(goToHome()), this, SLOT(goToHome()));
-
-    connect(ui->LoginCenterWidget, SIGNAL(configureMenu()), this, SLOT(configureMenu()));
+    connect(ui->LoginCenterWidget, SIGNAL(configureMenu()), this, SLOT(build()));
     connect(ui->LoginCenterWidget, SIGNAL(changeStack(int)), this, SLOT(changeStack(int)));
     connect(ui->LoginCenterWidget, SIGNAL(cleanForgotName()), ui->ForgotNameCenter, SLOT(on_Clean_clicked()));
     connect(ui->LoginCenterWidget, SIGNAL(cleanForgotPassword()), ui->ForgotPassCenter, SLOT(on_Clean_clicked()));
@@ -49,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(this, SIGNAL(update()), ui->NewRelease, SLOT(update()));
     connect(this, SIGNAL(tableTypeNamesBuilder()), ui->NewReleaseType, SLOT(tableBuilder()));
+    connect(this, SIGNAL(tableHomeBuilder()), ui->Home, SLOT(tableBuilder()));
 }
 
 MainWindow::~MainWindow()
@@ -65,7 +61,7 @@ void MainWindow::on_MenuButton_clicked()
     }
 }
 
-void MainWindow::configureMenu()
+void MainWindow::build()
 {
     std::string accauntsBalance(24, '\0');
     std::snprintf(&accauntsBalance[0], 24, "%.2f", facade.accountsBalance());
@@ -78,13 +74,14 @@ void MainWindow::configureMenu()
     ui->MenuWidget->hide();
 
     emit update();
+    emit tableHomeBuilder();
+    emit tableTypeNamesBuilder();
 }
 
 void MainWindow::on_MenuNewReleaseType_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewReleaseType);
     ui->MenuWidget->hide();
-    emit tableTypeNamesBuilder();
 }
 
 void MainWindow::on_MenuNewRelease_clicked()
@@ -134,6 +131,7 @@ void MainWindow::on_MenuOut_clicked()
 void MainWindow::goToHome()
 {
     emit update();
+    emit tableHomeBuilder();
     ui->Stack->setCurrentWidget(ui->Home);
 }
 

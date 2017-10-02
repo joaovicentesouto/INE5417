@@ -2,19 +2,23 @@
 
 namespace project {
 
-Facade::Facade() {
+Facade::Facade()
+{
 
 }
 
-Facade::Facade(std::string _name, std::string _password, std::string _code) {
+Facade::Facade(std::string _name, std::string _password, std::string _code)
+{
     user = new User(_name, _password, _code);
 }
 
-Facade::~Facade() {
-    
+Facade::~Facade()
+{
+
 }
 
-bool Facade::registerWallet(std::string _name, double _balance) {
+bool Facade::registerWallet(std::string _name, double _balance)
+{
     WalletBuilder creator(_name, _balance);
 
     if (!creator.isValid())
@@ -25,7 +29,8 @@ bool Facade::registerWallet(std::string _name, double _balance) {
 
 }
 
-bool Facade::registerBankAccount(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank) {
+bool Facade::registerBankAccount(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank)
+{
     BankAccountBuilder creator(_name, _balance, _accountNumber, _agency, _bank);
 
     if (!creator.isValid())
@@ -35,7 +40,8 @@ bool Facade::registerBankAccount(std::string _name, double _balance, std::string
     return true;
 }
 
-bool Facade::registerReleaseType(std::string _name) {
+bool Facade::registerReleaseType(std::string _name)
+{
     ReleaseTypeBuilder builder(_name);
 
     if (!builder.isValid())
@@ -45,7 +51,8 @@ bool Facade::registerReleaseType(std::string _name) {
     return true;
 }
 
-bool Facade::registerUser(std::string _name, std::string _code, std::string _password, std::string _confirm) {
+bool Facade::registerUser(std::string _name, std::string _code, std::string _password, std::string _confirm)
+{
     UserBuilder creator(_name, _code, _password, _confirm);
 
     if (!creator.isValid())
@@ -56,7 +63,8 @@ bool Facade::registerUser(std::string _name, std::string _code, std::string _pas
 }
 
 bool Facade::registerRelease(double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
-                     std::string _description, std::string _op, std::string _date) {
+                     std::string _description, std::string _op, std::string _date)
+{
     if (!containsAccount(_accountName))
         return false;
 
@@ -75,7 +83,8 @@ bool Facade::registerRelease(double _value, std::string _accountName, std::strin
     return true;
 }
 
-bool Facade::containsAccount(std::string name) {
+bool Facade::containsAccount(std::string name)
+{
     list<Account*> accounts = user->getAccounts();
     for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
         if ((*i)->getName() == name)
@@ -131,6 +140,16 @@ list<std::string> * Facade::releaseTypesNames()
 
     names->sort();
     return names;
+}
+
+list<double> * Facade::accountsValues()
+{
+    list<double> * values = new list<double>();
+    list<Account*> accounts = user->getAccounts();
+    for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
+        values->push_front((*i)->getBalance());
+    }
+    return values;
 }
 
 list<std::string> * Facade::paymentTypesNames()

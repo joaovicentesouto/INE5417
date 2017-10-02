@@ -27,6 +27,7 @@ private:
 
 signals:
     void update();
+    void tableHomeBuilder();
     void tableTypeNamesBuilder();
 
 private slots:
@@ -50,7 +51,7 @@ private slots:
 
     void goToHome();
 
-    void configureMenu();
+    void build();
 
     void changeStack(int _stack);
 

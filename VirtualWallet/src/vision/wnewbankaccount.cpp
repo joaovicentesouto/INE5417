@@ -44,7 +44,6 @@ void WNewBankAccount::on_Confirm_clicked()
 
     if (facade->registerBankAccount(name, balance, number, agency, bank)) {
         on_Clean_clicked();
-        emit goToHome();
     } else {
         ui->Erro->setText("Dados invalidos!");
     }

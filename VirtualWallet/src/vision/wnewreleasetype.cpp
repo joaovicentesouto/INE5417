@@ -38,6 +38,8 @@ void WNewReleaseType::on_Confirm_clicked()
 
     if (facade->registerReleaseType(name)) {
         on_Clean_clicked();
+        ui->TypeList->insertRow(ui->TypeList->rowCount());
+        ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem("     " + QString::fromStdString(name)));
     } else {
         ui->Erro->setText("Nome invalido!");
     }
@@ -52,4 +54,5 @@ void WNewReleaseType::tableBuilder()
         ui->TypeList->insertRow(ui->TypeList->rowCount());
         ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem("     " + QString::fromStdString(*it)));
     }
+    delete names;
 }

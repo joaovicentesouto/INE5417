@@ -78,7 +78,6 @@ void WNewRelease::on_Confirm_clicked()
 
     if (facade->registerRelease(value, account, releaseType, paymenteType, description, operation, date)) {
         on_Clean_clicked();
-        emit goToHome();
     } else {
         ui->Erro->setText("Dados invalidos!");
     }

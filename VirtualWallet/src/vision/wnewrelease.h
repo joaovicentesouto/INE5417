@@ -23,9 +23,6 @@ public:
 public slots:
     void update();
 
-signals:
-    void goToHome();
-
 private slots:
     void on_Clean_clicked();
 
