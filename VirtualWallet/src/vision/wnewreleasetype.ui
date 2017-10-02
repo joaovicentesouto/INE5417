@@ -161,6 +161,34 @@
     <string/>
    </property>
   </widget>
+  <widget class="QTableWidget" name="TypeList">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>310</y>
+     <width>441</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>441</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="sizeIncrement">
+    <size>
+     <width>441</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="baseSize">
+    <size>
+     <width>441</width>
+     <height>0</height>
+    </size>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

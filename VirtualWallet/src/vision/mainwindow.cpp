@@ -6,8 +6,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    //facade("Nome", "Senha", "Codigo")
-    facade("", "", "")
+    facade("Nome", "Senha", "Codigo")
+    //facade("", "", "")
 {
     ui->setupUi(this);
     ui->Menu->hide();
@@ -48,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->NewUserCenter, SIGNAL(userRegistred()), ui->LoginCenterWidget, SLOT(changeToNewUserMsg()));
 
     connect(this, SIGNAL(update()), ui->NewRelease, SLOT(update()));
+    connect(this, SIGNAL(tableTypeNamesBuilder()), ui->NewReleaseType, SLOT(tableBuilder()));
 }
 
 MainWindow::~MainWindow()
@@ -83,6 +84,7 @@ void MainWindow::on_MenuNewReleaseType_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewReleaseType);
     ui->MenuWidget->hide();
+    emit tableTypeNamesBuilder();
 }
 
 void MainWindow::on_MenuNewRelease_clicked()

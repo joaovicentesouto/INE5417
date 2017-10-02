@@ -27,6 +27,7 @@ private:
 
 signals:
     void update();
+    void tableTypeNamesBuilder();
 
 private slots:
     void on_MenuButton_clicked();
