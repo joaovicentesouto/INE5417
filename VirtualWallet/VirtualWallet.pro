@@ -45,9 +45,10 @@ SOURCES += \
     	./src/control/ReleaseBuilder.cpp \
     	./src/vision/wnewrelease.cpp \
     	./src/vision/wuserdata.cpp \
-    src/vision/wforgotpass.cpp \
-    src/vision/wforgotname.cpp \
-    src/vision/wnewuser.cpp
+	    ./src/vision/wforgotpass.cpp \
+	    ./src/vision/wforgotname.cpp \
+	    ./src/vision/wnewuser.cpp \
+        ./src/vision/whome.cpp
 
 HEADERS += \
         ./src/model/Account.h \
@@ -70,9 +71,10 @@ HEADERS += \
     	./src/control/ReleaseBuilder.h \
     	./src/vision/wnewrelease.h \
     	./src/vision/wuserdata.h \
-    src/vision/wforgotpass.h \
-    src/vision/wforgotname.h \
-    src/vision/wnewuser.h
+    	./src/vision/wforgotpass.h \
+    	./src/vision/wforgotname.h \
+    	./src/vision/wnewuser.h \
+        ./src/vision/whome.h
 
 FORMS += \
         ./src/vision/mainwindow.ui \
@@ -82,6 +84,7 @@ FORMS += \
     	./src/vision/wnewreleasetype.ui \
     	./src/vision/wnewrelease.ui \
     	./src/vision/wuserdata.ui \
-    src/vision/wforgotpass.ui \
-    src/vision/wforgotname.ui \
-    src/vision/wnewuser.ui
+    	./src/vision/wforgotpass.ui \
+    	./src/vision/wforgotname.ui \
+    	./src/vision/wnewuser.ui \
+        ./src/vision/whome.ui

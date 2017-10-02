@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->NewBankAccount->setFacade(facade);
     ui->NewReleaseType->setFacade(facade);
     ui->NewRelease->setFacade(facade);
+    ui->Home->setFacade(facade);
 
     // Connects
 
@@ -47,9 +48,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->NewUserCenter, SIGNAL(userRegistred()), ui->LoginCenterWidget, SLOT(changeToNewUserMsg()));
 
     connect(this, SIGNAL(update()), ui->NewRelease, SLOT(update()));
-
-    // Soh para ver se esta add contas
-    ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
 }
 
 MainWindow::~MainWindow()
@@ -135,8 +133,6 @@ void MainWindow::goToHome()
 {
     emit update();
     ui->Stack->setCurrentWidget(ui->Home);
-    ui->AccountAmount->setText(QString::number(facade.accountsAmount()));
-
 }
 
 void MainWindow::changeStack(int _stack)

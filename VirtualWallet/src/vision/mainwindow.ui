@@ -38,7 +38,7 @@
    <property name="styleSheet">
     <string notr="true">#centralWidget
 {
-	background-color: #ccffd0;
+	background-color: #edfdee;
 }</string>
    </property>
    <widget class="QStackedWidget" name="Stack">
@@ -66,7 +66,7 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Login">
      <property name="styleSheet">
@@ -166,35 +166,8 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="Home">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QWidget" name="HomeContent" native="true">
-        <layout class="QVBoxLayout" name="verticalLayout_4">
-         <item>
-          <widget class="QWidget" name="HomeAccounts" native="true">
-           <widget class="QLabel" name="AccountAmount">
-            <property name="geometry">
-             <rect>
-              <x>280</x>
-              <y>90</y>
-              <width>58</width>
-              <height>14</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </widget>
-         </item>
-         <item>
-          <widget class="QWidget" name="HomeGraphic" native="true"/>
-         </item>
-        </layout>
-       </widget>
-      </item>
-     </layout>
+    <widget class="WHome" name="Home">
+     <layout class="QVBoxLayout" name="verticalLayout"/>
     </widget>
     <widget class="WNewReleaseType" name="NewReleaseType"/>
     <widget class="WNewRelease" name="NewRelease"/>
@@ -621,10 +594,15 @@
    <container>1</container>
   </customwidget>
   <customwidget>
+   <class>WHome</class>
+   <extends>QWidget</extends>
+   <header>./src/vision/whome.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>WNewUser</class>
    <extends>QWidget</extends>
    <header>./src/vision/wnewuser.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
