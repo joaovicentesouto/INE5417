@@ -76,6 +76,7 @@ void MainWindow::configureMenu()
     ui->MenuUser->setText(QString::fromStdString(facade.getUserName()));
     ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
     ui->Stack->setCurrentWidget(ui->Home);
+    ui->MenuWidget->hide();
 
     emit update();
 }
@@ -145,4 +146,10 @@ void MainWindow::changeStack(int _stack)
         case 2: ui->Stack->setCurrentWidget(ui->ForgotName); break;
         case 3: ui->Stack->setCurrentWidget(ui->Login); break;
     }
+}
+
+void MainWindow::on_MenuHome_clicked()
+{
+    goToHome();
+    ui->MenuWidget->hide();
 }

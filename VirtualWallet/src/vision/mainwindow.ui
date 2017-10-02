@@ -28,9 +28,18 @@
   <property name="windowTitle">
    <string>Virtual Wallet</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
     <bool>true</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#centralWidget
+{
+	background-color: #ccffd0;
+}</string>
    </property>
    <widget class="QStackedWidget" name="Stack">
     <property name="enabled">
@@ -57,21 +66,55 @@
      </size>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Login">
+     <property name="styleSheet">
+      <string notr="true">#Login
+{
+	background-image: ../Images/fundo.png
+}</string>
+     </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QWidget" name="LoginNorthWidget" native="true"/>
+       <widget class="QWidget" name="LoginNorthWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">#LoginNorthWidget
+{
+	color: transparent;
+}</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="loginwidget" name="LoginCenterWidget" native="true"/>
+       <widget class="loginwidget" name="LoginCenterWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">#LoginCenterWidget
+{
+	color: transparent;
+}</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QWidget" name="LoginComplement" native="true"/>
+       <widget class="QWidget" name="LoginComplement" native="true">
+        <property name="styleSheet">
+         <string notr="true">#LoginComplement
+{
+	color: transparent;
+}</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QWidget" name="LoginSouthWidget" native="true"/>
+       <widget class="QWidget" name="LoginSouthWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">#LoginSouthWidget
+{
+	color: transparent;
+}</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -349,8 +392,30 @@
          <height>50</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">#MenuTitle
+{
+	font: 16pt;
+}</string>
+       </property>
        <property name="text">
         <string>Opçoes:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MenuHome">
+       <property name="styleSheet">
+        <string notr="true">#MenuHome
+{
+	text-align: left;
+	border: none;
+    color: black;
+    font-size: 12px;
+}</string>
+       </property>
+       <property name="text">
+        <string>    » Home</string>
        </property>
       </widget>
      </item>

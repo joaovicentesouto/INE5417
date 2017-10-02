@@ -53,6 +53,8 @@ private slots:
 
     void changeStack(int _stack);
 
+    void on_MenuHome_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
