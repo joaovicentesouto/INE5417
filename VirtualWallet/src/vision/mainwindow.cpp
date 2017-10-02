@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->Menu->hide();
     ui->MenuWidget->hide();
+    ui->MenuButton->setIcon(QIcon("../Images/menubutton.png"));
 
     if(facade.getUserName() == "")
         ui->Stack->setCurrentWidget(ui->NewUser);
@@ -28,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Connects
 
-    connect(ui->LoginCenterWidget, SIGNAL(configureMenu()), this, SLOT(build()));
+    connect(ui->LoginCenterWidget, SIGNAL(configureMenu()), this, SLOT(loginExecuted()));
     connect(ui->LoginCenterWidget, SIGNAL(changeStack(int)), this, SLOT(changeStack(int)));
     connect(ui->LoginCenterWidget, SIGNAL(cleanForgotName()), ui->ForgotNameCenter, SLOT(on_Clean_clicked()));
     connect(ui->LoginCenterWidget, SIGNAL(cleanForgotPassword()), ui->ForgotPassCenter, SLOT(on_Clean_clicked()));
@@ -42,9 +43,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->NewUserCenter, SIGNAL(changeStack(int)), this, SLOT(changeStack(int)));
     connect(ui->NewUserCenter, SIGNAL(userRegistred()), ui->LoginCenterWidget, SLOT(changeToNewUserMsg()));
 
+    connect(ui->NewBankAccount, SIGNAL(build()), this, SLOT(build()));
+    connect(ui->NewRelease, SIGNAL(build()), this, SLOT(build()));
+    connect(ui->NewReleaseType, SIGNAL(build()), this, SLOT(build()));
+    connect(ui->NewWallet, SIGNAL(build()), this, SLOT(build()));
+
     connect(this, SIGNAL(update()), ui->NewRelease, SLOT(update()));
-    connect(this, SIGNAL(tableTypeNamesBuilder()), ui->NewReleaseType, SLOT(tableBuilder()));
-    connect(this, SIGNAL(tableHomeBuilder()), ui->Home, SLOT(tableBuilder()));
+    connect(this, SIGNAL(update()), ui->NewReleaseType, SLOT(tableBuilder()));
+    connect(this, SIGNAL(update()), ui->Home, SLOT(tableBuilder()));
 }
 
 MainWindow::~MainWindow()
@@ -65,59 +71,67 @@ void MainWindow::build()
 {
     std::string accauntsBalance(24, '\0');
     std::snprintf(&accauntsBalance[0], 24, "%.2f", facade.accountsBalance());
-
-    ui->Menu->show();
-    ui->MenuButton->setIcon(QIcon("../Images/menubutton.png"));
-    ui->MenuUser->setText(QString::fromStdString(facade.getUserName()));
     ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
+    emit update();
+}
+
+void MainWindow::loginExecuted()
+{
+
+    ui->MenuUser->setText(QString::fromStdString(facade.getUserName()));
     ui->Stack->setCurrentWidget(ui->Home);
     ui->MenuWidget->hide();
-
-    emit update();
-    emit tableHomeBuilder();
-    emit tableTypeNamesBuilder();
+    ui->Menu->show();
+    build();
 }
 
 void MainWindow::on_MenuNewReleaseType_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewReleaseType);
     ui->MenuWidget->hide();
+    build();
 }
 
 void MainWindow::on_MenuNewRelease_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewRelease);
     ui->MenuWidget->hide();
+    build();
 }
 
 void MainWindow::on_MenuReport_clicked()
 {
     ui->Stack->setCurrentWidget(ui->Report);
     ui->MenuWidget->hide();
+    build();
 }
 
 void MainWindow::on_MenuBankAccounts_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewBankAccount);
     ui->MenuWidget->hide();
+    build();
 }
 
 void MainWindow::on_MenuWallets_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewWallet);
     ui->MenuWidget->hide();
+    build();
 }
 
 void MainWindow::on_MenuUserDatas_clicked()
 {
     ui->Stack->setCurrentWidget(ui->UserData);
     ui->MenuWidget->hide();
+    build();
 }
 
 void MainWindow::on_MenuAbout_clicked()
 {
     ui->Stack->setCurrentWidget(ui->AppAbout);
     ui->MenuWidget->hide();
+    build();
 }
 
 void MainWindow::on_MenuOut_clicked()
@@ -125,14 +139,6 @@ void MainWindow::on_MenuOut_clicked()
     ui->Menu->hide();
     ui->MenuWidget->hide();
     ui->Stack->setCurrentWidget(ui->Login);
-
-}
-
-void MainWindow::goToHome()
-{
-    emit update();
-    emit tableHomeBuilder();
-    ui->Stack->setCurrentWidget(ui->Home);
 }
 
 void MainWindow::changeStack(int _stack)
@@ -142,10 +148,11 @@ void MainWindow::changeStack(int _stack)
         case 2: ui->Stack->setCurrentWidget(ui->ForgotName); break;
         case 3: ui->Stack->setCurrentWidget(ui->Login); break;
     }
+    build();
 }
 
 void MainWindow::on_MenuHome_clicked()
 {
-    goToHome();
+    ui->Stack->setCurrentWidget(ui->Home);
     ui->MenuWidget->hide();
 }

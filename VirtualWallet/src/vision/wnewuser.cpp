@@ -6,6 +6,8 @@ WNewUser::WNewUser(QWidget *parent) :
     ui(new Ui::WNewUser)
 {
     ui->setupUi(this);
+    ui->Password->setEchoMode(QLineEdit::Password);
+    ui->PassConfirm->setEchoMode(QLineEdit::Password);
 }
 
 WNewUser::~WNewUser()

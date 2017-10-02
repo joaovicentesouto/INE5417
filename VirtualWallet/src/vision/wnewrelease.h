@@ -28,6 +28,9 @@ private slots:
 
     void on_Confirm_clicked();
 
+signals:
+    void build();
+
 private:
     Ui::WNewRelease *ui;
     Facade * facade;

@@ -6,6 +6,7 @@ loginwidget::loginwidget(QWidget *parent) :
     ui(new Ui::loginwidget)
 {
     ui->setupUi(this);
+    ui->LoginPassword->setEchoMode(QLineEdit::Password);
 }
 
 loginwidget::~loginwidget()
@@ -38,7 +39,6 @@ void loginwidget::on_CleanButton_clicked()
     name = false;
     password = false;
     ui->LoginName->setText("Nome");
-    ui->LoginPassword->setText("Senha");
     ui->LoginName->setStyleSheet("color: #565656; border: none;");
     ui->LoginPassword->setStyleSheet("color: #565656; border: none;");
     ui->LoginMsg->setText("");

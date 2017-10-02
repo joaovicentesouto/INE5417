@@ -1,4 +1,5 @@
 #include "Facade.h"
+#include <iostream>
 
 namespace project {
 
@@ -65,15 +66,13 @@ bool Facade::registerUser(std::string _name, std::string _code, std::string _pas
 bool Facade::registerRelease(double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
                      std::string _description, std::string _op, std::string _date)
 {
-    if (!containsAccount(_accountName))
+    Account * _account = user->getAccount(_accountName);
+
+    if (_account == nullptr)
         return false;
 
-    list<Account*> accs = user->getAccounts();
-    Account * _account;
-    for (list<Account*>::iterator it = accs.begin(); it != accs.end(); ++it) {
-        if ((*it)->getName() == _accountName)
-            _account = *it;
-    }
+    if (_op == "out")
+        _value = - _value;
 
     ReleaseBuilder builder(_value, _account, _releaseT, _paymentT, _description, _op, _date);
     if (!builder.isValid())
@@ -85,12 +84,7 @@ bool Facade::registerRelease(double _value, std::string _accountName, std::strin
 
 bool Facade::containsAccount(std::string name)
 {
-    list<Account*> accounts = user->getAccounts();
-    for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
-        if ((*i)->getName() == name)
-            return true;
-    }
-    return false;
+    return user->getAccount(name) != nullptr;
 }
 
 size_t Facade::accountsAmount() {
@@ -107,8 +101,7 @@ double Facade::accountsBalance() {
 }
 
 size_t Facade::releasesAmount(std::string name) {
-    //user->getAccount(name).getReleases().size();
-    return 0;
+    return user->getAccount(name)->getReleases().size();
 }
 
 bool Facade::login(std::string _name, std::string _password)

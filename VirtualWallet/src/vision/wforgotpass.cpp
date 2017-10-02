@@ -6,6 +6,8 @@ WForgotPass::WForgotPass(QWidget *parent) :
     ui(new Ui::WForgotPass)
 {
     ui->setupUi(this);
+    ui->PassConfirm->setEchoMode(QLineEdit::Password);
+    ui->NewPass->setEchoMode(QLineEdit::Password);
 }
 
 WForgotPass::~WForgotPass()

@@ -40,6 +40,7 @@ void WNewReleaseType::on_Confirm_clicked()
         on_Clean_clicked();
         ui->TypeList->insertRow(ui->TypeList->rowCount());
         ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem("     " + QString::fromStdString(name)));
+        emit build();
     } else {
         ui->Erro->setText("Nome invalido!");
     }

@@ -6,6 +6,7 @@ WForgotName::WForgotName(QWidget *parent) :
     ui(new Ui::WForgotName)
 {
     ui->setupUi(this);
+    ui->Password->setEchoMode(QLineEdit::Password);
 }
 
 WForgotName::~WForgotName()

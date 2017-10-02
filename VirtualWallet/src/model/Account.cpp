@@ -3,15 +3,20 @@
 
 namespace project {
 
-Account::Account(string _name, double _balance) :
+Account::Account(string _name, double _balance, bool _type) :
 name(_name),
-balance(_balance)
+balance(_balance),
+type(_type)
 {
     
 }
 
 Account::~Account() {
     
+}
+
+bool Account::getType() {
+    return type;
 }
 
 size_t Account::getId() {
@@ -36,10 +41,12 @@ void Account::changeName(string _newName) {
 
 void Account::insertRelease(Release& _release) {
     releases.push_front(&_release);
+    balance += _release.getValue();
 }
 
 void Account::removeRelease(Release& _release) {
     releases.remove(&_release);
+    balance -= _release.getValue();
 }
 
 }  // namespace project

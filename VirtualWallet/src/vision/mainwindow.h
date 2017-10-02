@@ -27,8 +27,6 @@ private:
 
 signals:
     void update();
-    void tableHomeBuilder();
-    void tableTypeNamesBuilder();
 
 private slots:
     void on_MenuButton_clicked();
@@ -49,13 +47,13 @@ private slots:
 
     void on_MenuOut_clicked();
 
-    void goToHome();
-
     void build();
 
     void changeStack(int _stack);
 
     void on_MenuHome_clicked();
+
+    void loginExecuted();
 
 private:
     Ui::MainWindow *ui;

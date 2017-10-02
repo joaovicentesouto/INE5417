@@ -17,13 +17,10 @@
    <item>
     <widget class="QPushButton" name="LoginTitle">
      <property name="styleSheet">
-      <string notr="true">#LoginTitle
-{
-	color:  black;
+      <string notr="true">	color:  black;
 	background-color: transparent;
 	border: none;
-	font: 16pt;
-}</string>
+	font: 16pt;</string>
      </property>
      <property name="text">
       <string>Login</string>
