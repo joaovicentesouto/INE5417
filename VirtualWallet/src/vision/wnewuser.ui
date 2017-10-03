@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>loginwidget</class>
- <widget class="QWidget" name="loginwidget">
+ <class>WNewUser</class>
+ <widget class="QWidget" name="WNewUser">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>593</width>
-    <height>273</height>
+    <width>549</width>
+    <height>345</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,26 +15,23 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QPushButton" name="LoginTitle">
+    <widget class="QPushButton" name="Title">
      <property name="styleSheet">
-      <string notr="true">	color:  black;
+      <string notr="true">#Title
+{
 	background-color: transparent;
 	border: none;
-	font: 16pt;</string>
+	color: black;
+	font: 16pt;
+}</string>
      </property>
      <property name="text">
-      <string>Login</string>
+      <string>Crie seu Usuario</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="LoginMsg">
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>20</height>
-      </size>
-     </property>
+    <widget class="QPushButton" name="Msg">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
@@ -47,13 +44,18 @@
        <height>20</height>
       </size>
      </property>
+     <property name="baseSize">
+      <size>
+       <width>0</width>
+       <height>20</height>
+      </size>
+     </property>
      <property name="styleSheet">
-      <string notr="true">#LoginMsg
+      <string notr="true">#Msg
 {
-	color:  black;
 	background-color: transparent;
 	border: none;
-	font: 12pt;
+	color: black;
 }</string>
      </property>
      <property name="text">
@@ -62,9 +64,9 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="LoginName">
+    <widget class="QLineEdit" name="Name">
      <property name="styleSheet">
-      <string notr="true">#LoginName
+      <string notr="true">#Name
 {
 	border: none;
     color: #565656;
@@ -77,9 +79,24 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="LoginPassword">
+    <widget class="QLineEdit" name="Code">
      <property name="styleSheet">
-      <string notr="true">#LoginPassword
+      <string notr="true">#Code
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Codigo</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="Password">
+     <property name="styleSheet">
+      <string notr="true">#Password
 {
 	border: none;
     color: #565656;
@@ -92,16 +109,31 @@
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="LoginButtons" native="true">
+    <widget class="QLineEdit" name="PassConfirm">
+     <property name="styleSheet">
+      <string notr="true">#PassConfirm
+{
+	border: none;
+    color: #565656;
+    font-size: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Confirme a Senha</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="NewUserButtons" native="true">
      <property name="maximumSize">
       <size>
        <width>16777215</width>
        <height>50</height>
       </size>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="QPushButton" name="CleanButton">
+       <widget class="QPushButton" name="Clean">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -109,7 +141,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">#CleanButton
+         <string notr="true">#Clean
 {
     background-color: #a3f48a;
     color: black;
@@ -122,7 +154,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="ConfirmButton">
+       <widget class="QPushButton" name="Confirm">
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -130,7 +162,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">#ConfirmButton
+         <string notr="true">#Confirm
 {
     background-color: #a3f48a;
     color: black;
@@ -138,41 +170,11 @@
 }</string>
         </property>
         <property name="text">
-         <string>Entrar</string>
+         <string>Confirmar</string>
         </property>
        </widget>
       </item>
      </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="LoginPasswordForgot">
-     <property name="styleSheet">
-      <string notr="true">#LoginPasswordForgot
-{
-	background-color: transparent;
-	border: none;
-	font-size: 12px;
-}</string>
-     </property>
-     <property name="text">
-      <string>Esqueci Minha Senha</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="LoginNameForgot">
-     <property name="styleSheet">
-      <string notr="true">#LoginNameForgot
-{
-	background-color: transparent;
-	border: none;
-	font-size: 12px;
-}</string>
-     </property>
-     <property name="text">
-      <string>Esqueci Meu Usuario</string>
-     </property>
     </widget>
    </item>
   </layout>

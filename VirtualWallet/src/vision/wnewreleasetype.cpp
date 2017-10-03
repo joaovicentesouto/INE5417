@@ -1,5 +1,6 @@
 #include "wnewreleasetype.h"
 #include "ui_wnewreleasetype.h"
+#include <stdio.h>
 
 WNewReleaseType::WNewReleaseType(QWidget *parent) :
     QWidget(parent),
@@ -7,6 +8,13 @@ WNewReleaseType::WNewReleaseType(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->Name->setPlaceholderText("Nome");
+
+    QStringList titles;
+    titles << "Tipos de Lançamentos";
+
+    ui->TypeList->setColumnCount(1);
+    ui->TypeList->setColumnWidth(0, 441);
+    ui->TypeList->setHorizontalHeaderLabels(titles);
 }
 
 WNewReleaseType::~WNewReleaseType()
@@ -30,8 +38,22 @@ void WNewReleaseType::on_Confirm_clicked()
 
     if (facade->registerReleaseType(name)) {
         on_Clean_clicked();
-        emit goToHome();
+        ui->TypeList->insertRow(ui->TypeList->rowCount());
+        ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem("     " + QString::fromStdString(name)));
+        emit build();
     } else {
         ui->Erro->setText("Nome invalido!");
     }
+    tableBuilder();
+}
+
+void WNewReleaseType::tableBuilder()
+{
+    ui->TypeList->setRowCount(0);
+    list<std::string> * names = facade->releaseTypesNames();
+    for (list<string>::iterator it = names->begin(); it != names->end(); ++it) {
+        ui->TypeList->insertRow(ui->TypeList->rowCount());
+        ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem("     " + QString::fromStdString(*it)));
+    }
+    delete names;
 }

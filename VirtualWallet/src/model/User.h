@@ -21,6 +21,7 @@ public:
     string getCode();
     string getName();
     string getPassword();
+    Account * getAccount(string _accountName);
     list<Account*> getAccounts();
     list<string> getReleaseTypesNames();
     list<string> getPaymentTypesNames();

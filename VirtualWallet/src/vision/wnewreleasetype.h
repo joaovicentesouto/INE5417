@@ -2,6 +2,8 @@
 #define WNEWRELEASETYPE_H
 
 #include <QWidget>
+#include <string>
+#include <list>
 #include "./src/control/Facade.h"
 
 using namespace project;
@@ -20,13 +22,16 @@ public:
 
     void setFacade(Facade & _facade);
 
+public slots:
+    void tableBuilder();
+
 private slots:
     void on_Clean_clicked();
 
     void on_Confirm_clicked();
 
 signals:
-    void goToHome();
+    void build();
 
 private:
     Ui::WNewReleaseType *ui;

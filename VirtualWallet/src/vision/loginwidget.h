@@ -20,12 +20,15 @@ public:
 
     void setFacade(Facade & _facade);
 
+public slots:
+    void on_CleanButton_clicked();
+
+    void changeToNewUserMsg();
+
 private slots:
     void on_LoginName_textEdited(const QString &arg1);
 
     void on_LoginPassword_textEdited(const QString &arg1);
-
-    void on_CleanButton_clicked();
 
     void on_ConfirmButton_clicked();
 
@@ -37,8 +40,7 @@ signals:
     void configureMenu();
     void cleanForgotName();
     void cleanForgotPassword();
-    void changeStackToForgotName(std::string _stack);
-    void changeStackToForgotPassword(std::string _stack);
+    void changeStack(int _stack);
 
 private:
     Ui::loginwidget *ui;

@@ -13,9 +13,10 @@ namespace project {
 
 class Account {
 public:
-    Account(string _name, double _balance);
+    Account(string _name, double _balance, bool _type);
     ~Account();
     
+    bool getType();
     size_t getId();
     string getName();
     double getBalance();
@@ -27,6 +28,7 @@ public:
     
 private:
     size_t id{0};
+    bool type;
     double balance{0.0};
     string name;
     list<Release*> releases;

@@ -19,64 +19,50 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="Title">
+  <widget class="QPushButton" name="Title">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>81</width>
-     <height>31</height>
+     <x>0</x>
+     <y>30</y>
+     <width>500</width>
+     <height>30</height>
     </rect>
    </property>
+   <property name="minimumSize">
+    <size>
+     <width>500</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>500</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="sizeIncrement">
+    <size>
+     <width>500</width>
+     <height>30</height>
+    </size>
+   </property>
    <property name="styleSheet">
-    <string notr="true">font: 16pt;</string>
+    <string notr="true">	color:  black;
+	background-color: transparent;
+	border: none;
+	font: 16pt;</string>
    </property>
    <property name="text">
     <string>Home</string>
    </property>
   </widget>
-  <widget class="QScrollArea" name="Accounts">
+  <widget class="QTableWidget" name="Table">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>60</y>
-     <width>441</width>
-     <height>381</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>441</width>
-     <height>381</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>441</width>
-     <height>381</height>
-    </size>
-   </property>
-   <property name="widgetResizable">
-    <bool>true</bool>
-   </property>
-   <widget class="QWidget" name="scrollAreaWidgetContents">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>439</width>
-      <height>379</height>
-     </rect>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QWidget" name="Chart" native="true">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>460</y>
-     <width>441</width>
-     <height>181</height>
+     <x>20</x>
+     <y>90</y>
+     <width>460</width>
+     <height>321</height>
     </rect>
    </property>
   </widget>

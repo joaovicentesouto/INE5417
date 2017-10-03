@@ -36,7 +36,7 @@ void WNewWallet::on_Confirm_clicked()
 
     if (facade->registerWallet(name, balance)) {
         on_Clean_clicked();
-        emit goToHome();
+        emit build();
     } else {
         ui->Erro->setText("Nome invalido!");
     }

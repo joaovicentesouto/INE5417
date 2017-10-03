@@ -40,6 +40,14 @@ list<Account*> User::getAccounts() {
     return accounts;
 }
 
+Account * User::getAccount(string _accountName) {
+    for (Account * account : accounts) {
+        if (_accountName == account->getName())
+            return account;
+    }
+    return nullptr;
+}
+
 bool User::verifyUser(std::string _name, std::string _password) {
     return (name == _name && password == _password);
 }

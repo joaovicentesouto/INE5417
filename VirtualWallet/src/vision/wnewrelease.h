@@ -23,13 +23,13 @@ public:
 public slots:
     void update();
 
-signals:
-    void goToHome();
-
 private slots:
     void on_Clean_clicked();
 
     void on_Confirm_clicked();
+
+signals:
+    void build();
 
 private:
     Ui::WNewRelease *ui;

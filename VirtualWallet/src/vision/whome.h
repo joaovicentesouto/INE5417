@@ -2,7 +2,10 @@
 #define WHOME_H
 
 #include <QWidget>
+#include <string>
+#include <list>
 #include "./src/control/Facade.h"
+
 using namespace project;
 
 namespace Ui {
@@ -20,7 +23,7 @@ public:
     void setFacade(Facade &_facade);
 
 public slots:
-    void update();
+    void tableBuilder();
 
 private:
     Ui::WHome *ui;
