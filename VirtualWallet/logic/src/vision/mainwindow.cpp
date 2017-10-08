@@ -12,7 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->Menu->hide();
     ui->MenuWidget->hide();
-    ui->MenuButton->setIcon(QIcon("../Images/menubutton.png"));
+    ui->MenuButton->setIcon(QIcon(":menubutton.png"));
+    ui->MenuButton->setIconSize(QSize(20,20));
 
     if(facade.getUserName() == "")
         ui->Stack->setCurrentWidget(ui->NewUser);

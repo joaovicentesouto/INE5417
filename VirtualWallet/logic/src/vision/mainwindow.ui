@@ -72,7 +72,8 @@
      <property name="styleSheet">
       <string notr="true">#Login
 {
-	background-image: ../Images/fundo.png
+	
+	image: url(:/fundo.png);
 }</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
