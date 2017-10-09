@@ -67,12 +67,11 @@
       <string notr="true">#LoginName
 {
 	border: none;
-    color: #565656;
     font-size: 12px;
 }</string>
      </property>
      <property name="text">
-      <string>Nome</string>
+      <string/>
      </property>
     </widget>
    </item>
@@ -82,12 +81,11 @@
       <string notr="true">#LoginPassword
 {
 	border: none;
-    color: #565656;
     font-size: 12px;
 }</string>
      </property>
      <property name="text">
-      <string>Senha</string>
+      <string/>
      </property>
     </widget>
    </item>

@@ -24,14 +24,6 @@ public slots:
     void on_Clean_clicked();
 
 private slots:
-    void on_Name_textEdited(const QString &arg1);
-
-    void on_Code_textEdited(const QString &arg1);
-
-    void on_NewPass_textEdited(const QString &arg1);
-
-    void on_PassConfirm_textEdited(const QString &arg1);
-
     void on_Confirm_clicked();
 
     void on_Back_clicked();
@@ -43,7 +35,6 @@ signals:
 private:
     Ui::WForgotPass *ui;
     Facade * facade;
-    bool name{false}, code{false}, password{false}, confirm{false};
 };
 
 #endif // WFORGOTPASS_H

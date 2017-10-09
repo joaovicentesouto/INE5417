@@ -69,12 +69,11 @@
       <string notr="true">#Name
 {
 	border: none;
-    color: #565656;
     font-size: 12px;
 }</string>
      </property>
      <property name="text">
-      <string>Nome</string>
+      <string/>
      </property>
     </widget>
    </item>
@@ -84,12 +83,11 @@
       <string notr="true">#Code
 {
 	border: none;
-    color: #565656;
     font-size: 12px;
 }</string>
      </property>
      <property name="text">
-      <string>Codigo</string>
+      <string/>
      </property>
     </widget>
    </item>
@@ -99,12 +97,11 @@
       <string notr="true">#NewPass
 {
 	border: none;
-    color: #565656;
     font-size: 12px;
 }</string>
      </property>
      <property name="text">
-      <string>Nova Senha</string>
+      <string/>
      </property>
     </widget>
    </item>
@@ -114,12 +111,11 @@
       <string notr="true">#PassConfirm
 {
 	border: none;
-    color: #565656;
     font-size: 12px;
 }</string>
      </property>
      <property name="text">
-      <string>Confirme a Nova Senha</string>
+      <string/>
      </property>
     </widget>
    </item>

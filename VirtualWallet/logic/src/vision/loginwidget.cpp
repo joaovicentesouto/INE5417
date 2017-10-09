@@ -6,6 +6,8 @@ loginwidget::loginwidget(QWidget *parent) :
     ui(new Ui::loginwidget)
 {
     ui->setupUi(this);
+    ui->LoginName->setPlaceholderText("Nome");
+    ui->LoginPassword->setPlaceholderText("Senha");
     ui->LoginPassword->setEchoMode(QLineEdit::Password);
 }
 
@@ -14,33 +16,10 @@ loginwidget::~loginwidget()
     delete ui;
 }
 
-void loginwidget::on_LoginName_textEdited(const QString &arg1)
-{
-    if (!name) {
-        QString last(arg1.toStdString().back());
-        ui->LoginName->setText(last);
-    }
-    name = true;
-    ui->LoginName->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-}
-
-void loginwidget::on_LoginPassword_textEdited(const QString &arg1)
-{
-    if (!password) {
-        QString last(arg1.toStdString().back());
-        ui->LoginPassword->setText(last);
-    }
-    password = true;
-    ui->LoginPassword->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-}
-
 void loginwidget::on_CleanButton_clicked()
 {
-    name = false;
-    password = false;
-    ui->LoginName->setText("Nome");
-    ui->LoginName->setStyleSheet("color: #565656; border: none;");
-    ui->LoginPassword->setStyleSheet("color: #565656; border: none;");
+    ui->LoginPassword->setText("");
+    ui->LoginName->setText("");
     ui->LoginMsg->setText("");
 }
 
