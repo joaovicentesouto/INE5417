@@ -6,6 +6,10 @@ WForgotPass::WForgotPass(QWidget *parent) :
     ui(new Ui::WForgotPass)
 {
     ui->setupUi(this);
+    ui->Code->setPlaceholderText("Codigo");
+    ui->Name->setPlaceholderText("Nome");
+    ui->NewPass->setPlaceholderText("Nova Senha");
+    ui->PassConfirm->setPlaceholderText("Confirme a Senha");
     ui->PassConfirm->setEchoMode(QLineEdit::Password);
     ui->NewPass->setEchoMode(QLineEdit::Password);
 }
@@ -15,60 +19,12 @@ WForgotPass::~WForgotPass()
     delete ui;
 }
 
-void WForgotPass::on_Name_textEdited(const QString &arg1)
-{
-    if (!name) {
-        QString last(arg1.toStdString().back());
-        ui->Name->setText(last);
-    }
-    name = true;
-    ui->Name->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-}
-
-void WForgotPass::on_Code_textEdited(const QString &arg1)
-{
-    if (!code) {
-        QString last(arg1.toStdString().back());
-        ui->Code->setText(last);
-    }
-    code = true;
-    ui->Code->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-}
-
-void WForgotPass::on_NewPass_textEdited(const QString &arg1)
-{
-    if (!password) {
-        QString last(arg1.toStdString().back());
-        ui->NewPass->setText(last);
-    }
-    password = true;
-    ui->NewPass->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-}
-
-void WForgotPass::on_PassConfirm_textEdited(const QString &arg1)
-{
-    if (!confirm) {
-        QString last(arg1.toStdString().back());
-        ui->PassConfirm->setText(last);
-    }
-    confirm = true;
-    ui->PassConfirm->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-}
-
 void WForgotPass::on_Clean_clicked()
 {
-    name = false;
-    code = false;
-    confirm = false;
-    password = false;
-    ui->Name->setText("Nome");
-    ui->Code->setText("Codigo");
-    ui->NewPass->setText("Nova Senha");
-    ui->PassConfirm->setText("Confirme a Nova Senha");
-    ui->Name->setStyleSheet("color: #565656; border: none;");
-    ui->Code->setStyleSheet("color: #565656; border: none;");
-    ui->NewPass->setStyleSheet("color: #565656; border: none;");
-    ui->PassConfirm->setStyleSheet("color: #565656; border: none;");
+    ui->Name->setText("");
+    ui->Code->setText("");
+    ui->NewPass->setText("");
+    ui->PassConfirm->setText("");
     ui->Msg->setText("");
 }
 

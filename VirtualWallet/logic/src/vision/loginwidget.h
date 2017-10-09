@@ -26,10 +26,6 @@ public slots:
     void changeToNewUserMsg();
 
 private slots:
-    void on_LoginName_textEdited(const QString &arg1);
-
-    void on_LoginPassword_textEdited(const QString &arg1);
-
     void on_ConfirmButton_clicked();
 
     void on_LoginPasswordForgot_clicked();
@@ -45,7 +41,6 @@ signals:
 private:
     Ui::loginwidget *ui;
     Facade * facade;
-    bool name{false}, password{false};
 };
 
 #endif // LOGINWIDGET_H

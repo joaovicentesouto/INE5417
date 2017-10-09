@@ -72,7 +72,6 @@
      <property name="styleSheet">
       <string notr="true">#Login
 {
-	
 	image: url(:/fundo.png);
 }</string>
      </property>
