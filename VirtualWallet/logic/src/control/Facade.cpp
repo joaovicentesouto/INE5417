@@ -75,6 +75,7 @@ bool Facade::registerRelease(double _value, std::string _accountName, std::strin
         _value = - _value;
 
     ReleaseBuilder builder(_value, _account, _releaseT, _paymentT, _description, _op, _date);
+
     if (!builder.isValid())
         return false;
 
