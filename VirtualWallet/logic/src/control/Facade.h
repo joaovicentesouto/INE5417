@@ -28,6 +28,8 @@ public:
     bool registerRelease(double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
                          std::string _description, std::string _op, std::string _date);
 
+    void deleteReleaseType(std::string _name);
+
     bool containsAccount(std::string name);
     size_t accountsAmount();
     size_t releasesAmount(std::string name);
@@ -45,6 +47,7 @@ public:
     void refreshPass(std::string _newPassword);
     bool verifyNewName(std::string _code, std::string _password, std::string _newName, std::string _confirm);
     void refreshName(std::string _newName);
+    void refreshReleaseType(std::string _oldName, std::string _newName);
     
     void insertUser(User* _user);
 

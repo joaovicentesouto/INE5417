@@ -29,7 +29,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>220</y>
+     <y>210</y>
      <width>441</width>
      <height>16</height>
     </rect>
@@ -42,7 +42,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>200</y>
+     <y>190</y>
      <width>441</width>
      <height>16</height>
     </rect>
@@ -64,35 +64,14 @@
     <string notr="true">font: 16pt;</string>
    </property>
    <property name="text">
-    <string>Cadastrar Novo Tipo de Lancamento</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="Clean">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>100</y>
-     <width>215</width>
-     <height>36</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">#Clean
-{
-    background-color: #a3f48a;
-    color: black;
-    font-size: 12px;
-}</string>
-   </property>
-   <property name="text">
-    <string>Limpar</string>
+    <string>Cadastrar Novo Tipo de Lançamento</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="Name">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>60</y>
+     <y>70</y>
      <width>441</width>
      <height>22</height>
     </rect>
@@ -108,32 +87,11 @@
     <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="Confirm">
-   <property name="geometry">
-    <rect>
-     <x>257</x>
-     <y>100</y>
-     <width>215</width>
-     <height>36</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">#Confirm
-{
-    background-color: #a3f48a;
-    color: black;
-    font-size: 12px;
-}</string>
-   </property>
-   <property name="text">
-    <string>Confirmar</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="Description_3">
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>240</y>
+     <y>230</y>
      <width>441</width>
      <height>16</height>
     </rect>
@@ -142,7 +100,7 @@
     <string>cao das suas contas. Ex. (Comida, Energia, Cinema etc).</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Erro">
+  <widget class="QLabel" name="Msg">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -165,9 +123,9 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>310</y>
+     <y>270</y>
      <width>441</width>
-     <height>331</height>
+     <height>371</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -188,6 +146,132 @@
      <height>0</height>
     </size>
    </property>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>29</x>
+     <y>92</y>
+     <width>441</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="Confirm">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#Confirm
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Confirmar</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="Clean">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#Clean
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+      </property>
+      <property name="text">
+       <string>Limpar</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="Delete">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>0</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;</string>
+      </property>
+      <property name="text">
+       <string>Excluir</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

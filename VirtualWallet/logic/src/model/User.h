@@ -30,12 +30,14 @@ public:
 
     void changeName(string _newName);
     void changePassword(string _newPassword);
+
     void insertAccount(Account& _account);
     void removeAccount(Account& _account);
 
-    void insertReleaseType(std::string _type);
+    bool insertReleaseType(std::string _type);
     void removeReleaseType(std::string _type);
     void changeReleaseType(std::string _old, std::string _new);
+    bool releaseTypeExist(std::string _type);
 
 private:
     size_t id{0};
