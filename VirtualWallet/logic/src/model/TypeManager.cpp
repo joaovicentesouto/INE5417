@@ -34,8 +34,13 @@ list<string> TypeManager::getPaymentTypes() {
   return paymentTypes;
 }
 
-void TypeManager::addReleaseType(string _type) {
+bool TypeManager::addReleaseType(string _type) {
+    for (list<string>::iterator it = releaseTypes.begin(); it != releaseTypes.end(); it++)
+        if (!it->compare(_type))
+            return false;
+
     releaseTypes.push_front(_type);
+    return true;
 }
 
 void TypeManager::deleteReleaseType(string _type) {

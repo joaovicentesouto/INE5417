@@ -68,8 +68,8 @@ void User::removeAccount(Account& _account) {
     accounts.remove(&_account);
 }
 
-void User::insertReleaseType(std::string _type) {
-    manager.addReleaseType(_type);
+bool User::insertReleaseType(std::string _type) {
+    return manager.addReleaseType(_type);
 }
 
 void User::removeReleaseType(std::string _type) {

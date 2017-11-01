@@ -48,8 +48,12 @@ bool Facade::registerReleaseType(std::string _name)
     if (!builder.isValid())
         return false;
 
-    user->insertReleaseType(_name);
-    return true;
+    return user->insertReleaseType(_name);
+}
+
+void Facade::deleteReleaseType(std::string _name)
+{
+    user->removeReleaseType(_name);
 }
 
 bool Facade::registerUser(std::string _name, std::string _code, std::string _password, std::string _confirm)
@@ -173,6 +177,11 @@ bool Facade::verifyNewName(std::string _code, std::string _password, std::string
 
 void Facade::refreshName(std::string _newName) {
     user->changeName(_newName);
+}
+
+void Facade::refreshReleaseType(std::string _oldName, std::string _newName)
+{
+    user->changeReleaseType(_oldName, _newName);
 }
 
 void Facade::insertUser(User* _user) {

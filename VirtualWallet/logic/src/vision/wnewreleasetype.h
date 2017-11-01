@@ -30,6 +30,10 @@ private slots:
 
     void on_Confirm_clicked();
 
+    void on_TypeList_clicked(const QModelIndex &index);
+
+    void on_Delete_clicked();
+
 signals:
     void build();
 

@@ -18,7 +18,7 @@ public:
     list<string> getReleaseTypes();
     list<string> getPaymentTypes();
 
-    void addReleaseType(string _type);
+    bool addReleaseType(string _type);
     void deleteReleaseType(string _type);
     void changeReleaseType(string _old, string _new);
 
