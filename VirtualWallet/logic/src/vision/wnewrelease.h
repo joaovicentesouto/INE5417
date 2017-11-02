@@ -21,6 +21,9 @@ public:
     void setFacade(Facade &_facade);
 
 public slots:
+    void tableBuilder();
+
+public slots:
     void update();
 
 private slots:

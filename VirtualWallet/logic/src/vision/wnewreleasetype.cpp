@@ -1,6 +1,5 @@
 #include "wnewreleasetype.h"
 #include "ui_wnewreleasetype.h"
-#include <iostream>
 
 WNewReleaseType::WNewReleaseType(QWidget *parent) :
     QWidget(parent),
@@ -48,8 +47,6 @@ void WNewReleaseType::on_Confirm_clicked()
     on_Clean_clicked();
 
     if (temp) {
-        ui->TypeList->insertRow(ui->TypeList->rowCount());
-        ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(name)));
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
@@ -87,5 +84,6 @@ void WNewReleaseType::on_Delete_clicked()
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Tipo de Lançamento Excluido com Sucesso!");
         tableBuilder();
+        emit build();
     }
 }
