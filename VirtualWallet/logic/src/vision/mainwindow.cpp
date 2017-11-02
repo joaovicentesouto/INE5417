@@ -6,8 +6,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    //facade("Nome", "Senha", "Codigo")
-    facade("", "", "")
+    facade("q", "q", "q")
+    //facade("", "", "")
 {
     ui->setupUi(this);
     ui->Menu->hide();

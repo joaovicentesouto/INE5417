@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WReport</class>
+ <widget class="QWidget" name="WReport">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>670</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>500</width>
+    <height>670</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>500</width>
+    <height>670</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QRadioButton" name="In">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>56</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Entrada</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Operation">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>56</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Operacao:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="RangeOfValues">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>110</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Faixa de valores:        De:</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="ValueBox_1">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>110</y>
+     <width>120</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#ValueBox_1
+{
+	color: black;
+	border: none;
+}</string>
+   </property>
+   <property name="maximum">
+    <double>99999999999999995287335453651211007997446182781858083179085387749785952239205787068995699003416510776387310061494932420984963311567802202010637287727642443776.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Title">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>20</y>
+     <width>141</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt;</string>
+   </property>
+   <property name="text">
+    <string>Gerar Relatorio</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="Out">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>56</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Saida</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="DateEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>80</y>
+     <width>120</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#DateEdit_2
+{
+	border: none;
+}</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Description_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>564</y>
+     <width>441</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Lancamento que registra as operacoes feitas sobre a tua conta.</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Clean">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>494</y>
+     <width>215</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Clean
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Limpar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Confirm">
+   <property name="geometry">
+    <rect>
+     <x>257</x>
+     <y>494</y>
+     <width>215</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#Confirm
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Confirmar</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Description">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>544</y>
+     <width>441</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Descricao:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="RangeOfValues_2">
+   <property name="geometry">
+    <rect>
+     <x>317</x>
+     <y>110</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ate:</string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="ValueBox_2">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>110</y>
+     <width>120</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#ValueBox_2
+{
+	color: black;
+	border: none;
+}</string>
+   </property>
+   <property name="maximum">
+    <double>99999999999999995287335453651211007997446182781858083179085387749785952239205787068995699003416510776387310061494932420984963311567802202010637287727642443776.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="AccTable">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>158</y>
+     <width>441</width>
+     <height>150</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="AccChoose">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>138</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Escolha as contas:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="TypesChoose">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>314</y>
+     <width>211</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Escolha os Tipos de Lancamentos:</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="TypesTable">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>334</y>
+     <width>441</width>
+     <height>150</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="Both">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>56</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ambas</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="RangeOfValues_3">
+   <property name="geometry">
+    <rect>
+     <x>317</x>
+     <y>82</y>
+     <width>31</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ate:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="RangeOfValues_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>82</y>
+     <width>151</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Periodo:                        De:</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="DateEdit_1">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>80</y>
+     <width>120</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#DateEdit_1
+{
+	border: none;
+}</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="AllAccs">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>158</y>
+     <width>51</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#AllAccs
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Todas</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="AllTypes">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>334</y>
+     <width>51</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#AllTypes
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+   </property>
+   <property name="text">
+    <string>Todos</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

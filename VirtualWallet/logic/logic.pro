@@ -48,7 +48,8 @@ SOURCES += \
 	    ./src/vision/wforgotpass.cpp \
 	    ./src/vision/wforgotname.cpp \
 	    ./src/vision/wnewuser.cpp \
-        ./src/vision/whome.cpp
+        ./src/vision/whome.cpp \
+    src/vision/wreport.cpp
 
 HEADERS += \
         ./src/model/Account.h \
@@ -74,7 +75,8 @@ HEADERS += \
     	./src/vision/wforgotpass.h \
     	./src/vision/wforgotname.h \
     	./src/vision/wnewuser.h \
-        ./src/vision/whome.h
+        ./src/vision/whome.h \
+    src/vision/wreport.h
 
 FORMS += \
         ./src/vision/mainwindow.ui \
@@ -87,7 +89,8 @@ FORMS += \
     	./src/vision/wforgotpass.ui \
     	./src/vision/wforgotname.ui \
     	./src/vision/wnewuser.ui \
-        ./src/vision/whome.ui
+        ./src/vision/whome.ui \
+    src/vision/wreport.ui
 
 RESOURCES += \
     src/resources/images.qrc
