@@ -14,7 +14,7 @@ namespace project {
 class Account {
 public:
     Account(string _name, double _balance, bool _type);
-    ~Account();
+    virtual ~Account();
     
     bool getType();
     size_t getId();

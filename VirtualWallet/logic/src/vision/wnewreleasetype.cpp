@@ -41,7 +41,7 @@ void WNewReleaseType::on_Confirm_clicked()
     bool temp = true;
 
     if (ui->TypeList->currentRow() > -1)
-        facade->refreshReleaseType(ui->TypeList->currentItem()->text().toStdString(), name);
+        temp = facade->refreshReleaseType(ui->TypeList->currentItem()->text().toStdString(), name);
     else
         temp = facade->registerReleaseType(name);
 
@@ -80,12 +80,12 @@ void WNewReleaseType::on_Delete_clicked()
 {
     if (ui->TypeList->currentRow() < 0) {
         ui->Msg->setStyleSheet("color: red");
-        ui->Msg->setText("Nenhum Item Selecionado!");
+        ui->Msg->setText("Nenhum Tipo de Lançamento Selecionado!");
     } else {
         facade->deleteReleaseType(ui->TypeList->currentItem()->text().toStdString());
         on_Clean_clicked();
         ui->Msg->setStyleSheet("color: green");
-        ui->Msg->setText("Item Excluido com Sucesso!");
+        ui->Msg->setText("Tipo de Lançamento Excluido com Sucesso!");
         tableBuilder();
     }
 }

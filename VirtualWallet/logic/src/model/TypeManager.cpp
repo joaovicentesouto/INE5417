@@ -35,9 +35,8 @@ list<string> TypeManager::getPaymentTypes() {
 }
 
 bool TypeManager::addReleaseType(string _type) {
-    for (list<string>::iterator it = releaseTypes.begin(); it != releaseTypes.end(); it++)
-        if (!it->compare(_type))
-            return false;
+    if (releaseTypeExists(_type))
+        return false;
 
     releaseTypes.push_front(_type);
     return true;
@@ -47,9 +46,21 @@ void TypeManager::deleteReleaseType(string _type) {
     releaseTypes.remove(_type);
 }
 
-void TypeManager::changeReleaseType(string _old, string _new) {
+bool TypeManager::changeReleaseType(string _old, string _new) {
+    if (releaseTypeExists(_new))
+        return false;
+
     releaseTypes.remove(_old);
     releaseTypes.push_front(_new);
+    return true;
+}
+
+bool TypeManager::releaseTypeExists(string _name) {
+    for (list<string>::iterator it = releaseTypes.begin(); it != releaseTypes.end(); it++)
+        if (!it->compare(_name))
+            return true;
+
+    return false;
 }
 
 }  // namespace project

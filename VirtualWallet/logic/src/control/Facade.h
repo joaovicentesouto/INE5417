@@ -6,6 +6,7 @@
 #include <list>
 #include <string>
 #include "../model/User.h"
+#include "../model/Wallet.h"
 #include "./src/model/Account.h"
 #include "WalletBuilder.h"
 #include "BankAccountBuilder.h"
@@ -29,6 +30,7 @@ public:
                          std::string _description, std::string _op, std::string _date);
 
     void deleteReleaseType(std::string _name);
+    void deleteAccount(std::string _name);
 
     bool containsAccount(std::string name);
     size_t accountsAmount();
@@ -38,16 +40,19 @@ public:
     double accountsBalance();
     std::string getUserName();
     list<std::string> * accountsNames();
+    list<std::string> * walletsNames();
     list<std::string> * releaseTypesNames();
     list<std::string> * paymentTypesNames();
     list<Account*> userAccounts();
     list<double> * accountsValues();
+    list<double> * walletsValues();
 
     bool verifyNewPass(std::string _name, std::string _code, std::string _newPassword, std::string _confirm);
     void refreshPass(std::string _newPassword);
     bool verifyNewName(std::string _code, std::string _password, std::string _newName, std::string _confirm);
     void refreshName(std::string _newName);
-    void refreshReleaseType(std::string _oldName, std::string _newName);
+    bool refreshReleaseType(std::string _oldName, std::string _newName);
+    bool refreshWallet(std::string _oldName, std::string _newName);
     
     void insertUser(User* _user);
 

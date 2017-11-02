@@ -20,7 +20,9 @@ public:
 
     bool addReleaseType(string _type);
     void deleteReleaseType(string _type);
-    void changeReleaseType(string _old, string _new);
+    bool changeReleaseType(string _old, string _new);
+
+    bool releaseTypeExists(string _name);
 
 private:
     list<string> releaseTypes, paymentTypes;
