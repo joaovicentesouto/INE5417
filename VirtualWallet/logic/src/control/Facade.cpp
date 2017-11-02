@@ -1,6 +1,8 @@
 #include "Facade.h"
 #include <iostream>
 
+using namespace std;
+
 namespace project {
 
 Facade::Facade()
@@ -35,8 +37,7 @@ bool Facade::registerBankAccount(std::string _name, double _balance, std::string
     if (!creator.isValid())
         return false;
 
-    user->insertAccount(*creator.build());
-    return true;
+    return user->insertAccount(*creator.build());
 }
 
 bool Facade::registerReleaseType(std::string _name)
@@ -201,6 +202,18 @@ list<std::string> * Facade::paymentTypesNames()
     return names;
 }
 
+list<BankAccount*> * Facade::bankAccounts()
+{
+    list<BankAccount*> * bankAccounts = new list<BankAccount*>();
+    list<Account*> accounts = user->getAccounts();
+    BankAccount * temp;
+    for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i)
+        if (dynamic_cast<BankAccount*>(*i) != nullptr)
+            bankAccounts->push_front((BankAccount*) (*i));
+
+    return bankAccounts;
+}
+
 list<Account*> Facade::userAccounts()
 {
     return user->getAccounts();
@@ -233,6 +246,22 @@ bool Facade::refreshWallet(std::string _oldName, std::string _newName)
         return false;
 
     user->changeAccount(_oldName, _newName);
+    return true;
+}
+
+bool Facade::refreshAccount(std::string _oldName, std::string _newName, std::string _newNumber, std::string _newAgency, std::string _newBank, double _balance)
+{
+    if (user->accountExist(_newName) && _newName.compare(_oldName))
+        return false;
+
+    BankAccountBuilder creator(_newName, _balance, _newNumber, _newAgency, _newBank);
+
+    if (!creator.isValid())
+        return false;
+
+    user->removeAccount(_oldName);
+    user->insertAccount(*creator.build());
+
     return true;
 }
 
