@@ -76,7 +76,8 @@ HEADERS += \
     	./src/vision/wforgotname.h \
     	./src/vision/wnewuser.h \
         ./src/vision/whome.h \
-    src/vision/wreport.h
+        ./src/vision/wreport.h\
+        ./src/resources/linked_list.h
 
 FORMS += \
         ./src/vision/mainwindow.ui \
