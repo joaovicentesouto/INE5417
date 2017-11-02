@@ -44,6 +44,7 @@ public:
     list<std::string> * releaseTypesNames();
     list<std::string> * paymentTypesNames();
     list<Account*> userAccounts();
+    list<BankAccount*> * userBankAccounts();
     list<double> * accountsValues();
     list<double> * walletsValues();
 

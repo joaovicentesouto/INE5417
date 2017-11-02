@@ -20,6 +20,9 @@ public:
 
     void setFacade(Facade &_facade);
 
+public slots:
+    void tableBuilder();
+
 private slots:
     void on_Clean_clicked();
 

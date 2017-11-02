@@ -210,7 +210,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="Delete">
+     <widget class="QPushButton" name="Confirm">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -236,12 +236,15 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">    background-color: #a3f48a;
+       <string notr="true">#Confirm
+{
+    background-color: #a3f48a;
     color: black;
-    font-size: 12px;</string>
+    font-size: 12px;
+}</string>
       </property>
       <property name="text">
-       <string>Excluir</string>
+       <string>Confirmar</string>
       </property>
      </widget>
     </item>
@@ -285,7 +288,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="Confirm">
+     <widget class="QPushButton" name="Delete">
       <property name="minimumSize">
        <size>
         <width>0</width>
@@ -311,15 +314,12 @@
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">#Confirm
-{
-    background-color: #a3f48a;
+       <string notr="true">    background-color: #a3f48a;
     color: black;
-    font-size: 12px;
-}</string>
+    font-size: 12px;</string>
       </property>
       <property name="text">
-       <string>Confirmar</string>
+       <string>Excluir</string>
       </property>
      </widget>
     </item>
