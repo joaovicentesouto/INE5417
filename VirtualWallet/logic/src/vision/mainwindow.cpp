@@ -27,6 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->NewReleaseType->setFacade(facade);
     ui->NewRelease->setFacade(facade);
     ui->Home->setFacade(facade);
+    ui->Report->setFacade(facade);
 
     // Connects
 
@@ -52,6 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this, SIGNAL(update()), ui->NewRelease, SLOT(update()));
     connect(this, SIGNAL(update()), ui->NewReleaseType, SLOT(tableBuilder()));
     connect(this, SIGNAL(update()), ui->Home, SLOT(tableBuilder()));
+    connect(this, SIGNAL(update()), ui->Report, SLOT(tableBuilder()));
 }
 
 MainWindow::~MainWindow()

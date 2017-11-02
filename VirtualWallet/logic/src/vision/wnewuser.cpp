@@ -6,6 +6,10 @@ WNewUser::WNewUser(QWidget *parent) :
     ui(new Ui::WNewUser)
 {
     ui->setupUi(this);
+    ui->Name->setPlaceholderText("Nome");
+    ui->Password->setPlaceholderText("Senha");
+    ui->PassConfirm->setPlaceholderText("Cofirma Senha");
+    ui->Code->setPlaceholderText("Codigo");
     ui->Password->setEchoMode(QLineEdit::Password);
     ui->PassConfirm->setEchoMode(QLineEdit::Password);
 }
@@ -17,58 +21,30 @@ WNewUser::~WNewUser()
 
 void WNewUser::on_Name_textEdited(const QString &arg1)
 {
-    if (!name) {
-        QString last(arg1.toStdString().back());
-        ui->Name->setText(last);
-    }
-    name = true;
     ui->Name->setStyleSheet("color: rgb(0, 0, 0); border: none;");
 }
 
 void WNewUser::on_Code_textEdited(const QString &arg1)
 {
-    if (!code) {
-        QString last(arg1.toStdString().back());
-        ui->Code->setText(last);
-    }
-    code = true;
     ui->Code->setStyleSheet("color: rgb(0, 0, 0); border: none;");
 }
 
 void WNewUser::on_Password_textEdited(const QString &arg1)
 {
-    if (!password) {
-        QString last(arg1.toStdString().back());
-        ui->Password->setText(last);
-    }
-    password = true;
     ui->Password->setStyleSheet("color: rgb(0, 0, 0); border: none;");
 }
 
 void WNewUser::on_PassConfirm_textEdited(const QString &arg1)
 {
-    if (!confirm) {
-        QString last(arg1.toStdString().back());
-        ui->PassConfirm->setText(last);
-    }
-    confirm = true;
     ui->PassConfirm->setStyleSheet("color: rgb(0, 0, 0); border: none;");
 }
 
 void WNewUser::on_Clean_clicked()
 {
-    name = false;
-    code = false;
-    confirm = false;
-    password = false;
-    ui->Name->setText("Nome");
-    ui->Code->setText("Codigo");
-    ui->Password->setText("Senha");
-    ui->PassConfirm->setText("Confirme a Senha");
-    ui->Name->setStyleSheet("color: #565656; border: none;");
-    ui->Code->setStyleSheet("color: #565656; border: none;");
-    ui->Password->setStyleSheet("color: #565656; border: none;");
-    ui->PassConfirm->setStyleSheet("color: #565656; border: none;");
+    ui->Name->setText("");
+    ui->Code->setText("");
+    ui->Password->setText("");
+    ui->PassConfirm->setText("");
     ui->Msg->setText("");
 }
 

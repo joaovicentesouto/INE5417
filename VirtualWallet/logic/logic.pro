@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -45,10 +45,12 @@ SOURCES += \
     	./src/control/ReleaseBuilder.cpp \
     	./src/vision/wnewrelease.cpp \
     	./src/vision/wuserdata.cpp \
-	    ./src/vision/wforgotpass.cpp \
-	    ./src/vision/wforgotname.cpp \
-	    ./src/vision/wnewuser.cpp \
-        ./src/vision/whome.cpp
+        ./src/vision/wforgotpass.cpp \
+        ./src/vision/wforgotname.cpp \
+        ./src/vision/wnewuser.cpp \
+        ./src/vision/whome.cpp \
+        ./src/vision/wreport.cpp \
+        ./src/control/ReportBuilder.cpp
 
 HEADERS += \
         ./src/model/Account.h \
@@ -74,7 +76,10 @@ HEADERS += \
     	./src/vision/wforgotpass.h \
     	./src/vision/wforgotname.h \
     	./src/vision/wnewuser.h \
-        ./src/vision/whome.h
+        ./src/vision/whome.h \
+        ./src/vision/wreport.h\
+        ./src/resources/linked_list.h \
+        ./src/control/ReportBuilder.h
 
 FORMS += \
         ./src/vision/mainwindow.ui \
@@ -87,7 +92,8 @@ FORMS += \
     	./src/vision/wforgotpass.ui \
     	./src/vision/wforgotname.ui \
     	./src/vision/wnewuser.ui \
-        ./src/vision/whome.ui
+        ./src/vision/whome.ui \
+        ./src/vision/wreport.ui
 
 RESOURCES += \
-    src/resources/images.qrc
+        ./src/resources/images.qrc

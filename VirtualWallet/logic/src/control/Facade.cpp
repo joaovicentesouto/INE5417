@@ -1,6 +1,8 @@
 #include "Facade.h"
 #include <iostream>
 
+using namespace std;
+
 namespace project {
 
 Facade::Facade()
@@ -81,11 +83,27 @@ bool Facade::registerRelease(double _value, std::string _accountName, std::strin
         _value = - _value;
 
     ReleaseBuilder builder(_value, _account, _releaseT, _paymentT, _description, _op, _date);
+
     if (!builder.isValid())
         return false;
 
     _account->insertRelease(*builder.build());
     return true;
+}
+
+Report * Facade::createReport(list<string> accounts, list<string> releaseTypes, list<string> paymentTypes,
+                      string begin, string end, double lower, double upper, bool in, bool out)
+{
+    list<Account*> accs;
+    for (auto & name : accounts)
+        accs.push_back(user->getAccount(name));
+
+    ReportBuilder builder(accs, releaseTypes, paymentTypes, begin, end, lower, upper, in, out);
+
+    if (!builder.isValid())
+        return nullptr;
+
+    return builder.build();
 }
 
 bool Facade::containsAccount(std::string name)

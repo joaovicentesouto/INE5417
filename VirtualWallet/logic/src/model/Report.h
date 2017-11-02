@@ -5,7 +5,8 @@
 
 #include <string>
 #include <list>
-#include <ctime>
+#include <cmath>
+#include <QDate>
 
 #include "Account.h"
 #include "Release.h"
@@ -16,20 +17,28 @@ namespace project {
 
 class Report {
 public:
-    Report(list<Account*> &_accounts);
+    Report(list<Account*> &_accounts, list<string> &_releasesTypes, list<string> &_paymentTypes,
+           string _begin, string _end, double _lowerValue, double _upperValue, bool _in, bool _out);
     ~Report();
     
-    void searchByReleasesType(list<string> &_releasesTypes);
-    void searchByPaymentType(list<string> &_paymentTypes);
-    void searchByDate(time_t _begin, time_t _end);
-    void searchByValue(double _lowerValue, double _upperValue);
+    list<Release*> getReleases();
+
+    int amount();
+    size_t amountInReleases();
+    size_t amountOutReleases();
     
 private:
-    time_t begin, end;
+    void searchByReleasesType();
+    void searchByPaymentType();
+    void searchByDate();
+    void searchByValue();
+
+    string begin, end;
     double lowerValue, upperValue;
     list<Account*> accounts;        //!< Immutables
     list<Release*> releases;
     list<string> releasesTypes, paymentTypes;
+    bool in, out;
     
 };
 

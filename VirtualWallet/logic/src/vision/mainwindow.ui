@@ -171,21 +171,7 @@
     </widget>
     <widget class="WNewReleaseType" name="NewReleaseType"/>
     <widget class="WNewRelease" name="NewRelease"/>
-    <widget class="QWidget" name="Report">
-     <widget class="QLabel" name="label_3">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>240</y>
-        <width>60</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Report</string>
-      </property>
-     </widget>
-    </widget>
+    <widget class="WReport" name="Report"/>
     <widget class="WNewBankAccount" name="NewBankAccount"/>
     <widget class="WNewWallet" name="NewWallet"/>
     <widget class="QWidget" name="UserData">
@@ -603,6 +589,12 @@
    <class>WNewUser</class>
    <extends>QWidget</extends>
    <header>./src/vision/wnewuser.h</header>
+  </customwidget>
+  <customwidget>
+   <class>WReport</class>
+   <extends>QWidget</extends>
+   <header>./src/vision/wreport.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

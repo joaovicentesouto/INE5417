@@ -22,8 +22,9 @@ ReleaseBuilder::~ReleaseBuilder()
 
 bool ReleaseBuilder::isValid()
 {
-    return (account != nullptr) && !releaseType.empty() &&
-           !paymentType.empty() && !date.empty() &&
+    return (account != nullptr) && !date.empty() &&
+           !releaseType.empty() && (releaseType != "Tipo de Lancamento") &&
+           !paymentType.empty() && (paymentType != "Tipo de Pagamento") &&
            ((operation == "in") || (operation == "out"));
 }
 

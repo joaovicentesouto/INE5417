@@ -13,6 +13,7 @@
 #include "ReleaseTypeBuilder.h"
 #include "UserBuilder.h"
 #include "ReleaseBuilder.h"
+#include "ReportBuilder.h"
 
 namespace project {
 
@@ -28,6 +29,8 @@ public:
     bool registerUser(std::string _name,std::string _code, std::string _password, std::string _confirm);
     bool registerRelease(double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
                          std::string _description, std::string _op, std::string _date);
+    Report * createReport(list<string> accounts, list<string> releaseTypes, list<string> paymentTypes,
+                          string begin, string end, double lower, double upper, bool in, bool out);
 
     void deleteReleaseType(std::string _name);
     void deleteAccount(std::string _name);
@@ -45,6 +48,7 @@ public:
     list<std::string> * paymentTypesNames();
     list<BankAccount*> * bankAccounts();
     list<Account*> userAccounts();
+    list<BankAccount*> * userBankAccounts();
     list<double> * accountsValues();
     list<double> * walletsValues();
 

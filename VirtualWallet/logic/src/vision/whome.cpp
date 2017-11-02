@@ -11,8 +11,8 @@ WHome::WHome(QWidget *parent) :
     titles << "Conta" << "Montante";
 
     ui->Table->setColumnCount(2);
-    ui->Table->setColumnWidth(0, 228);
-    ui->Table->setColumnWidth(1, 228);
+    ui->Table->setColumnWidth(0, 224);
+    ui->Table->setColumnWidth(1, 224);
     ui->Table->setHorizontalHeaderLabels(titles);
 }
 
