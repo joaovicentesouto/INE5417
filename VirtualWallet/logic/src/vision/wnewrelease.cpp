@@ -1,6 +1,5 @@
 #include "wnewrelease.h"
 #include "ui_wnewrelease.h"
-#include <iostream>
 
 WNewRelease::WNewRelease(QWidget *parent) :
     QWidget(parent),

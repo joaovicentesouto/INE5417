@@ -25,9 +25,7 @@ bool Facade::registerWallet(std::string _name, double _balance)
     if (!creator.isValid())
         return false;
 
-    user->insertAccount(*creator.build());
-    return true;
-
+    return user->insertAccount(*creator.build());
 }
 
 bool Facade::registerBankAccount(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank)
@@ -54,6 +52,11 @@ bool Facade::registerReleaseType(std::string _name)
 void Facade::deleteReleaseType(std::string _name)
 {
     user->removeReleaseType(_name);
+}
+
+void Facade::deleteAccount(std::string _name)
+{
+    user->removeAccount(_name);
 }
 
 bool Facade::registerUser(std::string _name, std::string _code, std::string _password, std::string _confirm)
@@ -146,6 +149,19 @@ list<std::string> * Facade::accountsNames()
     return names;
 }
 
+list<std::string> * Facade::walletsNames()
+{
+    list<std::string> *names = new list<std::string>();
+    list<Account*> &&accounts = user->getAccounts();
+    for (list<Account*>::iterator it = accounts.begin(); it != accounts.end(); ++it) {
+        if (dynamic_cast<Wallet*>(*it) != nullptr)
+            names->push_front((*it)->getName());
+    }
+
+    names->sort();
+    return names;
+}
+
 list<std::string> * Facade::releaseTypesNames()
 {
     list<std::string> *names = new list<std::string>();
@@ -161,6 +177,17 @@ list<double> * Facade::accountsValues()
     list<Account*> accounts = user->getAccounts();
     for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
         values->push_front((*i)->getBalance());
+    }
+    return values;
+}
+
+list<double> * Facade::walletsValues()
+{
+    list<double> * values = new list<double>();
+    list<Account*> accounts = user->getAccounts();
+    for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
+        if (dynamic_cast<Wallet*>(*i) != nullptr)
+            values->push_front((*i)->getBalance());
     }
     return values;
 }
@@ -195,9 +222,18 @@ void Facade::refreshName(std::string _newName) {
     user->changeName(_newName);
 }
 
-void Facade::refreshReleaseType(std::string _oldName, std::string _newName)
+bool Facade::refreshReleaseType(std::string _oldName, std::string _newName)
 {
-    user->changeReleaseType(_oldName, _newName);
+    return user->changeReleaseType(_oldName, _newName);
+}
+
+bool Facade::refreshWallet(std::string _oldName, std::string _newName)
+{
+    if (user->accountExist(_newName))
+        return false;
+
+    user->changeAccount(_oldName, _newName);
+    return true;
 }
 
 void Facade::insertUser(User* _user) {

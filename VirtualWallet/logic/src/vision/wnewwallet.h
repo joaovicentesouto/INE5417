@@ -20,10 +20,17 @@ public:
 
     void setFacade(Facade &_facade);
 
+public slots:
+    void tableBuilder();
+
 private slots:
     void on_Clean_clicked();
 
     void on_Confirm_clicked();
+
+    void on_WalletTable_clicked(const QModelIndex &index);
+
+    void on_Delete_clicked();
 
 signals:
     void build();
