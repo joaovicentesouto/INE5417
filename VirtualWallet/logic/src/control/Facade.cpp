@@ -87,6 +87,21 @@ bool Facade::registerRelease(double _value, std::string _accountName, std::strin
     return true;
 }
 
+Report * Facade::createReport(list<string> accounts, list<string> releaseTypes, list<string> paymentTypes,
+                      string begin, string end, double lower, double upper, bool in, bool out)
+{
+    list<Account*> accs;
+    for (auto & name : accounts)
+        accs.push_back(user->getAccount(name));
+
+    ReportBuilder builder(accs, releaseTypes, paymentTypes, begin, end, lower, upper, in, out);
+
+    if (!builder.isValid())
+        return nullptr;
+
+    return builder.build();
+}
+
 bool Facade::containsAccount(std::string name)
 {
     return user->getAccount(name) != nullptr;

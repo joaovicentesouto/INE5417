@@ -25,7 +25,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QStackedWidget" name="stackedWidget">
+  <widget class="QStackedWidget" name="Stack">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -138,7 +138,7 @@
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>270</y>
+       <y>273</y>
        <width>211</width>
        <height>19</height>
       </rect>
@@ -180,17 +180,23 @@
       <double>99999999999999995287335453651211007997446182781858083179085387749785952239205787068995699003416510776387310061494932420984963311567802202010637287727642443776.000000000000000</double>
      </property>
     </widget>
-    <widget class="QLabel" name="Description_2">
+    <widget class="QLabel" name="Erro">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>644</y>
+       <y>620</y>
        <width>441</width>
        <height>16</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">#Erro
+{
+    color: red;
+}</string>
+     </property>
      <property name="text">
-      <string>Lancamento que registra as operacoes feitas sobre a tua conta.</string>
+      <string/>
      </property>
     </widget>
     <widget class="QRadioButton" name="Out">
@@ -220,19 +226,6 @@
 {
 	border: none;
 }</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="Description">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>624</y>
-       <width>441</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Descricao:</string>
      </property>
     </widget>
     <widget class="QTableWidget" name="AccTable">
@@ -270,7 +263,7 @@
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>414</y>
+       <y>416</y>
        <width>211</width>
        <height>19</height>
       </rect>
@@ -296,7 +289,7 @@
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>290</y>
+       <y>293</y>
        <width>441</width>
        <height>120</height>
       </rect>
@@ -306,7 +299,7 @@
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>430</y>
+       <y>435</y>
        <width>441</width>
        <height>120</height>
       </rect>
@@ -379,7 +372,7 @@
      <property name="geometry">
       <rect>
        <x>420</x>
-       <y>290</y>
+       <y>293</y>
        <width>51</width>
        <height>17</height>
       </rect>
@@ -400,7 +393,7 @@
      <property name="geometry">
       <rect>
        <x>420</x>
-       <y>430</y>
+       <y>435</y>
        <width>51</width>
        <height>17</height>
       </rect>
@@ -433,6 +426,89 @@
      </property>
      <property name="text">
       <string>Relatorio</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Rep_Accs">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>108</y>
+       <width>151</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Lancamentos Realizados:</string>
+     </property>
+    </widget>
+    <widget class="QTableWidget" name="Rep_Releases">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>480</width>
+       <height>281</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Rep_TotalRel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>90</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Total de lancamentos realizados:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Rep_TotalRel_2">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>50</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Total do montante das contas:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Rep_TotalRel_3">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>70</y>
+       <width>201</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Analise da situacao:</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Rep_Back">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>620</y>
+       <width>441</width>
+       <height>36</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#Rep_Back
+{
+    background-color: #a3f48a;
+    color: black;
+    font-size: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Voltar</string>
      </property>
     </widget>
    </widget>

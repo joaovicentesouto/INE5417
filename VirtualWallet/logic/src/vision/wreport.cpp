@@ -31,6 +31,18 @@ WReport::WReport(QWidget *parent) :
     ui->PayTable->setHorizontalHeaderLabels(titles);
     ui->PayTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+    titles.clear();
+    titles << "Descricao" << "Conta" << "Tp" << "Pg" << "Data" << "Valor";
+    ui->Rep_Releases->setColumnCount(6);
+    ui->Rep_Releases->setColumnWidth(0, 180);
+    ui->Rep_Releases->setColumnWidth(1, 87);
+    ui->Rep_Releases->setColumnWidth(2, 26);
+    ui->Rep_Releases->setColumnWidth(3, 26);
+    ui->Rep_Releases->setColumnWidth(4, 80);
+    ui->Rep_Releases->setColumnWidth(5, 69);
+    ui->Rep_Releases->setHorizontalHeaderLabels(titles);
+    ui->Rep_Releases->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     ui->In->setAutoExclusive(false);
     ui->Out->setAutoExclusive(false);
     ui->DateEdit_1->setDate(QDate::currentDate());
@@ -63,7 +75,6 @@ void WReport::on_ValueBox_2_valueChanged(double arg1)
 
 void WReport::tableBuilder()
 {
-    // Accounts
     ui->AccTable->setRowCount(0);
     list<std::string> * names = facade->accountsNames();
 
@@ -89,6 +100,7 @@ void WReport::tableBuilder()
     }
     delete names;
 
+    ui->Stack->setCurrentWidget(ui->Generator);
     on_Clean_clicked();
 }
 
@@ -224,4 +236,51 @@ void WReport::on_DateEdit_2_dateChanged(const QDate &date)
     if (ui->DateEdit_1->date() >= date)
         ui->DateEdit_1->setDate(date);
     ui->DateEdit_2->setDate(date);
+}
+
+void WReport::on_Confirm_clicked()
+{
+    std::string begin = ui->DateEdit_1->date().toString("dd/MM/yyyy").toStdString();
+    std::string end = ui->DateEdit_2->date().toString("dd/MM/yyyy").toStdString();
+    double lower = ui->ValueBox_1->value();
+    double upper = ui->ValueBox_2->value();
+
+    list<string> accs;
+    list<string> relTypes;
+    list<string> payTypes;
+
+    for (int i = 0; i < accounts.size(); ++i)
+        accs.push_back(accounts.at(i));
+
+    for (int i = 0; i < typesReleases.size(); ++i)
+        relTypes.push_back(typesReleases.at(i));
+
+    for (int i = 0; i < typesPayments.size(); ++i)
+        payTypes.push_back(typesPayments.at(i));
+
+    report = facade->createReport(accs, relTypes, payTypes, begin, end, lower, upper,
+                                  ui->In->isChecked(), ui->Out->isChecked());
+    if (report != nullptr) {
+
+        ui->Rep_Releases->setRowCount(0);
+        list<Release*> releases = report->getReleases();
+
+        for (auto & rel : releases) {
+            ui->Rep_Releases->insertRow(ui->Rep_Releases->rowCount());
+            ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(rel->getDescription())));
+            ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(rel->getAccount()->getName())));
+            ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 4, new QTableWidgetItem(QString::fromStdString(rel->getDate())));
+            ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 5, new QTableWidgetItem(QString::number(rel->getValue())));
+        }
+
+        ui->Stack->setCurrentWidget(ui->Report);
+    } else {
+        ui->Erro->setText("Por favor, selecione todos os campos necessarios.");
+    }
+}
+
+void WReport::on_Rep_Back_clicked()
+{
+    on_Clean_clicked();
+    ui->Stack->setCurrentWidget(ui->Generator);
 }

@@ -6,6 +6,8 @@
 #include <list>
 #include "./src/control/Facade.h"
 #include "./src/resources/linked_list.h"
+#include "./src/model/Report.h"
+#include "./src/control/ReportBuilder.h"
 
 using namespace project;
 
@@ -47,9 +49,14 @@ private slots:
 
     void on_DateEdit_2_dateChanged(const QDate &date);
 
+    void on_Confirm_clicked();
+
+    void on_Rep_Back_clicked();
+
 private:
     Ui::WReport *ui;
     Facade * facade;
+    Report * report{nullptr};
 
     structures::LinkedList<std::string> accounts;
     structures::LinkedList<std::string> typesReleases;
