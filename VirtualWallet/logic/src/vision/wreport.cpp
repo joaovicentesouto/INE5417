@@ -43,6 +43,9 @@ WReport::WReport(QWidget *parent) :
     ui->Rep_Releases->setHorizontalHeaderLabels(titles);
     ui->Rep_Releases->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+    QGridLayout *baseLayout = new QGridLayout();
+    ui->WChart->setLayout(baseLayout);
+
     ui->In->setAutoExclusive(false);
     ui->Out->setAutoExclusive(false);
     ui->DateEdit_1->setDate(QDate::currentDate());
@@ -244,6 +247,8 @@ void WReport::on_Confirm_clicked()
     std::string end = ui->DateEdit_2->date().toString("dd/MM/yyyy").toStdString();
     double lower = ui->ValueBox_1->value();
     double upper = ui->ValueBox_2->value();
+    bool in  = ui->In->isChecked();
+    bool out = ui->Out->isChecked();
 
     list<string> accs;
     list<string> relTypes;
@@ -258,8 +263,7 @@ void WReport::on_Confirm_clicked()
     for (int i = 0; i < typesPayments.size(); ++i)
         payTypes.push_back(typesPayments.at(i));
 
-    report = facade->createReport(accs, relTypes, payTypes, begin, end, lower, upper,
-                                  ui->In->isChecked(), ui->Out->isChecked());
+    report = facade->createReport(accs, relTypes, payTypes, begin, end, lower, upper, in, out);
     if (report != nullptr) {
 
         ui->Rep_Releases->setRowCount(0);
@@ -272,6 +276,69 @@ void WReport::on_Confirm_clicked()
             ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 4, new QTableWidgetItem(QString::fromStdString(rel->getDate())));
             ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 5, new QTableWidgetItem(QString::number(rel->getValue())));
         }
+
+        // Primeiras infos
+        ui->Rep_TotalMont_2->setText(QString::number(report->amount()));
+        ui->Rep_TotalIn_2->setText(QString::number(report->amountInReleases()));
+        ui->Rep_TotalOut_2->setText(QString::number(report->amountOutReleases()));
+        ui->Rep_TotalRel_2->setText(QString::number(releases.size()));
+
+        // grafico
+        QLayout *baseLayout = ui->WChart->layout();
+
+        if (chartView != nullptr)
+            baseLayout->removeWidget(chartView);
+
+        QBarSet * ins;
+        QBarSet * outs;
+        QStringList categories;
+
+        if (in) ins = new QBarSet("Entradas");
+        if (out) outs = new QBarSet("Saidas");
+
+        for (int i = 0; i < accounts.size(); ++i){
+
+            categories << QString::fromStdString(accounts.at(i));
+
+            int amountIn = 0;
+            int amountOut = 0;
+
+            for (auto & rel : releases) {
+                if (rel->getAccount()->getName() == accounts.at(i)) {
+                    if (rel->getValue() >= 0)
+                        amountIn++;
+                    else
+                        amountOut++;
+                }
+            }
+
+            if (in)
+                *ins << amountIn;
+            if (out)
+                *outs << amountOut;
+        }
+
+        QStackedBarSeries *series = new QStackedBarSeries();
+        if (in) series->append(ins);
+        if (out) series->append(outs);
+
+        QChart *chart = new QChart();
+        chart->addSeries(series);
+        chart->setTitle("Contas e seus lancamentos");
+        chart->setAnimationOptions(QChart::SeriesAnimations);
+
+        QBarCategoryAxis *axis = new QBarCategoryAxis();
+        axis->append(categories);
+        chart->createDefaultAxes();
+        chart->setAxisX(axis, series);
+
+        chart->legend()->setVisible(true);
+        chart->legend()->setAlignment(Qt::AlignBottom);
+
+        chartView = new QChartView(chart);
+        chartView->setRenderHint(QPainter::Antialiasing);
+
+        baseLayout->addWidget(chartView);
 
         ui->Stack->setCurrentWidget(ui->Report);
     } else {

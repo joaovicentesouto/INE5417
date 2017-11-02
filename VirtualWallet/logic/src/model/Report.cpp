@@ -89,4 +89,30 @@ void Report::searchByValue() {
     }
 }
 
+int Report::amount()
+{
+    int amount = 0;
+    for (auto & rel : releases)
+        amount += rel->getValue();
+    return amount;
+}
+
+size_t Report::amountInReleases()
+{
+    size_t amount = 0;
+    for (auto & rel : releases)
+        if (rel->getValue() >= 0)
+            amount++;
+    return amount;
+}
+
+size_t Report::amountOutReleases()
+{
+    size_t amount = 0;
+    for (auto & rel : releases)
+        if (rel->getValue() < 0)
+            amount++;
+    return amount;
+}
+
 }  // namespace project

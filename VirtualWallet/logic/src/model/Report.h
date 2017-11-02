@@ -22,6 +22,10 @@ public:
     ~Report();
     
     list<Release*> getReleases();
+
+    int amount();
+    size_t amountInReleases();
+    size_t amountOutReleases();
     
 private:
     void searchByReleasesType();

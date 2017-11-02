@@ -428,11 +428,11 @@
       <string>Relatorio</string>
      </property>
     </widget>
-    <widget class="QLabel" name="Rep_Accs">
+    <widget class="QLabel" name="Rep_TotalRel">
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>108</y>
+       <y>90</y>
        <width>151</width>
        <height>20</height>
       </rect>
@@ -445,49 +445,23 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>130</y>
+       <y>113</y>
        <width>480</width>
-       <height>281</height>
+       <height>250</height>
       </rect>
      </property>
     </widget>
-    <widget class="QLabel" name="Rep_TotalRel">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>90</y>
-       <width>201</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Total de lancamentos realizados:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="Rep_TotalRel_2">
+    <widget class="QLabel" name="Rep_TotalMont">
      <property name="geometry">
       <rect>
        <x>30</x>
        <y>50</y>
-       <width>201</width>
+       <width>241</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>Total do montante das contas:</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="Rep_TotalRel_3">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>70</y>
-       <width>201</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Analise da situacao:</string>
+      <string>Total do montante das contas avaliadas:</string>
      </property>
     </widget>
     <widget class="QPushButton" name="Rep_Back">
@@ -509,6 +483,94 @@
      </property>
      <property name="text">
       <string>Voltar</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="WChart" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>371</y>
+       <width>481</width>
+       <height>242</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Rep_TotalIn">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>70</y>
+       <width>111</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Total de entradas:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Rep_TotalOut">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>70</y>
+       <width>91</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Total de saidas:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Rep_TotalMont_2">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>50</y>
+       <width>211</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Rep_TotalIn_2">
+     <property name="geometry">
+      <rect>
+       <x>143</x>
+       <y>70</y>
+       <width>141</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Rep_TotalOut_2">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>70</y>
+       <width>91</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="Rep_TotalRel_2">
+     <property name="geometry">
+      <rect>
+       <x>184</x>
+       <y>90</y>
+       <width>151</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </widget>

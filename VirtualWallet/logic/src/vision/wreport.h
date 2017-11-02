@@ -4,12 +4,18 @@
 #include <QWidget>
 #include <string>
 #include <list>
+
+#include <QtWidgets/QWidget>
+#include <QtCharts>
+#include <QGridLayout>
+
 #include "./src/control/Facade.h"
 #include "./src/resources/linked_list.h"
 #include "./src/model/Report.h"
 #include "./src/control/ReportBuilder.h"
 
 using namespace project;
+using namespace QtCharts;
 
 namespace Ui {
 class WReport;
@@ -61,6 +67,8 @@ private:
     structures::LinkedList<std::string> accounts;
     structures::LinkedList<std::string> typesReleases;
     structures::LinkedList<std::string> typesPayments;
+
+    QChartView *chartView{nullptr};
 };
 
 #endif // WREPORT_H
