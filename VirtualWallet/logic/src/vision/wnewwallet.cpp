@@ -51,9 +51,6 @@ void WNewWallet::on_Confirm_clicked()
     on_Clean_clicked();
 
     if (temp) {
-        ui->WalletTable->insertRow(ui->WalletTable->rowCount());
-        ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(name)));
-        ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 1, new QTableWidgetItem(QString::number(balance)));
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
@@ -94,7 +91,8 @@ void WNewWallet::on_Delete_clicked()
         facade->deleteAccount(ui->WalletTable->item(ui->WalletTable->currentRow(), 0)->text().toStdString());
         on_Clean_clicked();
         ui->Msg->setStyleSheet("color: green");
-        ui->Msg->setText("Conta Excluida com Sucesso!");
+        ui->Msg->setText("Carteira Excluida com Sucesso!");
         tableBuilder();
+        emit build();
     }
 }

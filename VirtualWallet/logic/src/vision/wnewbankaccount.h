@@ -30,6 +30,8 @@ private slots:
 
     void on_Delete_clicked();
 
+    void on_AccountTable_clicked(const QModelIndex &index);
+
 signals:
     void build();
 

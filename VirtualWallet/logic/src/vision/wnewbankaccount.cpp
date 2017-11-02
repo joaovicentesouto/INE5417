@@ -1,5 +1,6 @@
 #include "wnewbankaccount.h"
 #include "ui_wnewbankaccount.h"
+
 #include <iostream>
 
 WNewBankAccount::WNewBankAccount(QWidget *parent) :
@@ -42,7 +43,7 @@ void WNewBankAccount::on_Clean_clicked()
     ui->Agency->setText("");
     ui->Bank->setText("");
     ui->Balance->setValue(0.0);
-    ui->Erro->setText("");
+    ui->Msg->setText("");
     ui->AccountTable->setCurrentCell(-1,-1);
     ui->AccountTable->clearSelection();
 }
@@ -54,12 +55,25 @@ void WNewBankAccount::on_Confirm_clicked()
     std::string agency = ui->Agency->text().toStdString();
     std::string bank = ui->Bank->text().toStdString();
     double balance = ui->Balance->value();
+    bool temp = true;
 
-    if (facade->registerBankAccount(name, balance, number, agency, bank)) {
-        on_Clean_clicked();
+    if (ui->AccountTable->currentRow() > -1) {
+        std::string _name = ui->AccountTable->item(ui->AccountTable->currentRow(), 0)->text().toStdString();
+        double _balance = ui->AccountTable->item(ui->AccountTable->currentRow(), 4)->text().toDouble();
+        temp = facade->refreshAccount(_name, name, number, agency, bank, _balance);
+    } else {
+        temp = facade->registerBankAccount(name, balance, number, agency, bank);
+    }
+
+    on_Clean_clicked();
+
+    if (temp) {
+        ui->Msg->setStyleSheet("color: green");
+        ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
     } else {
-        ui->Erro->setText("Dados invalidos!");
+        ui->Msg->setStyleSheet("color: red");
+        ui->Msg->setText("Dados Invalidos!");
     }
     tableBuilder();
 }
@@ -67,8 +81,8 @@ void WNewBankAccount::on_Confirm_clicked()
 void WNewBankAccount::tableBuilder()
 {
     ui->AccountTable->setRowCount(0);
-    list<BankAccount*> * bankAccounts = facade->userBankAccounts();
-    for (list<BankAccount*>::iterator i = bankAccounts->begin(); i != bankAccounts->end(); ++i) {
+    list<BankAccount*> * accounts = facade->bankAccounts();
+    for (list<BankAccount*>::iterator i = accounts->begin(); i != accounts->end(); ++i) {
         ui->AccountTable->insertRow(ui->AccountTable->rowCount());
         ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString((*i)->getName())));
         ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString((*i)->getAccountNumber())));
@@ -76,10 +90,29 @@ void WNewBankAccount::tableBuilder()
         ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 3, new QTableWidgetItem(QString::fromStdString((*i)->getBank())));
         ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 4, new QTableWidgetItem(QString::number((*i)->getBalance())));
     }
-    delete bankAccounts;
+    delete accounts;
+}
+
+void WNewBankAccount::on_AccountTable_clicked(const QModelIndex &index)
+{
+    ui->Name->setText(ui->AccountTable->item(index.row(), 0)->text());
+    ui->Number->setText(ui->AccountTable->item(index.row(), 1)->text());
+    ui->Agency->setText(ui->AccountTable->item(index.row(), 2)->text());
+    ui->Bank->setText(ui->AccountTable->item(index.row(), 3)->text());
+    ui->Balance->setValue(ui->AccountTable->item(index.row(), 4)->text().toDouble());
 }
 
 void WNewBankAccount::on_Delete_clicked()
 {
-
+    if (ui->AccountTable->currentRow() < 0) {
+        ui->Msg->setStyleSheet("color: red");
+        ui->Msg->setText("Nenhuma Conta Selecionada!");
+    } else {
+        facade->deleteAccount(ui->AccountTable->item(ui->AccountTable->currentRow(), 0)->text().toStdString());
+        on_Clean_clicked();
+        ui->Msg->setStyleSheet("color: green");
+        ui->Msg->setText("Conta Excluida com Sucesso!");
+        tableBuilder();
+        emit build();
+    }
 }

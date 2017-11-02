@@ -46,7 +46,6 @@ private:
     string name, password, code;
     TypeManager manager;
     list<Account*> accounts;
-
 };
 
 }  // namespace project

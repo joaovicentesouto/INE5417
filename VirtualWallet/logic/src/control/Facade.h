@@ -46,6 +46,7 @@ public:
     list<std::string> * walletsNames();
     list<std::string> * releaseTypesNames();
     list<std::string> * paymentTypesNames();
+    list<BankAccount*> * bankAccounts();
     list<Account*> userAccounts();
     list<BankAccount*> * userBankAccounts();
     list<double> * accountsValues();
@@ -57,7 +58,8 @@ public:
     void refreshName(std::string _newName);
     bool refreshReleaseType(std::string _oldName, std::string _newName);
     bool refreshWallet(std::string _oldName, std::string _newName);
-    
+    bool refreshAccount(std::string _oldName, std::string _newName, std::string _newNumber, std::string _newAgency, std::string _newBank, double _balance);
+
     void insertUser(User* _user);
 
 private:

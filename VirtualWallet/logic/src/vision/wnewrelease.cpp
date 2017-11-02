@@ -8,6 +8,19 @@ WNewRelease::WNewRelease(QWidget *parent) :
     ui->setupUi(this);
     ui->DescRelease->setPlaceholderText("Descricao");
     ui->DateEdit->setDisplayFormat("dd/MM/yyyy");
+
+    QStringList titles;
+    titles << "Conta/Carteira" << "Tipo de Lcto." << "Tipo de Pgto." << "Operaçao" << "Data" << "Valor (R$)";
+
+    ui->ReleaseTable->setColumnCount(6);
+    ui->ReleaseTable->setColumnWidth(0, 100);
+    ui->ReleaseTable->setColumnWidth(1, 100);
+    ui->ReleaseTable->setColumnWidth(2, 100);
+    ui->ReleaseTable->setColumnWidth(3, 100);
+    ui->ReleaseTable->setColumnWidth(4, 100);
+    ui->ReleaseTable->setColumnWidth(5, 100);
+    ui->ReleaseTable->setHorizontalHeaderLabels(titles);
+    ui->ReleaseTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 WNewRelease::~WNewRelease()
@@ -64,6 +77,8 @@ void WNewRelease::on_Clean_clicked()
     ui->In->setChecked(false);
     ui->Out->setChecked(false);
     ui->In->setAutoExclusive(true);
+    ui->ReleaseTable->setCurrentCell(-1,-1);
+    ui->ReleaseTable->clearSelection();
 }
 
 void WNewRelease::on_Confirm_clicked()
@@ -82,4 +97,19 @@ void WNewRelease::on_Confirm_clicked()
     } else {
         ui->Erro->setText("Dados invalidos!");
     }
+}
+
+void WNewRelease::tableBuilder()
+{
+    /*ui->ReleaseTable->setRowCount(0);
+    list<std::string> * names = facade->walletsNames();
+    list<double> * amounts = facade->walletsValues();
+    list<double>::iterator j = amounts->begin();
+    for (list<string>::iterator i = names->begin(); i != names->end(); ++i, ++j) {
+        ui->WalletTable->insertRow(ui->WalletTable->rowCount());
+        ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(*i)));
+        ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 1, new QTableWidgetItem(QString::number(*j)));
+    }
+    delete names;
+    delete amounts;*/
 }
