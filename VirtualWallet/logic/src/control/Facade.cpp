@@ -1,6 +1,8 @@
 #include "Facade.h"
 #include <iostream>
 
+using namespace std;
+
 namespace project {
 
 Facade::Facade()
@@ -199,6 +201,19 @@ list<std::string> * Facade::paymentTypesNames()
 
     names->sort();
     return names;
+}
+
+list<BankAccount*> * Facade::userBankAccounts()
+{
+    list<BankAccount*> * bankAccounts = new list<BankAccount*>();
+    list<Account*> accounts = user->getAccounts();
+    for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
+        if (dynamic_cast<BankAccount*>(*i) != nullptr) {
+            BankAccount * bank = dynamic_cast<BankAccount*>(*i);
+            bankAccounts->push_front((BankAccount*)(*i));
+        }
+    }
+    return bankAccounts;
 }
 
 list<Account*> Facade::userAccounts()
