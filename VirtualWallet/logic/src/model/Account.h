@@ -17,17 +17,15 @@ public:
     virtual ~Account();
     
     bool getType();
-    size_t getId();
     string getName();
     double getBalance();
     list<Release*> getReleases();
     
     void changeName(string _newName);
-    void insertRelease(Release& _release);
-    void removeRelease(Release& _release);
+    void insertRelease(Release * _release);
+    void removeRelease(Release * _release);
     
 private:
-    size_t id{0};
     bool type;
     double balance{0.0};
     string name;

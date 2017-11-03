@@ -7,20 +7,27 @@ User::User(string _name, string _password, string _code) :
     name(_name),
     password(_password),
     code(_code),
-    manager(),
-    accounts()
+    accounts(),
+    releaseTypes()
 {
+    paymentTypes.push_front("Dinheiro");
+    paymentTypes.push_front("Crédito");
+    paymentTypes.push_front("Débito");
+    paymentTypes.push_front("Cheque");
+    paymentTypes.push_front("Outros");
 
+    releaseTypes.push_front(new ReleaseType("Água", 1));
+    releaseTypes.push_front(new ReleaseType("Energia", 2));
+    releaseTypes.push_front(new ReleaseType("Internet", 3));
+    releaseTypes.push_front(new ReleaseType("Transporte", 4));
+    releaseTypes.push_front(new ReleaseType("Alimentação", 5));
 }
 
 User::~User() {
-    //while (!accounts.empty()) {
-    //    delete accounts.front();
-    //    accounts.pop_front();
-    //}
+
 }
 
-size_t User::getId() {
+int User::getId() {
     return id;
 }
 
@@ -32,11 +39,13 @@ string User::getName() {
     return name;
 }
 
-string User::getPassword() {
+string User::getPassword()
+{
     return password;
 }
 
-Account * User::getAccount(string _accountName) {
+Account * User::getAccount(string _accountName)
+{
     for (Account * account : accounts) {
         if (_accountName == account->getName())
             return account;
@@ -44,31 +53,33 @@ Account * User::getAccount(string _accountName) {
     return nullptr;
 }
 
-list<Account*> User::getAccounts() {
+list<Account*> User::getAccounts()
+{
     return accounts;
 }
 
-list<string> User::getReleaseTypesNames() {
-    return manager.getReleaseTypes();
+list<ReleaseType*> User::getReleaseTypes()
+{
+    return releaseTypes;
 }
 
-list<string> User::getPaymentTypesNames() {
-    return manager.getPaymentTypes();
-}
-
-bool User::verifyUser(std::string _name, std::string _password) {
+bool User::verifyUser(std::string _name, std::string _password)
+{
     return (name == _name && password == _password);
 }
 
-void User::changeName(string _newName) {
+void User::changeName(string _newName)
+{
     name = _newName;
 }
 
-void User::changePassword(string _newPassword) {
+void User::changePassword(string _newPassword)
+{
     password = _newPassword;
 }
 
-bool User::insertAccount(Account& _account) {
+bool User::insertAccount(Account& _account)
+{
     if (accountExist(_account.getName()))
         return false;
 
@@ -76,45 +87,56 @@ bool User::insertAccount(Account& _account) {
     return true;
 }
 
-void User::removeAccount(Account& _account) {
+void User::removeAccount(Account& _account)
+{
     accounts.remove(&_account);
 }
 
-void User::removeAccount(std::string _name) {
-    for (list<Account*>::iterator it = accounts.begin(); it != accounts.end(); ++it)
-        if (!(*it)->getName().compare(_name)) {
-            accounts.remove(*it);
+void User::removeAccount(std::string _name)
+{
+    for (auto & it : accounts)
+        if (!it->getName().compare(_name)) {
+            accounts.remove(it);
             break;
         }
 }
 
 void User::changeAccount(std::string _old, std::string _new)
 {
-    for (list<Account*>::iterator it = accounts.begin(); it != accounts.end(); ++it)
-        if (!(*it)->getName().compare(_old)) {
-            (*it)->changeName(_new);
+    for (auto & it : accounts)
+        if (!it->getName().compare(_old)) {
+            it->changeName(_new);
             break;
         }
 }
 
-bool User::accountExist(string _name) {
-    for (list<Account*>::iterator it = accounts.begin(); it != accounts.end(); it++)
-        if (!(*it)->getName().compare(_name))
+bool User::accountExist(string _name)
+{
+    for (auto & it : accounts)
+        if (!it->getName().compare(_name))
             return true;
 
     return false;
 }
 
-bool User::insertReleaseType(std::string _type) {
-    return manager.addReleaseType(_type);
+bool User::insertReleaseType(ReleaseType * _type)
+{
+    return releaseTypes.push_front(_type);
 }
 
-void User::removeReleaseType(std::string _type) {
-    manager.deleteReleaseType(_type);
+void User::removeReleaseType(ReleaseType * _type)
+{
+    releaseTypes.remove(_type);
 }
 
-bool User::changeReleaseType(std::string _old, std::string _new) {
-    return manager.changeReleaseType(_old, _new);
+void User::removeReleases(ReleaseType * _type)
+{
+    for (auto & i: accounts)
+        for (auto & j : i->getReleases())
+            if (!j->getReleaseType().compare(_type->getName())) {
+                i->removeRelease(j);
+                delete j;
+            }
 }
 
 }  // namespace project

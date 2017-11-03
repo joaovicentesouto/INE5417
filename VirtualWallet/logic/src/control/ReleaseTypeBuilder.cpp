@@ -2,8 +2,9 @@
 
 namespace project {
 
-ReleaseTypeBuilder::ReleaseTypeBuilder(std::string _name) :
-    name(_name)
+ReleaseTypeBuilder::ReleaseTypeBuilder(std::string _name, int _id) :
+    name(_name),
+    id(_id)
 {
 
 }
@@ -19,7 +20,7 @@ bool ReleaseTypeBuilder::isValid() {
 std::string ReleaseTypeBuilder::build() {
     if (!isValid())
         throw std::out_of_range("Os parâmetros para a criação não são validos!");
-    return name;
+    return new ReleaseType(name, id);
 }
 
 }

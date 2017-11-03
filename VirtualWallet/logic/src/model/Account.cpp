@@ -19,10 +19,6 @@ bool Account::getType() {
     return type;
 }
 
-size_t Account::getId() {
-    return id;
-}
-
 string Account::getName() {
     return name;
 }
@@ -39,13 +35,13 @@ void Account::changeName(string _newName) {
     name = _newName;
 }
 
-void Account::insertRelease(Release& _release) {
-    releases.push_front(&_release);
+void Account::insertRelease(Release * _release) {
+    releases.push_front(_release);
     balance += _release.getValue();
 }
 
-void Account::removeRelease(Release& _release) {
-    releases.remove(&_release);
+void Account::removeRelease(Release * _release) {
+    releases.remove(_release);
     balance -= _release.getValue();
 }
 

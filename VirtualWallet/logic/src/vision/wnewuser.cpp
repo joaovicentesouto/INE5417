@@ -19,24 +19,8 @@ WNewUser::~WNewUser()
     delete ui;
 }
 
-void WNewUser::on_Name_textEdited(const QString &arg1)
-{
-    ui->Name->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-}
-
-void WNewUser::on_Code_textEdited(const QString &arg1)
-{
-    ui->Code->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-}
-
-void WNewUser::on_Password_textEdited(const QString &arg1)
-{
-    ui->Password->setStyleSheet("color: rgb(0, 0, 0); border: none;");
-}
-
-void WNewUser::on_PassConfirm_textEdited(const QString &arg1)
-{
-    ui->PassConfirm->setStyleSheet("color: rgb(0, 0, 0); border: none;");
+void WNewUser::setFacade(Facade & _facade) {
+    facade = &_facade;
 }
 
 void WNewUser::on_Clean_clicked()
@@ -62,8 +46,4 @@ void WNewUser::on_Confirm_clicked()
         ui->Msg->setStyleSheet("color: rgb(250, 0, 0); border: none;");
         ui->Msg->setText("Dados Invalidos!");
     }
-}
-
-void WNewUser::setFacade(Facade & _facade) {
-    facade = &_facade;
 }

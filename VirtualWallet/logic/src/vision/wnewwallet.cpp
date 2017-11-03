@@ -9,11 +9,12 @@ WNewWallet::WNewWallet(QWidget *parent) :
     ui->Name->setPlaceholderText("Nome");
 
     QStringList titles;
-    titles << "Nome" << "Montante (R$)";
+    titles << "Id" << "Nome" << "Montante (R$)";
 
-    ui->WalletTable->setColumnCount(2);
-    ui->WalletTable->setColumnWidth(0, 220);
+    ui->WalletTable->setColumnCount(3);
+    ui->WalletTable->setColumnWidth(0, 40);
     ui->WalletTable->setColumnWidth(1, 220);
+    ui->WalletTable->setColumnWidth(2, 220);
     ui->WalletTable->setHorizontalHeaderLabels(titles);
     ui->WalletTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
@@ -41,12 +42,17 @@ void WNewWallet::on_Confirm_clicked()
 {
     std::string name = ui->Name->text().toStdString();
     double balance = ui->Balance->value();
-    bool temp = true;
 
-    if (ui->WalletTable->currentRow() > -1)
-        temp = facade->refreshWallet(ui->WalletTable->item(ui->WalletTable->currentRow(), 0)->text().toStdString(), name);
-    else
-        temp = facade->registerWallet(name, balance);
+    int row = ui->WalletTable->currentRow();
+
+    if (row > -1)
+        row =
+
+    if (facade->registerWallet(name, balance)) {
+        if ( > -1)
+            facade->refreshWallet(ui->WalletTable->item(ui->WalletTable->currentRow(), 0)->text().toStdString(), name, balance);
+
+    }
 
     on_Clean_clicked();
 

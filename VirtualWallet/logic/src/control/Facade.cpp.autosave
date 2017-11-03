@@ -74,7 +74,7 @@ list<Account*> Facade::userAccounts()
 
 list<ReleaseType*> Facade::releaseTypes()
 {
-    return bd->getReleaseTypesNames(currentUser);
+    return bd->getReleaseTypes(currentUser);
 }
 
 bool Facade::registerReleaseType(std::string _name, int _typeId)

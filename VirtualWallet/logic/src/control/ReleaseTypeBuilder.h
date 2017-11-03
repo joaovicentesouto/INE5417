@@ -5,18 +5,20 @@
 
 #include <string>
 #include <stdexcept>
+#include "../model/releasetype.h"
 
 namespace project {
 
 class ReleaseTypeBuilder {
 public:
-    ReleaseTypeBuilder(std::string _name);
+    ReleaseTypeBuilder(std::string _name, int _id);
     ~ReleaseTypeBuilder();
 
     bool isValid();
-    std::string build();
+    ReleaseType * build();
 
 private:
+    int id;
     std::string name;
 
 };
