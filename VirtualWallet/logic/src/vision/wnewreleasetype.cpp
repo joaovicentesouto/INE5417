@@ -40,7 +40,7 @@ void WNewReleaseType::on_Confirm_clicked()
     int row = ui->TypeList->currentRow();
 
     if (row > -1)
-        row = ui->TypeList->item(ui->TypeList->currentRow(), 0)->text().toInt();
+        row = ui->TypeList->item(row, 0)->text().toInt();
 
     if (facade->registerReleaseType(ui->Name->text().toStdString(), row)) {
         ui->Msg->setStyleSheet("color: green");
@@ -77,7 +77,7 @@ void WNewReleaseType::on_Delete_clicked()
         ui->Msg->setStyleSheet("color: red");
         ui->Msg->setText("Nenhum Tipo de Lançamento Selecionado!");
     } else {
-        facade->deleteReleaseType(ui->TypeList->currentItem()->text().toStdString());
+        facade->deleteReleaseType(ui->TypeList->item(ui->TypeList->currentRow(), 0)->text().toInt());
         on_Clean_clicked();
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Tipo de Lançamento Excluido com Sucesso!");

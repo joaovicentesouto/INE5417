@@ -78,18 +78,18 @@ void User::changePassword(string _newPassword)
     password = _newPassword;
 }
 
-bool User::insertAccount(Account& _account)
+bool User::insertAccount(Account * _account)
 {
-    if (accountExist(_account.getName()))
+    if (accountExist(_account->getName()))
         return false;
 
-    accounts.push_front(&_account);
+    accounts.push_front(_account);
     return true;
 }
 
-void User::removeAccount(Account& _account)
+void User::removeAccount(Account * _account)
 {
-    accounts.remove(&_account);
+    accounts.remove(_account);
 }
 
 void User::removeAccount(std::string _name)

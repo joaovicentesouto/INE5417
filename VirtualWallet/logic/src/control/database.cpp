@@ -43,6 +43,24 @@ void DataBase::put(User * _user)
     user = _user;
 }
 
+list<Wallet*> DataBase::getWallets(int _userId)
+{
+    list<Wallet*> wallets;
+    for (auto & acc : user->getAccounts())
+        if (!acc->getType())
+            wallets.push_back(static_cast<Wallet*>(acc));
+    return wallets;
+}
+
+list<BankAccount*> DataBase::getAccounts(int _userId)
+{
+    list<BankAccount*> banksAcc;
+    for (auto & acc : user->getAccounts())
+        if (acc->getType())
+            banksAcc.push_back(static_cast<BankAccount*>(acc));
+    return banksAcc;
+}
+
 list<Account*> DataBase::getAccounts(int _userId)
 {
     return user->getAccounts();
@@ -82,26 +100,15 @@ bool DataBase::put(ReleaseType * _type, int _userId)
     return user->insertReleaseType(_type);
 }
 
-void DataBase::removeReleaseType(string _name, int _userId)
+void DataBase::removeReleaseType(int _typeId, int _userId)
 {
-    user->removeReleaseType(_name);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-bool DataBase::put(Wallet * _account, int _userId)
-{
-    return user->insertAccount(_account);
+    list<ReleaseType*> types = user->getReleaseTypes();
+    for (auto & it: types)
+        if (it->getId() == _typeId) {
+            removeReleasesByType(it->getName(), _userId);
+            user->removeReleaseType(it);
+            break;
+        }
 }
 
 void DataBase::removeReleasesByType(string _type, int _userId)
@@ -109,9 +116,33 @@ void DataBase::removeReleasesByType(string _type, int _userId)
     user->removeReleases(_type);
 }
 
-Account * DataBase::getAccount(string _name, int _userId)
+bool DataBase::put(Wallet * _account, int _userId)
 {
-    return user->getAccount(_name);
+    return user->insertAccount(_account);
 }
+
+void DataBase::removeAccount(int _accId, int _userId)
+{
+    list<Account*> accounts = user->getAccounts();
+    for (auto & it: accounts)
+        if (it->getId() == _accId) {
+            user->removeAccount(it->getName());
+            break;
+        }
+}
+
+bool DataBase::put(BankAccount * _account, int _userId)
+{
+    return user->insertAccount(_account);
+}
+
+
+
+
+
+
+
+
+
 
 }

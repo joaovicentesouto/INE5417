@@ -30,8 +30,8 @@ public:
     void changeName(string _newName);
     void changePassword(string _newPassword);
 
-    bool insertAccount(Account& _account);
-    void removeAccount(Account& _account);
+    bool insertAccount(Account * _account);
+    void removeAccount(Account * _account);
     void removeAccount(std::string _name);
     void changeAccount(std::string _old, std::string _new);
     bool accountExist(std::string _name);

@@ -11,7 +11,7 @@ namespace project {
 
 class Wallet : public Account  {
 public:
-    Wallet(string _name, double _balance);
+    Wallet(int _Id, string _name, double _balance);
     ~Wallet();
     
 };

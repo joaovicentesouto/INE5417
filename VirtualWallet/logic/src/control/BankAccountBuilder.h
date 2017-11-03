@@ -12,13 +12,14 @@ namespace project {
 
 class BankAccountBuilder {
 public:
-    BankAccountBuilder(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank);
+    BankAccountBuilder(int _id, std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank);
     ~BankAccountBuilder();
 
     bool isValid();
     BankAccount* build();
 
 private:
+    int id;
     double balance;
     std::string name, accountNumber, agency, bank;
 

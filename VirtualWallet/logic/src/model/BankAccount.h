@@ -11,8 +11,8 @@ namespace project {
 
 class BankAccount : public Account {
 public:
-    BankAccount(string _name, double _balance);
-    BankAccount(string _name, double _balance, string _number, string _agency, string _bank);
+    BankAccount(int _id, string _name, double _balance);
+    BankAccount(int _id, string _name, double _balance, string _number, string _agency, string _bank);
     ~BankAccount();
     
     string getAccountNumber();

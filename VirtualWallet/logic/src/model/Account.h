@@ -13,9 +13,10 @@ namespace project {
 
 class Account {
 public:
-    Account(string _name, double _balance, bool _type);
+    Account(int _id, string _name, double _balance, bool _type);
     virtual ~Account();
     
+    int getId();
     bool getType();
     string getName();
     double getBalance();
@@ -26,6 +27,7 @@ public:
     void removeRelease(Release * _release);
     
 private:
+    int id;
     bool type;
     double balance{0.0};
     string name;

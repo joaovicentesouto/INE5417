@@ -3,10 +3,11 @@
 
 namespace project {
 
-Account::Account(string _name, double _balance, bool _type) :
-name(_name),
-balance(_balance),
-type(_type)
+Account::Account(int _id, string _name, double _balance, bool _type) :
+    id(_id),
+    name(_name),
+    balance(_balance),
+    type(_type)
 {
     
 }
@@ -14,6 +15,11 @@ type(_type)
 Account::~Account() {
     
 }
+
+int Account::getId() {
+    return id;
+}
+
 
 bool Account::getType() {
     return type;

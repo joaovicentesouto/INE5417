@@ -2,7 +2,8 @@
 
 namespace project {
 
-BankAccountBuilder::BankAccountBuilder(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank) :
+BankAccountBuilder::BankAccountBuilder(int _id, std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank) :
+    id(_id),
     name(_name),
     balance(_balance),
     accountNumber(_accountNumber),
@@ -23,7 +24,8 @@ bool BankAccountBuilder::isValid() {
 BankAccount* BankAccountBuilder::build() {
     if (!isValid())
         throw std::out_of_range("Os parâmetros para a criação não são validos!");
-    return new BankAccount(name, balance, accountNumber, agency, bank);
+
+    return new BankAccount(id, name, balance, accountNumber, agency, bank);
 }
 
 }  // namespace project
