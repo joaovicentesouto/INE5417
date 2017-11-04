@@ -121,7 +121,8 @@ bool User::accountExist(string _name)
 
 bool User::insertReleaseType(ReleaseType * _type)
 {
-    return releaseTypes.push_front(_type);
+    releaseTypes.push_front(_type);
+    return true;
 }
 
 void User::removeReleaseType(ReleaseType * _type)

@@ -43,12 +43,12 @@ void Account::changeName(string _newName) {
 
 void Account::insertRelease(Release * _release) {
     releases.push_front(_release);
-    balance += _release.getValue();
+    balance += _release->getValue();
 }
 
 void Account::removeRelease(Release * _release) {
     releases.remove(_release);
-    balance -= _release.getValue();
+    balance -= _release->getValue();
 }
 
 }  // namespace project
