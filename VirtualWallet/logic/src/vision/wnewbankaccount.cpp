@@ -14,14 +14,15 @@ WNewBankAccount::WNewBankAccount(QWidget *parent) :
     ui->Bank->setPlaceholderText("Banco");
 
     QStringList titles;
-    titles << "Nome" << "Numero" << "Agencia" << "Banco" << "Montante (R$)";
+    titles << "Id" << "Nome" << "Numero" << "Agencia" << "Banco" << "Montante (R$)";
 
-    ui->AccountTable->setColumnCount(5);
-    ui->AccountTable->setColumnWidth(0, 85);
+    ui->AccountTable->setColumnCount(6);
+    ui->AccountTable->setColumnWidth(0, 40);
     ui->AccountTable->setColumnWidth(1, 85);
     ui->AccountTable->setColumnWidth(2, 85);
     ui->AccountTable->setColumnWidth(3, 85);
     ui->AccountTable->setColumnWidth(4, 85);
+    ui->AccountTable->setColumnWidth(5, 85);
     ui->AccountTable->setHorizontalHeaderLabels(titles);
     ui->AccountTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
@@ -55,19 +56,14 @@ void WNewBankAccount::on_Confirm_clicked()
     std::string agency = ui->Agency->text().toStdString();
     std::string bank = ui->Bank->text().toStdString();
     double balance = ui->Balance->value();
-    bool temp = true;
 
-    if (ui->AccountTable->currentRow() > -1) {
-        std::string _name = ui->AccountTable->item(ui->AccountTable->currentRow(), 0)->text().toStdString();
-        double _balance = ui->AccountTable->item(ui->AccountTable->currentRow(), 4)->text().toDouble();
-        temp = facade->refreshAccount(_name, name, number, agency, bank, _balance);
-    } else {
-        temp = facade->registerBankAccount(name, balance, number, agency, bank);
-    }
+    int row = ui->AccountTable->currentRow();
 
-    on_Clean_clicked();
+    if (row > -1)
+        row = ui->AccountTable->item(row, 0);
 
-    if (temp) {
+    if (facade->registerBankAccount(row, name, balance, number, agency, bank)) {
+        on_Clean_clicked();
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
@@ -81,7 +77,7 @@ void WNewBankAccount::on_Confirm_clicked()
 void WNewBankAccount::tableBuilder()
 {
     ui->AccountTable->setRowCount(0);
-    list<BankAccount*> * accounts = facade->bankAccounts();
+    list<BankAccount*> * accounts = facade->userBankAccounts();
     for (list<BankAccount*>::iterator i = accounts->begin(); i != accounts->end(); ++i) {
         ui->AccountTable->insertRow(ui->AccountTable->rowCount());
         ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString((*i)->getName())));

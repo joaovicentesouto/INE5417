@@ -24,14 +24,6 @@ public slots:
     void on_Clean_clicked();
 
 private slots:
-    void on_Name_textEdited(const QString &arg1);
-
-    void on_Code_textEdited(const QString &arg1);
-
-    void on_Password_textEdited(const QString &arg1);
-
-    void on_PassConfirm_textEdited(const QString &arg1);
-
     void on_Confirm_clicked();
 
 signals:
@@ -41,7 +33,6 @@ signals:
 private:
     Ui::WNewUser *ui;
     Facade * facade;
-    bool name{false}, code{false}, password{false}, confirm{false};
 };
 
 #endif // WNEWUSER_H

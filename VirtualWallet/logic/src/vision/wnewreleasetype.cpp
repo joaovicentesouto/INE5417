@@ -9,10 +9,11 @@ WNewReleaseType::WNewReleaseType(QWidget *parent) :
     ui->Name->setPlaceholderText("Nome");
 
     QStringList titles;
-    titles << "Tipos de Lançamentos";
+    titles << "Id" << "Tipos de Lançamentos";
 
-    ui->TypeList->setColumnCount(1);
-    ui->TypeList->setColumnWidth(0, 441);
+    ui->TypeList->setColumnCount(2);
+    ui->TypeList->setColumnWidth(0, 40);
+    ui->TypeList->setColumnWidth(1, 400);
     ui->TypeList->setHorizontalHeaderLabels(titles);
     ui->TypeList->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
@@ -36,17 +37,12 @@ void WNewReleaseType::on_Clean_clicked()
 
 void WNewReleaseType::on_Confirm_clicked()
 {
-    std::string name = ui->Name->text().toStdString();
-    bool temp = true;
+    int row = ui->TypeList->currentRow();
 
-    if (ui->TypeList->currentRow() > -1)
-        temp = facade->refreshReleaseType(ui->TypeList->currentItem()->text().toStdString(), name);
-    else
-        temp = facade->registerReleaseType(name);
+    if (row > -1)
+        row = ui->TypeList->item(row, 0)->text().toInt();
 
-    on_Clean_clicked();
-
-    if (temp) {
+    if (facade->registerReleaseType(ui->Name->text().toStdString(), row)) {
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
@@ -54,18 +50,20 @@ void WNewReleaseType::on_Confirm_clicked()
         ui->Msg->setStyleSheet("color: red");
         ui->Msg->setText("Nome Invalido!");
     }
+
+    on_Clean_clicked();
     tableBuilder();
 }
 
 void WNewReleaseType::tableBuilder()
 {
     ui->TypeList->setRowCount(0);
-    list<std::string> * names = facade->releaseTypesNames();
-    for (list<string>::iterator it = names->begin(); it != names->end(); ++it) {
+    list<ReleaseType*> _types = facade->releaseTypes();
+    for (auto & it: _types) {
         ui->TypeList->insertRow(ui->TypeList->rowCount());
-        ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(*it)));
+        ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem(QString::number(it->getId())));
+        ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(it->getName())));
     }
-    delete names;
 }
 
 void WNewReleaseType::on_TypeList_clicked(const QModelIndex &index)
@@ -79,7 +77,7 @@ void WNewReleaseType::on_Delete_clicked()
         ui->Msg->setStyleSheet("color: red");
         ui->Msg->setText("Nenhum Tipo de Lançamento Selecionado!");
     } else {
-        facade->deleteReleaseType(ui->TypeList->currentItem()->text().toStdString());
+        facade->deleteReleaseType(ui->TypeList->item(ui->TypeList->currentRow(), 0)->text().toInt());
         on_Clean_clicked();
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Tipo de Lançamento Excluido com Sucesso!");

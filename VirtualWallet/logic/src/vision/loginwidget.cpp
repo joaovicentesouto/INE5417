@@ -19,6 +19,10 @@ loginwidget::~loginwidget()
     delete ui;
 }
 
+void loginwidget::setFacade(Facade & _facade) {
+    facade = &_facade;
+}
+
 void loginwidget::on_CleanButton_clicked()
 {
     ui->LoginPassword->setText("");
@@ -49,10 +53,6 @@ void loginwidget::on_LoginNameForgot_clicked()
 {
     emit cleanForgotName();
     emit changeStack(2);
-}
-
-void loginwidget::setFacade(Facade & _facade) {
-    facade = &_facade;
 }
 
 void loginwidget::changeToNewUserMsg()

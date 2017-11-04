@@ -1,5 +1,4 @@
 #include "Facade.h"
-#include <iostream>
 
 using namespace std;
 
@@ -12,52 +11,12 @@ Facade::Facade()
 
 Facade::Facade(std::string _name, std::string _password, std::string _code)
 {
-    user = new User(_name, _password, _code);
+
 }
 
 Facade::~Facade()
 {
 
-}
-
-bool Facade::registerWallet(std::string _name, double _balance)
-{
-    WalletBuilder creator(_name, _balance);
-
-    if (!creator.isValid())
-        return false;
-
-    return user->insertAccount(*creator.build());
-}
-
-bool Facade::registerBankAccount(std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank)
-{
-    BankAccountBuilder creator(_name, _balance, _accountNumber, _agency, _bank);
-
-    if (!creator.isValid())
-        return false;
-
-    return user->insertAccount(*creator.build());
-}
-
-bool Facade::registerReleaseType(std::string _name)
-{
-    ReleaseTypeBuilder builder(_name);
-
-    if (!builder.isValid())
-        return false;
-
-    return user->insertReleaseType(_name);
-}
-
-void Facade::deleteReleaseType(std::string _name)
-{
-    user->removeReleaseType(_name);
-}
-
-void Facade::deleteAccount(std::string _name)
-{
-    user->removeAccount(_name);
 }
 
 bool Facade::registerUser(std::string _name, std::string _code, std::string _password, std::string _confirm)
@@ -67,8 +26,119 @@ bool Facade::registerUser(std::string _name, std::string _code, std::string _pas
     if (!creator.isValid())
         return false;
 
-    insertUser(creator.build());
+    bd->put(creator.build());
     return true;
+}
+
+bool Facade::login(std::string _name, std::string _password)
+{
+    User * _user = bd->getUserByNameAndPass(_name, _password);
+    if (_user == nullptr)
+        return false;
+
+    currentUser = _user->getId();
+    delete _user;
+    return true;
+}
+
+bool Facade::refreshName(std::string _code, std::string _password, std::string _newName, std::string _confirm) {
+    User * _user = bd->getUserByCodeAndPass(_code, _password);
+    if (_user == nullptr)
+        return false;
+
+    if (_confirm.compare(_newName))
+        return false;
+
+    bd->put(new User(_newName, _password, _code));
+    delete _user;
+    return true;
+}
+
+bool Facade::refreshPass(std::string _name, std::string _code, std::string _newPass, std::string _confirm) {
+    User * _user = bd->getUserByNameAndCode(_name, _code);
+    if (_user == nullptr)
+        return false;
+
+    if (_confirm.compare(_newPass))
+        return false;
+
+    bd->put(new User(_name, _newPass, _code));
+    delete _user;
+    return true;
+}
+
+list<Wallet*> Facade::userWallets()
+{
+    return bd->getWallets(currentUser);
+}
+
+list<ReleaseType*> Facade::releaseTypes()
+{
+    return bd->getReleaseTypes(currentUser);
+}
+
+bool Facade::registerReleaseType(std::string _name, int _typeId)
+{
+    ReleaseTypeBuilder builder(_name, _typeId);
+
+    if (!builder.isValid())
+        return false;
+
+    return bd->put(builder.build(), currentUser);
+}
+
+void Facade::deleteReleaseType(int _typeId) {
+    bd->removeReleaseType(_typeId, currentUser);
+}
+
+bool Facade::registerWallet(std::string _name, double _balance, int _accId)
+{
+    WalletBuilder creator(_accId, _name, _balance);
+
+    if (!creator.isValid())
+        return false;
+
+    return bd->put(creator.build(), currentUser);
+}
+
+void Facade::deleteAccount(int _accId)
+{
+    bd->removeAccount(_accId, currentUser);
+}
+
+bool Facade::registerBankAccount(int _accId, std::string _name, double _balance, std::string _accountNumber, std::string _agency, std::string _bank)
+{
+    BankAccountBuilder builder(_accId, _name, _balance, _accountNumber, _agency, _bank);
+
+    if (!builder.isValid())
+        return false;
+
+    return bd->put(builder.build(), currentUser);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void Facade::deleteReleaseType(std::string _typeName)
+{
+    bd->removeReleasesByType(_typeName, currentUser);
+    bd->removeReleaseType(_typeName, currentUser);
 }
 
 bool Facade::registerRelease(double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
@@ -128,11 +198,6 @@ size_t Facade::releasesAmount(std::string name) {
     return user->getAccount(name)->getReleases().size();
 }
 
-bool Facade::login(std::string _name, std::string _password)
-{
-    return user->verifyUser(_name, _password);
-}
-
 std::string Facade::getUserName()
 {
     return user->getName();
@@ -158,15 +223,6 @@ list<std::string> * Facade::walletsNames()
         if (dynamic_cast<Wallet*>(*it) != nullptr)
             names->push_front((*it)->getName());
     }
-
-    names->sort();
-    return names;
-}
-
-list<std::string> * Facade::releaseTypesNames()
-{
-    list<std::string> *names = new list<std::string>();
-    *names = user->getReleaseTypesNames();
 
     names->sort();
     return names;
@@ -214,25 +270,12 @@ list<BankAccount*> * Facade::bankAccounts()
     return bankAccounts;
 }
 
-list<Account*> Facade::userAccounts()
-{
-    return user->getAccounts();
-}
-
 bool Facade::verifyNewPass(std::string _name, std::string _code, std::string _newPassword, std::string _confirm) {
     return _name == user->getName() && _code == user->getCode() && _newPassword == _confirm;
 }
 
 void Facade::refreshPass(std::string _newPassword) {
     user->changePassword(_newPassword);
-}
-
-bool Facade::verifyNewName(std::string _code, std::string _password, std::string _newName, std::string _confirm) {
-    return _code == user->getCode() && _password == user->getPassword() && _newName == _confirm;
-}
-
-void Facade::refreshName(std::string _newName) {
-    user->changeName(_newName);
 }
 
 bool Facade::refreshReleaseType(std::string _oldName, std::string _newName)
