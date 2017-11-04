@@ -63,6 +63,11 @@ list<ReleaseType*> User::getReleaseTypes()
     return releaseTypes;
 }
 
+list<string> User::getPaymentTypes()
+{
+    return paymentTypes;
+}
+
 bool User::verifyUser(std::string _name, std::string _password)
 {
     return (name == _name && password == _password);

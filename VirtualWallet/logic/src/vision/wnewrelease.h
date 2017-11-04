@@ -31,6 +31,8 @@ private slots:
 
     void on_Confirm_clicked();
 
+    void on_Delete_clicked();
+
 signals:
     void build();
 

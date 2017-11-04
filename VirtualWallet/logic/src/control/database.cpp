@@ -66,15 +66,14 @@ list<BankAccount*> DataBase::getAccounts(int _userId)
     return banksAcc;
 }
 
-list<Release*> * DataBase::getAllReleases(int _userId)
+list<Release*> DataBase::getReleases(int _userId)
 {
-    list<Release*> * releases = new list<Release*>();
+    list<Release*> releases;
     list<Account*> accounts = user->getAccounts();
-    for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
-        list<Release*> release = (*i)->getReleases();
-        for (std::list<Release*>::iterator j = release.begin(); j != release.end(); ++j)
-            releases->push_front(*j);
-    }
+
+    for (auto & acc : accounts)
+        for (auto & rel : acc->getReleases())
+            releases->push_front(rel);
 
     return releases;
 }
@@ -82,6 +81,16 @@ list<Release*> * DataBase::getAllReleases(int _userId)
 list<ReleaseType*> DataBase::getReleaseTypes(int _userId)
 {
     return user->getReleaseTypes();
+}
+
+list<string> DataBase::getPaymentTypes(int _userId)
+{
+    return user->getPaymentTypes();
+}
+
+Account * DataBase::getAccount(int _accName, int _userId)
+{
+    return user->getAccount(_accName);
 }
 
 bool DataBase::put(ReleaseType * _type, int _userId)
@@ -114,6 +123,17 @@ void DataBase::removeReleaseType(int _typeId, int _userId)
 void DataBase::removeReleasesByType(string _type, int _userId)
 {
     user->removeReleases(_type);
+}
+
+void DataBase::removeRelease(int _relId, in _userId)
+{
+    list<Account*> accounts = user->getAccounts();
+    for (auto & acc : accounts)
+        for (auto & rel : acc->getReleases())
+            if (rel->getId() == _relId) {
+                acc->removeRelease(rel);
+                break;
+            }
 }
 
 bool DataBase::put(Wallet * _account, int _userId)

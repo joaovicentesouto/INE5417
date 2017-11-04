@@ -12,7 +12,7 @@ namespace project {
 class ReleaseBuilder
 {
 public:
-    ReleaseBuilder(double _value, Account* _account, string _releaseType,
+    ReleaseBuilder(int _id, double _value, Account* _account, string _releaseType,
                    string _paymentType, string _description, string operation, string _date);
     ~ReleaseBuilder();
 
@@ -20,6 +20,7 @@ public:
     Release * build();
 
 private:
+    int id;
     double value;
     Account* account;
     std::string releaseType, paymentType, description, operation, date;

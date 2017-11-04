@@ -67,6 +67,11 @@ bool Facade::refreshPass(std::string _name, std::string _code, std::string _newP
     return true;
 }
 
+list<Account*> Facade::userAccounts()
+{
+    return bd->getAccounts(currentUser);
+}
+
 list<Wallet*> Facade::userWallets()
 {
     return bd->getWallets(currentUser);
@@ -77,9 +82,19 @@ list<BankAccount*> Facade::userBankAccounts()
     return bd->getBankAccounts(currentUser);
 }
 
-list<ReleaseType*> Facade::releaseTypes()
+list<Release*> Facade::userReleases()
+{
+    return bd->getReleases(currentUser);
+}
+
+list<ReleaseType*> Facade::userReleaseTypes()
 {
     return bd->getReleaseTypes(currentUser);
+}
+
+list<string> Facade::userPaymentTypes()
+{
+    return bd->getPaymentTypes(currentUser);
 }
 
 bool Facade::registerReleaseType(std::string _name, int _typeId)
@@ -121,50 +136,52 @@ bool Facade::registerBankAccount(int _accId, std::string _name, double _balance,
     return bd->put(builder.build(), currentUser);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void Facade::deleteReleaseType(std::string _typeName)
-{
-    bd->removeReleasesByType(_typeName, currentUser);
-    bd->removeReleaseType(_typeName, currentUser);
-}
-
-bool Facade::registerRelease(double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
+bool Facade::registerRelease(int _relId, double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
                      std::string _description, std::string _op, std::string _date)
 {
-    Account * _account = user->getAccount(_accountName);
+    Account * account = bd->getAccount(_accountName, currentUser);
 
-    if (_account == nullptr)
+    if (account == nullptr)
         return false;
 
     if (_op == "out")
         _value = - _value;
 
-    ReleaseBuilder builder(_value, _account, _releaseT, _paymentT, _description, _op, _date);
+    ReleaseBuilder builder(_relId, _value, _account, _releaseT, _paymentT, _description, _op, _date);
 
     if (!builder.isValid())
         return false;
 
-    _account->insertRelease(*builder.build());
+    account->insertRelease(builder.build());
+
+    if (account->getType())
+        bd->put(static_cast<BankAccount*>(account));
+    else
+        bd->put(static_cast<Wallet*>(account));
+
     return true;
 }
+
+void Facade::deleteRelease(int _id)
+{
+    bd->removeRelease(_id, currentUser);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Report * Facade::createReport(list<string> accounts, list<string> releaseTypes, list<string> paymentTypes,
                       string begin, string end, double lower, double upper, bool in, bool out)

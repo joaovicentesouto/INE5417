@@ -5,9 +5,10 @@ using namespace std;
 
 namespace project {
 
-Release::Release(double _value, Account* _account,
+Release::Release(int _id, double _value, Account* _account,
                  string _releaseType, string _paymentType,
                  string _description, string _operation, string _date) :
+    id(_id),
     value(_value),
     account(_account),
     releaseType(_releaseType),
