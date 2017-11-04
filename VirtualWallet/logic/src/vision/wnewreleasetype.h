@@ -20,7 +20,7 @@ public:
     explicit WNewReleaseType(QWidget *parent = 0);
     ~WNewReleaseType();
 
-    void setFacade(Facade & _facade);
+    void setFacade(Facade * _facade);
 
 public slots:
     void tableBuilder();
@@ -38,7 +38,7 @@ signals:
     void build();
 
 private:
-    Ui::WNewReleaseType *ui;
+    Ui::WNewReleaseType * ui;
     Facade * facade;
 };
 

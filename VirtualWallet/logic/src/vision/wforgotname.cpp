@@ -18,6 +18,10 @@ WForgotName::~WForgotName()
     delete ui;
 }
 
+void WForgotName::setFacade(Facade * _facade) {
+    facade = _facade;
+}
+
 void WForgotName::on_Clean_clicked()
 {
     ui->Code->setText("");
@@ -34,8 +38,7 @@ void WForgotName::on_Confirm_clicked()
     std::string newName = ui->NewName->text().toStdString();
     std::string confirm = ui->NameConfirm->text().toStdString();
     on_Clean_clicked();
-    if (facade->verifyNewName(code, password, newName, confirm)) {
-        facade->refreshName(newName);
+    if (facade->refreshName(code, password, newName, confirm)) {
         ui->Msg->setStyleSheet("color: #00c10d; border: none;");
         ui->Msg->setText("Alteraçao Realizada com Sucesso!");
     } else {
@@ -49,8 +52,4 @@ void WForgotName::on_Back_clicked()
     on_Clean_clicked();
     emit cleanLogin();
     emit changeStack(3);
-}
-
-void WForgotName::setFacade(Facade & _facade) {
-    facade = &_facade;
 }

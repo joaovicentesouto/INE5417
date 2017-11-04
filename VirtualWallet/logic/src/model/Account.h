@@ -13,21 +13,21 @@ namespace project {
 
 class Account {
 public:
-    Account(string _name, double _balance, bool _type);
+    Account(int _id, string _name, double _balance, bool _type);
     virtual ~Account();
     
+    int getId();
     bool getType();
-    size_t getId();
     string getName();
     double getBalance();
     list<Release*> getReleases();
     
     void changeName(string _newName);
-    void insertRelease(Release& _release);
-    void removeRelease(Release& _release);
+    void insertRelease(Release * _release);
+    void removeRelease(Release * _release);
     
 private:
-    size_t id{0};
+    int id;
     bool type;
     double balance{0.0};
     string name;

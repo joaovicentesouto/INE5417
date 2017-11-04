@@ -18,7 +18,7 @@ public:
     explicit loginwidget(QWidget *parent = 0);
     ~loginwidget();
 
-    void setFacade(Facade & _facade);
+    void setFacade(Facade * _facade);
 
 public slots:
     void on_CleanButton_clicked();
@@ -39,7 +39,7 @@ signals:
     void changeStack(int _stack);
 
 private:
-    Ui::loginwidget *ui;
+    Ui::loginwidget * ui;
     Facade * facade;
 };
 

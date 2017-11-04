@@ -3,8 +3,8 @@
 
 namespace project {
 
-Wallet::Wallet(string _name, double _balance) :
-    Account::Account(_name, _balance, false)
+Wallet::Wallet(int _id, string _name, double _balance) :
+    Account::Account(_id, _name, _balance, false)
 {
     
 }

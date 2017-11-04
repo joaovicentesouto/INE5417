@@ -475,22 +475,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="MenuUserDatas">
-       <property name="styleSheet">
-        <string notr="true">#MenuUserDatas
-{
-	text-align: left;
-	border: none;
-    color: black;
-    font-size: 12pt;
-}</string>
-       </property>
-       <property name="text">
-        <string>    » Dados do Usuario</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="MenuAbout">
        <property name="styleSheet">
         <string notr="true">#MenuAbout

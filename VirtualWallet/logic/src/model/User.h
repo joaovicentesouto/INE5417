@@ -6,7 +6,7 @@
 #include <string>
 #include <list>
 #include "Account.h"
-#include "TypeManager.h"
+#include "releasetype.h"
 
 using namespace std;
 
@@ -17,34 +17,36 @@ public:
     User(string _name, string _password, string _code);
     ~User();
 
-    size_t getId();
+    int getId();
     string getCode();
     string getName();
     string getPassword();
-    Account * getAccount(string _accountName);
     list<Account*> getAccounts();
-    list<string> getReleaseTypesNames();
-    list<string> getPaymentTypesNames();
+    list<ReleaseType*> getReleaseTypes();
+    list<string> getPaymentTypes();
+    Account * getAccount(string _accountName);
 
     bool verifyUser(std::string _name, std::string _password);
 
     void changeName(string _newName);
     void changePassword(string _newPassword);
 
-    bool insertAccount(Account& _account);
-    void removeAccount(Account& _account);
+    bool insertAccount(Account * _account);
+    void removeAccount(Account * _account);
     void removeAccount(std::string _name);
     void changeAccount(std::string _old, std::string _new);
     bool accountExist(std::string _name);
 
-    bool insertReleaseType(std::string _type);
-    void removeReleaseType(std::string _type);
-    bool changeReleaseType(std::string _old, std::string _new);
+    bool insertReleaseType(ReleaseType * _type);
+    void removeReleaseType(ReleaseType * _type);
+    void removeRelease(Release * _release);
+    void removeReleases(string _type);
 
 private:
-    size_t id{0};
+    int id;
     string name, password, code;
-    TypeManager manager;
+    list<ReleaseType*> releaseTypes;
+    list<string> paymentTypes;
     list<Account*> accounts;
 };
 

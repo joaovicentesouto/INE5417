@@ -9,11 +9,12 @@ WNewWallet::WNewWallet(QWidget *parent) :
     ui->Name->setPlaceholderText("Nome");
 
     QStringList titles;
-    titles << "Nome" << "Montante (R$)";
+    titles << "Id" << "Nome" << "Montante (R$)";
 
-    ui->WalletTable->setColumnCount(2);
-    ui->WalletTable->setColumnWidth(0, 220);
+    ui->WalletTable->setColumnCount(3);
+    ui->WalletTable->setColumnWidth(0, 40);
     ui->WalletTable->setColumnWidth(1, 220);
+    ui->WalletTable->setColumnWidth(2, 220);
     ui->WalletTable->setHorizontalHeaderLabels(titles);
     ui->WalletTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
@@ -23,9 +24,9 @@ WNewWallet::~WNewWallet()
     delete ui;
 }
 
-void WNewWallet::setFacade(Facade &_facade)
+void WNewWallet::setFacade(Facade * _facade)
 {
-    facade = &_facade;
+    facade = _facade;
 }
 
 void WNewWallet::on_Clean_clicked()
@@ -41,16 +42,15 @@ void WNewWallet::on_Confirm_clicked()
 {
     std::string name = ui->Name->text().toStdString();
     double balance = ui->Balance->value();
-    bool temp = true;
 
-    if (ui->WalletTable->currentRow() > -1)
-        temp = facade->refreshWallet(ui->WalletTable->item(ui->WalletTable->currentRow(), 0)->text().toStdString(), name);
-    else
-        temp = facade->registerWallet(name, balance);
+    int row = ui->WalletTable->currentRow();
+
+    if (row > -1)
+        row = ui->WalletTable->item(row, 0)->text().toInt();
 
     on_Clean_clicked();
 
-    if (temp) {
+    if (facade->registerWallet(name, balance, row)) {
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
@@ -64,16 +64,13 @@ void WNewWallet::on_Confirm_clicked()
 void WNewWallet::tableBuilder()
 {
     ui->WalletTable->setRowCount(0);
-    list<std::string> * names = facade->walletsNames();
-    list<double> * amounts = facade->walletsValues();
-    list<double>::iterator j = amounts->begin();
-    for (list<string>::iterator i = names->begin(); i != names->end(); ++i, ++j) {
+    list<Wallet*> accounts = facade->userWallets();
+    for (auto & i : accounts) {
         ui->WalletTable->insertRow(ui->WalletTable->rowCount());
-        ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(*i)));
-        ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 1, new QTableWidgetItem(QString::number(*j)));
+        ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(i->getId())));
+        ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(i->getName())));
+        ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 2, new QTableWidgetItem(QString::number(i->getBalance())));
     }
-    delete names;
-    delete amounts;
 }
 
 void WNewWallet::on_WalletTable_clicked(const QModelIndex &index)
@@ -88,7 +85,7 @@ void WNewWallet::on_Delete_clicked()
         ui->Msg->setStyleSheet("color: red");
         ui->Msg->setText("Nenhuma Carteira Selecionada!");
     } else {
-        facade->deleteAccount(ui->WalletTable->item(ui->WalletTable->currentRow(), 0)->text().toStdString());
+        facade->deleteAccount(ui->WalletTable->item(ui->WalletTable->currentRow(), 0)->text().toInt());
         on_Clean_clicked();
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Carteira Excluida com Sucesso!");

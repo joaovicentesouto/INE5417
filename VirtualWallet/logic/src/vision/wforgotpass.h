@@ -18,7 +18,7 @@ public:
     explicit WForgotPass(QWidget *parent = 0);
     ~WForgotPass();
 
-    void setFacade(Facade & _facade);
+    void setFacade(Facade * _facade);
 
 public slots:
     void on_Clean_clicked();
@@ -33,7 +33,7 @@ signals:
     void changeStack(int _stack);
 
 private:
-    Ui::WForgotPass *ui;
+    Ui::WForgotPass * ui;
     Facade * facade;
 };
 

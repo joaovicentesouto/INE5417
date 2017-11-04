@@ -50,7 +50,9 @@ SOURCES += \
         ./src/vision/wnewuser.cpp \
         ./src/vision/whome.cpp \
         ./src/vision/wreport.cpp \
-        ./src/control/ReportBuilder.cpp
+        ./src/control/ReportBuilder.cpp \
+    src/control/database.cpp \
+    src/model/releasetype.cpp
 
 HEADERS += \
         ./src/model/Account.h \
@@ -79,7 +81,9 @@ HEADERS += \
         ./src/vision/whome.h \
         ./src/vision/wreport.h\
         ./src/resources/linked_list.h \
-        ./src/control/ReportBuilder.h
+        ./src/control/ReportBuilder.h \
+    src/control/database.h \
+    src/model/releasetype.h
 
 FORMS += \
         ./src/vision/mainwindow.ui \

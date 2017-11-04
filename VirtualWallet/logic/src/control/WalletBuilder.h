@@ -12,13 +12,14 @@ namespace project {
 
 class WalletBuilder {
 public:
-    WalletBuilder(std::string _name, double _balance);
+    WalletBuilder(int _id, std::string _name, double _balance);
     ~WalletBuilder();
 
     bool isValid();
-    Wallet* build();
+    Wallet * build();
 
 private:
+    int id;
     double balance;
     std::string name;
 

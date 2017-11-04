@@ -10,6 +10,7 @@
 
 #include "Account.h"
 #include "Release.h"
+#include "releasetype.h"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ namespace project {
 
 class Report {
 public:
-    Report(list<Account*> &_accounts, list<string> &_releasesTypes, list<string> &_paymentTypes,
+    Report(list<Account*> &_accounts, list<ReleaseType*> &_releasesTypes, list<string> &_paymentTypes,
            string _begin, string _end, double _lowerValue, double _upperValue, bool _in, bool _out);
     ~Report();
     
@@ -37,7 +38,8 @@ private:
     double lowerValue, upperValue;
     list<Account*> accounts;        //!< Immutables
     list<Release*> releases;
-    list<string> releasesTypes, paymentTypes;
+    list<ReleaseType*> releasesTypes;
+    list<string> paymentTypes;
     bool in, out;
     
 };

@@ -5,9 +5,10 @@ using namespace std;
 
 namespace project {
 
-Release::Release(double _value, Account* _account,
-                 string _releaseType, string _paymentType,
+Release::Release(int _id, double _value, Account* _account,
+                 ReleaseType * _releaseType, string _paymentType,
                  string _description, string _operation, string _date) :
+    id(_id),
     value(_value),
     account(_account),
     releaseType(_releaseType),
@@ -31,11 +32,11 @@ double Release::getValue() {
     return value;
 }
 
-Account* Release::getAccount() {
+Account * Release::getAccount() {
     return account;
 }
 
-string Release::getReleaseType() {
+ReleaseType * Release::getReleaseType() {
     return releaseType;
 }
 
@@ -63,7 +64,7 @@ void Release::changeAccount(Account *_account) {
     account = _account;
 }
 
-void Release::changeReleaseType(string _type) {
+void Release::changeReleaseType(ReleaseType * _type) {
     releaseType = _type;
 }
 

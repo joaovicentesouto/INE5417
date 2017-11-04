@@ -18,7 +18,7 @@ public:
     explicit WNewRelease(QWidget *parent = 0);
     ~WNewRelease();
 
-    void setFacade(Facade &_facade);
+    void setFacade(Facade * _facade);
 
 public slots:
     void tableBuilder();
@@ -31,11 +31,15 @@ private slots:
 
     void on_Confirm_clicked();
 
+    void on_Delete_clicked();
+
+    void on_ReleaseTable_clicked(const QModelIndex &index);
+
 signals:
     void build();
 
 private:
-    Ui::WNewRelease *ui;
+    Ui::WNewRelease * ui;
     Facade * facade;
 };
 

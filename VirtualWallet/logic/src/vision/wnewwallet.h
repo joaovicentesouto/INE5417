@@ -18,7 +18,7 @@ public:
     explicit WNewWallet(QWidget *parent = 0);
     ~WNewWallet();
 
-    void setFacade(Facade &_facade);
+    void setFacade(Facade * _facade);
 
 public slots:
     void tableBuilder();
