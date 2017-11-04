@@ -43,6 +43,11 @@ void DataBase::put(User * _user)
     user = _user;
 }
 
+list<Account*> DataBase::getAccounts(int _userId)
+{
+    return user->getAccounts();
+}
+
 list<Wallet*> DataBase::getWallets(int _userId)
 {
     list<Wallet*> wallets;
@@ -59,11 +64,6 @@ list<BankAccount*> DataBase::getAccounts(int _userId)
         if (acc->getType())
             banksAcc.push_back(static_cast<BankAccount*>(acc));
     return banksAcc;
-}
-
-list<Account*> DataBase::getAccounts(int _userId)
-{
-    return user->getAccounts();
 }
 
 list<Release*> * DataBase::getAllReleases(int _userId)

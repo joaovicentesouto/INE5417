@@ -72,6 +72,11 @@ list<Wallet*> Facade::userWallets()
     return bd->getWallets(currentUser);
 }
 
+list<BankAccount*> Facade::userBankAccounts()
+{
+    return bd->getBankAccounts(currentUser);
+}
+
 list<ReleaseType*> Facade::releaseTypes()
 {
     return bd->getReleaseTypes(currentUser);

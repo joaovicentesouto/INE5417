@@ -24,8 +24,8 @@ public:
 
     void put(User * _user);
 
-    list<Wallet*> getWallets(int _userId);
     list<Account*> getAccounts(int _userId);
+    list<Wallet*> getWallets(int _userId);
     list<BankAccount*> getBankAccounts(int _userId);
     list<Release*> * getAllReleases(int _userId);
     list<ReleaseType*> getReleaseTypes(int _userId);

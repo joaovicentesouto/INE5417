@@ -30,6 +30,7 @@ public:
     bool refreshPass(std::string _name, std::string _code, std::string _newPass, std::string _confirm);
 
     list<Wallet*> userWallets();
+    list<BankAccount*> * userBankAccounts();
     list<ReleaseType*> releaseTypes();
 
     bool registerReleaseType(std::string _name, int _typeId);
@@ -67,7 +68,7 @@ public:
     list<std::string> * releaseTypesNames();
     list<std::string> * paymentTypesNames();
 
-    list<BankAccount*> * userBankAccounts();
+
 
     bool refreshReleaseType(std::string _oldName, std::string _newName);
     bool refreshAccount(std::string _oldName, std::string _newName, std::string _newNumber, std::string _newAgency, std::string _newBank, double _balance);
