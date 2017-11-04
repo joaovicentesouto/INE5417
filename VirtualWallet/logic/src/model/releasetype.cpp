@@ -7,7 +7,7 @@ ReleaseType::ReleaseType()
 
 }
 ReleaseType::ReleaseType(string _name, int _id):
-    name(_name),
+    typeName(_name),
     id(_id)
 {
 

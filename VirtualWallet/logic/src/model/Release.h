@@ -11,18 +11,18 @@ using namespace std;
 namespace project {
 
 class Account;
+class ReleaseType;
 
 class Release {
 public:
-    Release(double _value, Account* _account,
-            string _releaseType, string _paymentType,
-            string _description, string _operation, string _date);
+    Release(int _id, double _value, Account * _account, ReleaseType * _releaseType,
+            string _paymentType, string _description, string _operation, string _date);
     ~Release();
     
     size_t getId();
     double getValue();
     Account* getAccount();
-    string getReleaseType();
+    ReleaseType * getReleaseType();
     string getPaymentType();
     string getDescription();
     string getOperation();
@@ -30,17 +30,18 @@ public:
     
     void changeValue(double _value);
     void changeAccount(Account* _account);
-    void changeReleaseType(string _type);
+    void changeReleaseType(ReleaseType * _type);
     void changePaymentType(string _type);
     void changeDescription(string _description);
     void changeOperation(string _operation);
     void changeDate(string _date);
     
 private:
-    size_t id{0};
+    int id;
     double value;
     Account* account;
-    string releaseType, paymentType, description, operation, date;
+    ReleaseType * releaseType;
+    string paymentType, description, operation, date;
     
 };
 

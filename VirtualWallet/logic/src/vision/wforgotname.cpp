@@ -18,8 +18,8 @@ WForgotName::~WForgotName()
     delete ui;
 }
 
-void WForgotName::setFacade(Facade & _facade) {
-    facade = &_facade;
+void WForgotName::setFacade(Facade * _facade) {
+    facade = _facade;
 }
 
 void WForgotName::on_Clean_clicked()

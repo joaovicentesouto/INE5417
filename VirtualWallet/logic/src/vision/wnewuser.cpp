@@ -19,8 +19,8 @@ WNewUser::~WNewUser()
     delete ui;
 }
 
-void WNewUser::setFacade(Facade & _facade) {
-    facade = &_facade;
+void WNewUser::setFacade(Facade * _facade) {
+    facade = _facade;
 }
 
 void WNewUser::on_Clean_clicked()

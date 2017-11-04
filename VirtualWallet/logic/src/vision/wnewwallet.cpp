@@ -24,9 +24,9 @@ WNewWallet::~WNewWallet()
     delete ui;
 }
 
-void WNewWallet::setFacade(Facade &_facade)
+void WNewWallet::setFacade(Facade * _facade)
 {
-    facade = &_facade;
+    facade = _facade;
 }
 
 void WNewWallet::on_Clean_clicked()
@@ -46,10 +46,11 @@ void WNewWallet::on_Confirm_clicked()
     int row = ui->WalletTable->currentRow();
 
     if (row > -1)
-        row = ui->WalletTable->item(row, 0);
+        row = ui->WalletTable->item(row, 0)->text().toInt();
+
+    on_Clean_clicked();
 
     if (facade->registerWallet(name, balance, row)) {
-        on_Clean_clicked();
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
@@ -63,7 +64,7 @@ void WNewWallet::on_Confirm_clicked()
 void WNewWallet::tableBuilder()
 {
     ui->WalletTable->setRowCount(0);
-    list<Account*> accounts = facade->userWallets();
+    list<Wallet*> accounts = facade->userWallets();
     for (auto & i : accounts) {
         ui->WalletTable->insertRow(ui->WalletTable->rowCount());
         ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(i->getId())));

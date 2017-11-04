@@ -67,14 +67,34 @@ bool Facade::refreshPass(std::string _name, std::string _code, std::string _newP
     return true;
 }
 
+list<Account*> Facade::userAccounts()
+{
+    return bd->getAccounts(currentUser);
+}
+
 list<Wallet*> Facade::userWallets()
 {
     return bd->getWallets(currentUser);
 }
 
-list<ReleaseType*> Facade::releaseTypes()
+list<BankAccount*> Facade::userBankAccounts()
+{
+    return bd->getBankAccounts(currentUser);
+}
+
+list<Release*> Facade::userReleases()
+{
+    return bd->getReleases(currentUser);
+}
+
+list<ReleaseType*> Facade::userReleaseTypes()
 {
     return bd->getReleaseTypes(currentUser);
+}
+
+list<string> Facade::userPaymentTypes()
+{
+    return bd->getPaymentTypes(currentUser);
 }
 
 bool Facade::registerReleaseType(std::string _name, int _typeId)
@@ -116,59 +136,59 @@ bool Facade::registerBankAccount(int _accId, std::string _name, double _balance,
     return bd->put(builder.build(), currentUser);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-void Facade::deleteReleaseType(std::string _typeName)
-{
-    bd->removeReleasesByType(_typeName, currentUser);
-    bd->removeReleaseType(_typeName, currentUser);
-}
-
-bool Facade::registerRelease(double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
+bool Facade::registerRelease(int _relId, double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
                      std::string _description, std::string _op, std::string _date)
 {
-    Account * _account = user->getAccount(_accountName);
+    Account * account = nullptr;
+    for (auto & acc : bd->getAccounts(currentUser))
+        if (acc->getName() == _accountName) {
+            account = acc;
+            break;
+        }
 
-    if (_account == nullptr)
-        return false;
+    ReleaseType * releaseT = nullptr;
+    for (auto & rel : bd->getReleaseTypes(currentUser))
+        if (rel->getName() == _releaseT) {
+            releaseT = rel;
+            break;
+        }
 
     if (_op == "out")
         _value = - _value;
 
-    ReleaseBuilder builder(_value, _account, _releaseT, _paymentT, _description, _op, _date);
+    ReleaseBuilder builder(_relId, _value, account, releaseT, _paymentT, _description, _op, _date);
 
     if (!builder.isValid())
         return false;
 
-    _account->insertRelease(*builder.build());
-    return true;
+    return bd->put(builder.build(), currentUser);
 }
 
-Report * Facade::createReport(list<string> accounts, list<string> releaseTypes, list<string> paymentTypes,
+void Facade::deleteRelease(int _id)
+{
+    bd->removeRelease(_id, currentUser);
+}
+
+Report * Facade::createReport(list<int> accountIds, list<int> releaseTypeIds, list<string> paymentTypes,
                       string begin, string end, double lower, double upper, bool in, bool out)
 {
-    list<Account*> accs;
-    for (auto & name : accounts)
-        accs.push_back(user->getAccount(name));
+    list<Account*> accounts;
+    for (auto & acc : bd->getAccounts(currentUser))
+        for (auto & accId : accountIds)
+            if (acc->getId() == accId) {
+                accounts.push_back(acc);
+                break;
+            }
 
-    ReportBuilder builder(accs, releaseTypes, paymentTypes, begin, end, lower, upper, in, out);
+    list<ReleaseType*> releaseTypes;
+    for (auto & relT : bd->getReleaseTypes(currentUser))
+        for (auto & relTId : releaseTypeIds)
+            if (relT->getId() == relTId) {
+                releaseTypes.push_back(relT);
+                break;
+            }
+
+    ReportBuilder builder(accounts, releaseTypes, paymentTypes, begin, end, lower, upper, in, out);
 
     if (!builder.isValid())
         return nullptr;
@@ -176,7 +196,20 @@ Report * Facade::createReport(list<string> accounts, list<string> releaseTypes, 
     return builder.build();
 }
 
-bool Facade::containsAccount(std::string name)
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*bool Facade::containsAccount(std::string name)
 {
     return user->getAccount(name) != nullptr;
 }
@@ -310,6 +343,7 @@ bool Facade::refreshAccount(std::string _oldName, std::string _newName, std::str
 
 void Facade::insertUser(User* _user) {
     user = _user;
-}
+}*/
+
 
 }

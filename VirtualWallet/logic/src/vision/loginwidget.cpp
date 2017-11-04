@@ -19,8 +19,8 @@ loginwidget::~loginwidget()
     delete ui;
 }
 
-void loginwidget::setFacade(Facade & _facade) {
-    facade = &_facade;
+void loginwidget::setFacade(Facade * _facade) {
+    facade = _facade;
 }
 
 void loginwidget::on_CleanButton_clicked()

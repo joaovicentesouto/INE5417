@@ -12,8 +12,8 @@ WNewRelease::WNewRelease(QWidget *parent) :
     QStringList titles;
     titles << "Id" << "Conta/Carteira" << "Tipo de Lcto." << "Tipo de Pgto." << "Operaçao" << "Data" << "Valor (R$)";
 
-    ui->ReleaseTable->setColumnCount(6);
-    ui->ReleaseTable->setColumnWidth(0, 50);
+    ui->ReleaseTable->setColumnCount(7);
+    ui->ReleaseTable->setColumnWidth(0, 40);
     ui->ReleaseTable->setColumnWidth(1, 100);
     ui->ReleaseTable->setColumnWidth(2, 100);
     ui->ReleaseTable->setColumnWidth(3, 100);
@@ -29,8 +29,8 @@ WNewRelease::~WNewRelease()
     delete ui;
 }
 
-void WNewRelease::setFacade(Facade &_facade) {
-    facade = &_facade;
+void WNewRelease::setFacade(Facade * _facade) {
+    facade = _facade;
 }
 
 void WNewRelease::update() {
@@ -44,23 +44,17 @@ void WNewRelease::update() {
     ui->ReleaseType->addItem("Tipo de Lancamento");
     ui->PaymentType->addItem("Tipo de Pagamento");
 
-    list<std::string> * names = facade->accountsNames();
-    for (list<string>::iterator it = names->begin(); it != names->end(); ++it) {
-        ui->Accounts->addItem(QString::fromStdString(*it));
+    for (auto & acc : facade->userAccounts()) {
+        ui->Accounts->addItem(QString::fromStdString(acc->getName()));
     }
-    delete names;
 
-    names = facade->releaseTypesNames();
-    for (list<string>::iterator it = names->begin(); it != names->end(); ++it) {
-        ui->ReleaseType->addItem(QString::fromStdString(*it));
+    for (auto & release : facade->userReleaseTypes()) {
+        ui->ReleaseType->addItem(QString::fromStdString(release->getName()));
     }
-    delete names;
 
-    names = facade->paymentTypesNames();
-    for (list<string>::iterator it = names->begin(); it != names->end(); ++it) {
-        ui->PaymentType->addItem(QString::fromStdString(*it));
+    for (auto & payT : facade->userPaymentTypes()) {
+        ui->PaymentType->addItem(QString::fromStdString(payT));
     }
-    delete names;
 
     ui->DateEdit->setDate(QDate::currentDate());
 }
@@ -73,7 +67,7 @@ void WNewRelease::on_Clean_clicked()
     ui->PaymentType->setCurrentIndex(0);
     ui->DateEdit->setDate(QDate::currentDate());
     ui->DescRelease->setText("");
-    ui->Erro->setText("");
+    ui->Msg->setText("");
     ui->In->setAutoExclusive(false);
     ui->In->setChecked(false);
     ui->Out->setChecked(false);
@@ -94,34 +88,100 @@ void WNewRelease::on_Confirm_clicked()
 
     on_Clean_clicked();
 
-    if (ui->ReleaseTable->currentRow() > -1) {
-        int id = ui->ReleaseTable->item(ui->ReleaseTable->currentRow(), 0)->text().toInt();
-        //facade->deleteRelease(id);
-    }
+    int row = ui->ReleaseTable->currentRow();
 
-    if (facade->registerRelease(value, account, releaseType, paymenteType, description, operation, date)) {
+    if (row > -1)
+        int row = ui->ReleaseTable->item(row, 0)->text().toInt();
+
+    on_Clean_clicked();
+
+    if (facade->registerRelease(row, value, account, releaseType, paymenteType, description, operation.compare("Saida") ? "in" : operation.compare("error") ? "out" : "error", date)) {
+        ui->Msg->setStyleSheet("color: green");
+        ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
     } else {
-        ui->Erro->setText("Dados invalidos!");
+        ui->Msg->setStyleSheet("color: red");
+        ui->Msg->setText("Dados Invalidos!");
     }
     tableBuilder();
 }
 
 void WNewRelease::tableBuilder()
 {
+
     ui->ReleaseTable->setRowCount(0);
-    list<Release*> * releases = facade->allReleases();
-    for (list<Release*>::iterator i = releases->begin(); i != releases->end(); ++i) {
+    list<Release*> releases = facade->userReleases();
+    for (auto & rel : releases) {
         ui->ReleaseTable->insertRow(ui->ReleaseTable->rowCount());
-        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString((*i)->getAccount()->getName())));
-        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString((*i)->getReleaseType())));
-        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 2, new QTableWidgetItem(QString::fromStdString((*i)->getPaymentType())));
-
-        string aux = (*i)->getOperation().compare("Entrada") ? "Saida" : "Entrada";
-
-        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 3, new QTableWidgetItem(QString::fromStdString(aux)));
-        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 4, new QTableWidgetItem(QString::fromStdString((*i)->getDate())));
-        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 5, new QTableWidgetItem(QString::number((*i)->getValue())));
+        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(rel->getId())));
+        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(rel->getAccount()->getName())));
+        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 2, new QTableWidgetItem(QString::fromStdString(rel->getReleaseType()->getName())));
+        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 3, new QTableWidgetItem(QString::fromStdString(rel->getPaymentType())));
+        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 4, new QTableWidgetItem(QString::fromStdString(rel->getOperation().compare("out") ? "Entrada" : "Saida")));
+        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 5, new QTableWidgetItem(QString::fromStdString(rel->getDate())));
+        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 6, new QTableWidgetItem(QString::number(rel->getValue())));
     }
-    delete releases;
+}
+
+void WNewRelease::on_ReleaseTable_clicked(const QModelIndex &index)
+{
+    int id = ui->ReleaseTable->item(index.row(), 0)->text().toInt();
+    Release * release;
+    for (auto & rel : facade->userReleases())
+        if (rel->getId() == id) {
+            release = rel;
+            break;
+        }
+
+    ui->ValueBox->setValue(release->getValue());
+    ui->DateEdit->setDate(QDate::fromString(QString::fromStdString(release->getDate()), "dd/MM/yyyy"));
+    ui->DescRelease->setText(QString::fromStdString(release->getDescription()));
+
+    if (release->getOperation() == "in")
+        ui->In->setChecked(true);
+    else
+        ui->Out->setChecked(true);
+
+    int i = 0;
+    for (auto & acc : facade->userAccounts()) {
+        if (release->getAccount()->getId() == acc->getId()) {
+            ui->Accounts->setCurrentIndex(i);
+            break;
+        }
+        i++;
+    }
+
+    i = 0;
+    for (auto & rel : facade->userReleaseTypes()) {
+        if (release->getReleaseType()->getName() == rel->getName()) {
+            ui->ReleaseType->setCurrentIndex(i);
+            break;
+        }
+        i++;
+    }
+
+    i = 0;
+    for (auto & payT : facade->userPaymentTypes()) {
+        if (release->getPaymentType() == payT) {
+            ui->PaymentType->setCurrentIndex(i);
+            break;
+        }
+        i++;
+    }
+}
+
+void WNewRelease::on_Delete_clicked()
+{
+    int row = ui->ReleaseTable->currentRow();
+
+    if (row < 0) {
+        ui->Msg->setStyleSheet("color: red");
+        ui->Msg->setText("Nenhum Lancamento Selecionado!");
+    } else {
+        facade->deleteRelease(ui->ReleaseTable->item(row, 0)->text().toInt());
+        ui->Msg->setStyleSheet("color: green");
+        ui->Msg->setText("Lancamento Excluido com Sucesso!");
+        tableBuilder();
+        emit build();
+    }
 }

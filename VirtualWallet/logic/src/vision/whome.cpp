@@ -16,9 +16,9 @@ WHome::WHome(QWidget *parent) :
     ui->Table->setHorizontalHeaderLabels(titles);
 }
 
-void WHome::setFacade(Facade &_facade)
+void WHome::setFacade(Facade * _facade)
 {
-    facade = &_facade;
+    facade = _facade;
 }
 
 WHome::~WHome()

@@ -18,7 +18,7 @@ public:
     explicit WNewBankAccount(QWidget *parent = 0);
     ~WNewBankAccount();
 
-    void setFacade(Facade &_facade);
+    void setFacade(Facade * _facade);
 
 public slots:
     void tableBuilder();
@@ -36,7 +36,7 @@ signals:
     void build();
 
 private:
-    Ui::WNewBankAccount *ui;
+    Ui::WNewBankAccount * ui;
     Facade * facade;
 };
 

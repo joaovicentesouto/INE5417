@@ -23,6 +23,7 @@ public:
     string getPassword();
     list<Account*> getAccounts();
     list<ReleaseType*> getReleaseTypes();
+    list<string> getPaymentTypes();
     Account * getAccount(string _accountName);
 
     bool verifyUser(std::string _name, std::string _password);
@@ -38,7 +39,8 @@ public:
 
     bool insertReleaseType(ReleaseType * _type);
     void removeReleaseType(ReleaseType * _type);
-    void removeReleases(ReleaseType * _type);
+    void removeRelease(Release * _release);
+    void removeReleases(string _type);
 
 private:
     int id;

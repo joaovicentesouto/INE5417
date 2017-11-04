@@ -19,8 +19,8 @@ WForgotPass::~WForgotPass()
     delete ui;
 }
 
-void WForgotPass::setFacade(Facade & _facade) {
-    facade = &_facade;
+void WForgotPass::setFacade(Facade * _facade) {
+    facade = _facade;
 }
 
 void WForgotPass::on_Clean_clicked()

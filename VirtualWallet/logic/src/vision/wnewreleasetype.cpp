@@ -23,8 +23,8 @@ WNewReleaseType::~WNewReleaseType()
     delete ui;
 }
 
-void WNewReleaseType::setFacade(Facade &_facade) {
-    facade = &_facade;
+void WNewReleaseType::setFacade(Facade * _facade) {
+    facade = _facade;
 }
 
 void WNewReleaseType::on_Clean_clicked()
@@ -42,6 +42,8 @@ void WNewReleaseType::on_Confirm_clicked()
     if (row > -1)
         row = ui->TypeList->item(row, 0)->text().toInt();
 
+    on_Clean_clicked();
+
     if (facade->registerReleaseType(ui->Name->text().toStdString(), row)) {
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Operaçao Realizada com Sucesso!");
@@ -51,14 +53,13 @@ void WNewReleaseType::on_Confirm_clicked()
         ui->Msg->setText("Nome Invalido!");
     }
 
-    on_Clean_clicked();
     tableBuilder();
 }
 
 void WNewReleaseType::tableBuilder()
 {
     ui->TypeList->setRowCount(0);
-    list<ReleaseType*> _types = facade->releaseTypes();
+    list<ReleaseType*> _types = facade->userReleaseTypes();
     for (auto & it: _types) {
         ui->TypeList->insertRow(ui->TypeList->rowCount());
         ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem(QString::number(it->getId())));

@@ -155,7 +155,7 @@
 }</string>
    </property>
   </widget>
-  <widget class="QLabel" name="Erro">
+  <widget class="QLabel" name="Msg">
    <property name="geometry">
     <rect>
      <x>30</x>

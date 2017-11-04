@@ -1,15 +1,15 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
+
 #include "Report.h"
-#include <iostream>
 
 namespace project {
 
-Report::Report(list<Account*> &_accounts, list<string> &_releasesTypes, list<string> &_paymentTypes,
+Report::Report(list<Account*> &_accounts, list<ReleaseType*> &_releasesTypes, list<string> &_paymentTypes,
                string _begin, string _end, double _lowerValue, double _upperValue, bool _in, bool _out) :
     accounts(_accounts),
     releasesTypes(_releasesTypes),
-    paymentTypes(_paymentTypes),
     begin(_begin),
+    paymentTypes(_paymentTypes),
     end(_end),
     lowerValue(_lowerValue),
     upperValue(_upperValue),
@@ -35,12 +35,13 @@ list<Release*> Report::getReleases()
     return releases;
 }
 
-void Report::searchByReleasesType() {
+void Report::searchByReleasesType()
+{
     list<Release*> aux = releases;
 
     for (auto & rel : aux) {
         bool removeR = true;
-        for (std::string type : releasesTypes)
+        for (auto & type : releasesTypes)
             if (rel->getReleaseType() == type)
                 removeR = false;
         if (removeR)
@@ -79,13 +80,8 @@ void Report::searchByValue() {
     for (auto & rel : aux) {
         double value = in && out ? abs(rel->getValue()) : in ? rel->getValue() : -rel->getValue();
 
-        std::string x = in ? "in: " : "out: ";
-        std::cout << x << rel->getValue() << " -> " << value << std::endl;
-
-        if (value < lowerValue || value > upperValue) {
+        if (value < lowerValue || value > upperValue)
             releases.remove(rel);
-            std::cout << rel->getDescription() << std::endl;
-        }
     }
 }
 

@@ -5,9 +5,9 @@ namespace project {
 
 Account::Account(int _id, string _name, double _balance, bool _type) :
     id(_id),
-    name(_name),
     balance(_balance),
-    type(_type)
+    type(_type),
+    name(_name)
 {
     
 }

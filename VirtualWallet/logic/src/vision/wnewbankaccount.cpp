@@ -32,9 +32,9 @@ WNewBankAccount::~WNewBankAccount()
     delete ui;
 }
 
-void WNewBankAccount::setFacade(Facade &_facade)
+void WNewBankAccount::setFacade(Facade * _facade)
 {
-    facade = &_facade;
+    facade = _facade;
 }
 
 void WNewBankAccount::on_Clean_clicked()
@@ -60,10 +60,11 @@ void WNewBankAccount::on_Confirm_clicked()
     int row = ui->AccountTable->currentRow();
 
     if (row > -1)
-        row = ui->AccountTable->item(row, 0);
+        row = ui->AccountTable->item(row, 0)->text().toInt();
+
+    on_Clean_clicked();
 
     if (facade->registerBankAccount(row, name, balance, number, agency, bank)) {
-        on_Clean_clicked();
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
@@ -77,34 +78,36 @@ void WNewBankAccount::on_Confirm_clicked()
 void WNewBankAccount::tableBuilder()
 {
     ui->AccountTable->setRowCount(0);
-    list<BankAccount*> * accounts = facade->userBankAccounts();
-    for (list<BankAccount*>::iterator i = accounts->begin(); i != accounts->end(); ++i) {
+    list<BankAccount*> bankAccounts = facade->userBankAccounts();
+    for (auto & bankAcc : bankAccounts) {
         ui->AccountTable->insertRow(ui->AccountTable->rowCount());
-        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString((*i)->getName())));
-        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString((*i)->getAccountNumber())));
-        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 2, new QTableWidgetItem(QString::fromStdString((*i)->getAgency())));
-        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 3, new QTableWidgetItem(QString::fromStdString((*i)->getBank())));
-        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 4, new QTableWidgetItem(QString::number((*i)->getBalance())));
+        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(bankAcc->getId())));
+        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(bankAcc->getName())));
+        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 2, new QTableWidgetItem(QString::fromStdString(bankAcc->getAccountNumber())));
+        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 3, new QTableWidgetItem(QString::fromStdString(bankAcc->getAgency())));
+        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 4, new QTableWidgetItem(QString::fromStdString(bankAcc->getBank())));
+        ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 5, new QTableWidgetItem(QString::number(bankAcc->getBalance())));
     }
-    delete accounts;
 }
 
 void WNewBankAccount::on_AccountTable_clicked(const QModelIndex &index)
 {
-    ui->Name->setText(ui->AccountTable->item(index.row(), 0)->text());
-    ui->Number->setText(ui->AccountTable->item(index.row(), 1)->text());
-    ui->Agency->setText(ui->AccountTable->item(index.row(), 2)->text());
-    ui->Bank->setText(ui->AccountTable->item(index.row(), 3)->text());
-    ui->Balance->setValue(ui->AccountTable->item(index.row(), 4)->text().toDouble());
+    ui->Name->setText(ui->AccountTable->item(index.row(), 1)->text());
+    ui->Number->setText(ui->AccountTable->item(index.row(), 2)->text());
+    ui->Agency->setText(ui->AccountTable->item(index.row(), 3)->text());
+    ui->Bank->setText(ui->AccountTable->item(index.row(), 4)->text());
+    ui->Balance->setValue(ui->AccountTable->item(index.row(), 5)->text().toDouble());
 }
 
 void WNewBankAccount::on_Delete_clicked()
 {
-    if (ui->AccountTable->currentRow() < 0) {
+    int row = ui->AccountTable->currentRow();
+
+    if (row < 0) {
         ui->Msg->setStyleSheet("color: red");
         ui->Msg->setText("Nenhuma Conta Selecionada!");
     } else {
-        facade->deleteAccount(ui->AccountTable->item(ui->AccountTable->currentRow(), 0)->text().toStdString());
+        facade->deleteAccount(ui->AccountTable->item(row, 0)->text().toInt());
         on_Clean_clicked();
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Conta Excluida com Sucesso!");

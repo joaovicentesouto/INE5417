@@ -1,4 +1,5 @@
 //! Copyright [2017] Bruno Bonotto and João Vicente Souto
+
 #include "User.h"
 
 namespace project {
@@ -7,8 +8,9 @@ User::User(string _name, string _password, string _code) :
     name(_name),
     password(_password),
     code(_code),
-    accounts(),
-    releaseTypes()
+    releaseTypes(),
+    paymentTypes(),
+    accounts()
 {
     paymentTypes.push_front("Dinheiro");
     paymentTypes.push_front("Crédito");
@@ -61,6 +63,11 @@ list<Account*> User::getAccounts()
 list<ReleaseType*> User::getReleaseTypes()
 {
     return releaseTypes;
+}
+
+list<string> User::getPaymentTypes()
+{
+    return paymentTypes;
 }
 
 bool User::verifyUser(std::string _name, std::string _password)
@@ -130,11 +137,24 @@ void User::removeReleaseType(ReleaseType * _type)
     releaseTypes.remove(_type);
 }
 
-void User::removeReleases(ReleaseType * _type)
+void User::removeReleases(string _type)
 {
     for (auto & i: accounts)
         for (auto & j : i->getReleases())
-            if (!j->getReleaseType().compare(_type->getName())) {
+            if (!j->getReleaseType()->getName().compare(_type)) {
+                i->removeRelease(j);
+                delete j;
+            }
+}
+
+void User::removeRelease(Release * _release)
+{
+    for (auto & i: accounts)
+        for (auto & j : i->getReleases())
+            if (j->getAccount() == _release->getAccount() && j->getDate() == _release->getDate() &&
+                    j->getDescription() == _release->getDescription() && j->getOperation() == _release->getOperation() &&
+                    j->getPaymentType() == _release->getPaymentType() && j->getReleaseType() == _release->getReleaseType() &&
+                    j->getValue() == _release->getValue()) {
                 i->removeRelease(j);
                 delete j;
             }

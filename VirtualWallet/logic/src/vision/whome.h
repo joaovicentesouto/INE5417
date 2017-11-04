@@ -17,17 +17,17 @@ class WHome : public QWidget
     Q_OBJECT
 
 public:
-    explicit WHome(QWidget *parent = 0);
+    explicit WHome(QWidget * parent = 0);
     ~WHome();
 
-    void setFacade(Facade &_facade);
+    void setFacade(Facade * _facade);
 
 public slots:
     void tableBuilder();
 
 private:
-    Ui::WHome *ui;
-    Facade *facade;
+    Ui::WHome * ui;
+    Facade * facade;
 };
 
 #endif // WHOME_H

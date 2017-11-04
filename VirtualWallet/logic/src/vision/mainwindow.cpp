@@ -1,13 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <stdio.h>
-#include <string>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    facade("Nome", "Senha", "Codigo")
-    //facade("", "", "")
+    facade(nullptr)
 {
     ui->setupUi(this);
     ui->Menu->hide();
@@ -15,8 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->MenuButton->setIcon(QIcon(":menubutton.png"));
     ui->MenuButton->setIconSize(QSize(20,20));
 
-    if(facade.getUserName() == "")
+    if(facade == nullptr) {
+        facade = new Facade();
         ui->Stack->setCurrentWidget(ui->NewUser);
+    }
 
     ui->NewWallet->setFacade(facade);
     ui->LoginCenterWidget->setFacade(facade);
@@ -72,8 +71,8 @@ void MainWindow::on_MenuButton_clicked()
 
 void MainWindow::build()
 {
-    std::string accauntsBalance(24, '\0');
-    std::snprintf(&accauntsBalance[0], 24, "%.2f", facade.accountsBalance());
+    string accauntsBalance(24, '\0');
+    snprintf(&accauntsBalance[0], 24, "%.2f", facade->accountsBalance());
     ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
     emit update();
 }
@@ -81,7 +80,7 @@ void MainWindow::build()
 void MainWindow::loginExecuted()
 {
 
-    ui->MenuUser->setText(QString::fromStdString(facade.getUserName()));
+    ui->MenuUser->setText(QString::fromStdString(facade->getUserName()));
     ui->Stack->setCurrentWidget(ui->Home);
     ui->MenuWidget->hide();
     ui->Menu->show();

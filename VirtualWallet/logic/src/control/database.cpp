@@ -52,7 +52,12 @@ list<Wallet*> DataBase::getWallets(int _userId)
     return wallets;
 }
 
-list<BankAccount*> DataBase::getAccounts(int _userId)
+list<Account*> DataBase::getAccounts(int _userId)
+{
+    return user->getAccounts();
+}
+
+list<BankAccount*> DataBase::getBankAccounts(int _userId)
 {
     list<BankAccount*> banksAcc;
     for (auto & acc : user->getAccounts())
@@ -61,20 +66,14 @@ list<BankAccount*> DataBase::getAccounts(int _userId)
     return banksAcc;
 }
 
-list<Account*> DataBase::getAccounts(int _userId)
+list<Release*> DataBase::getReleases(int _userId)
 {
-    return user->getAccounts();
-}
-
-list<Release*> * DataBase::getAllReleases(int _userId)
-{
-    list<Release*> * releases = new list<Release*>();
+    list<Release*> releases;
     list<Account*> accounts = user->getAccounts();
-    for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
-        list<Release*> release = (*i)->getReleases();
-        for (std::list<Release*>::iterator j = release.begin(); j != release.end(); ++j)
-            releases->push_front(*j);
-    }
+
+    for (auto & acc : accounts)
+        for (auto & rel : acc->getReleases())
+            releases.push_front(rel);
 
     return releases;
 }
@@ -84,10 +83,19 @@ list<ReleaseType*> DataBase::getReleaseTypes(int _userId)
     return user->getReleaseTypes();
 }
 
+list<string> DataBase::getPaymentTypes(int _userId)
+{
+    return user->getPaymentTypes();
+}
+
+Account * DataBase::getAccount(string _accName, int _userId)
+{
+    return user->getAccount(_accName);
+}
+
 bool DataBase::put(ReleaseType * _type, int _userId)
 {
-    list<ReleaseType*> types = user->getReleaseTypes();
-    for (auto & it: types) {
+    for (auto & it: user->getReleaseTypes()) {
         if (!it->getName().compare(_type->getName()))
             return false;
 
@@ -116,8 +124,28 @@ void DataBase::removeReleasesByType(string _type, int _userId)
     user->removeReleases(_type);
 }
 
+void DataBase::removeRelease(int _relId, int _userId)
+{
+    for (auto & acc : user->getAccounts())
+        for (auto & rel : acc->getReleases())
+            if (rel->getId() == _relId) {
+                acc->removeRelease(rel);
+                break;
+            }
+}
+
 bool DataBase::put(Wallet * _account, int _userId)
 {
+    for (auto & it: user->getAccounts()) {
+        if (!it->getName().compare(_account->getName()))
+            return false;
+
+        if (it->getId() == _account->getId()) {
+            user->removeAccount(it);
+            break;
+        }
+    }
+
     return user->insertAccount(_account);
 }
 
@@ -133,16 +161,31 @@ void DataBase::removeAccount(int _accId, int _userId)
 
 bool DataBase::put(BankAccount * _account, int _userId)
 {
+    for (auto & it: user->getAccounts()) {
+        if (!it->getName().compare(_account->getName()))
+            return false;
+
+        if (it->getId() == _account->getId()) {
+            user->removeAccount(it);
+            break;
+        }
+    }
+
     return user->insertAccount(_account);
 }
 
+bool DataBase::put(Release * _release, int _userId)
+{
+    for (auto & i: getAccounts(_userId))
+        for (auto & j: i->getReleases())
+            if (j->getId() == _release->getId()) {
+                i->removeRelease(j);
+                i->insertRelease(_release);
+                return true;
+            }
 
-
-
-
-
-
-
-
+    _release->getAccount()->insertRelease(_release);
+    return true;
+}
 
 }

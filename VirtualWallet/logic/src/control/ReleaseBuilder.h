@@ -6,13 +6,16 @@
 
 #include "./src/model/Release.h"
 #include "./src/model/Account.h"
+#include "./src/model/releasetype.h"
+
+using namespace std;
 
 namespace project {
 
 class ReleaseBuilder
 {
 public:
-    ReleaseBuilder(double _value, Account* _account, string _releaseType,
+    ReleaseBuilder(int _id, double _value, Account* _account, ReleaseType * _releaseType,
                    string _paymentType, string _description, string operation, string _date);
     ~ReleaseBuilder();
 
@@ -20,9 +23,11 @@ public:
     Release * build();
 
 private:
+    int id;
     double value;
     Account* account;
-    std::string releaseType, paymentType, description, operation, date;
+    ReleaseType * releaseType;
+    string paymentType, description, operation, date;
 };
 
 }
