@@ -10,24 +10,27 @@ WReport::WReport(QWidget *parent) :
     ui->setupUi(this);
 
     QStringList titles;
-    titles << "Conta";
+    titles << "Id" << "Conta";
 
-    ui->AccTable->setColumnCount(1);
-    ui->AccTable->setColumnWidth(0, 441);
+    ui->AccTable->setColumnCount(2);
+    ui->AccTable->setColumnWidth(0, 40);
+    ui->AccTable->setColumnWidth(1, 401);
     ui->AccTable->setHorizontalHeaderLabels(titles);
     ui->AccTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     titles.clear();
-    titles << "Tipo de Lancamento";
-    ui->TypesTable->setColumnCount(1);
-    ui->TypesTable->setColumnWidth(0, 441);
+    titles << "Id" << "Tipo de Lancamento";
+    ui->TypesTable->setColumnCount(2);
+    ui->TypesTable->setColumnWidth(0, 40);
+    ui->TypesTable->setColumnWidth(1, 401);
     ui->TypesTable->setHorizontalHeaderLabels(titles);
     ui->TypesTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     titles.clear();
-    titles << "Tipo de Pagamento";
-    ui->PayTable->setColumnCount(1);
-    ui->PayTable->setColumnWidth(0, 441);
+    titles << "Id" << "Tipo de Pagamento";
+    ui->PayTable->setColumnCount(2);
+    ui->PayTable->setColumnWidth(0, 40);
+    ui->PayTable->setColumnWidth(1, 401);
     ui->PayTable->setHorizontalHeaderLabels(titles);
     ui->PayTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
@@ -79,29 +82,26 @@ void WReport::on_ValueBox_2_valueChanged(double arg1)
 void WReport::tableBuilder()
 {
     ui->AccTable->setRowCount(0);
-    list<std::string> * names = facade->accountsNames();
-
-    for (list<string>::iterator i = names->begin(); i != names->end(); ++i) {
+    for (auto & acc : facade->userAccounts()) {
         ui->AccTable->insertRow(ui->AccTable->rowCount());
-        ui->AccTable->setItem(ui->AccTable->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(*i)));
+        ui->AccTable->setItem(ui->AccTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(acc->getId())));
+        ui->AccTable->setItem(ui->AccTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(acc->getName()));
     }
-    delete names;
 
     ui->TypesTable->setRowCount(0);
-    names = facade->releaseTypesNames();
-    for (list<string>::iterator it = names->begin(); it != names->end(); ++it) {
+    for (auto & relType : facade->userReleaseTypes()) {
         ui->TypesTable->insertRow(ui->TypesTable->rowCount());
-        ui->TypesTable->setItem(ui->TypesTable->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(*it)));
+        ui->TypesTable->setItem(ui->TypesTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(relType->getId())));
+        ui->TypesTable->setItem(ui->TypesTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(relType->getName()));
     }
-    delete names;
 
+    int i = 0;
     ui->PayTable->setRowCount(0);
-    names = facade->paymentTypesNames();
-    for (list<string>::iterator it = names->begin(); it != names->end(); ++it) {
+    for (auto & payType : facade->userPaymentTypes()) {
         ui->PayTable->insertRow(ui->PayTable->rowCount());
-        ui->PayTable->setItem(ui->PayTable->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(*it)));
+        ui->PayTable->setItem(ui->PayTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(i++)));
+        ui->PayTable->setItem(ui->PayTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(payType));
     }
-    delete names;
 
     ui->Stack->setCurrentWidget(ui->Generator);
     on_Clean_clicked();
@@ -109,15 +109,18 @@ void WReport::tableBuilder()
 
 void WReport::on_AccTable_clicked(const QModelIndex &index)
 {
-    auto item = ui->AccTable->item(index.row(), index.column());
-    QColor c = item->background().color();
+    auto item0 = ui->AccTable->item(index.row(), 0);
+    auto item1 = ui->AccTable->item(index.row(), 1);
+    QColor c = item0->background().color();
 
     if (c == QColor("#a3f48a")) {
-        accounts.remove(item->text().toStdString());
-        item->setBackground(QColor("#ffffff"));
+        accounts.remove(item0->text().toInt());
+        item0->setBackground(QColor("#ffffff"));
+        item1->setBackground(QColor("#ffffff"));
     } else {
-        accounts.push_back(item->text().toStdString());
-        item->setBackground(QColor("#a3f48a"));
+        accounts.push_back(item0->text().toInt());
+        item0->setBackground(QColor("#a3f48a"));
+        item1->setBackground(QColor("#a3f48a"));
     }
 
     ui->AccTable->setCurrentCell(-1,-1);
@@ -127,15 +130,18 @@ void WReport::on_AccTable_clicked(const QModelIndex &index)
 
 void WReport::on_TypesTable_clicked(const QModelIndex &index)
 {
-    auto item = ui->TypesTable->item(index.row(), index.column());
-    QColor c = item->background().color();
+    auto item0 = ui->AccTable->item(index.row(), 0);
+    auto item1 = ui->AccTable->item(index.row(), 1);
+    QColor c = item0->background().color();
 
     if (c == QColor("#a3f48a")) {
-        typesReleases.remove(item->text().toStdString());
-        item->setBackground(QColor("#ffffff"));
+        typesReleases.remove(item0->text().toInt());
+        item0->setBackground(QColor("#ffffff"));
+        item1->setBackground(QColor("#ffffff"));
     } else {
-        typesReleases.push_back(item->text().toStdString());
-        item->setBackground(QColor("#a3f48a"));
+        typesReleases.push_back(item0->text().toInt());
+        item0->setBackground(QColor("#a3f48a"));
+        item1->setBackground(QColor("#a3f48a"));
     }
 
     ui->TypesTable->setCurrentCell(-1,-1);
@@ -144,15 +150,18 @@ void WReport::on_TypesTable_clicked(const QModelIndex &index)
 
 void WReport::on_PayTable_clicked(const QModelIndex &index)
 {
-    auto item = ui->PayTable->item(index.row(), index.column());
-    QColor c = item->background().color();
+    auto item0 = ui->PayTable->item(index.row(), 0);
+    auto item1 = ui->PayTable->item(index.row(), 1);
+    QColor c = item0->background().color();
 
     if (c == QColor("#a3f48a")) {
-        typesPayments.remove(item->text().toStdString());
-        item->setBackground(QColor("#ffffff"));
+        typesPayments.remove(item1->text().toStdString());
+        item0->setBackground(QColor("#ffffff"));
+        item1->setBackground(QColor("#ffffff"));
     } else {
-        typesPayments.push_back(item->text().toStdString());
-        item->setBackground(QColor("#a3f48a"));
+        typesPayments.push_back(item1->text().toStdString());
+        item0->setBackground(QColor("#a3f48a"));
+        item1->setBackground(QColor("#a3f48a"));
     }
 
     ui->PayTable->setCurrentCell(-1,-1);
@@ -163,13 +172,16 @@ void WReport::on_AllAccs_clicked()
 {
     if (ui->AccTable->rowCount() == accounts.size()) {
         accounts.clear();
-        for (int i = 0; i < ui->AccTable->rowCount(); i++)
+        for (int i = 0; i < ui->AccTable->rowCount(); i++) {
             ui->AccTable->item(i, 0)->setBackground(QColor("#ffffff"));
+            ui->AccTable->item(i, 1)->setBackground(QColor("#ffffff"));
+        }
     } else {
         accounts.clear();
         for (int i = 0; i < ui->AccTable->rowCount(); i++) {
             ui->AccTable->item(i, 0)->setBackground(QColor("#a3f48a"));
-            accounts.push_back(ui->AccTable->item(i, 0)->text().toStdString());
+            ui->AccTable->item(i, 1)->setBackground(QColor("#a3f48a"));
+            accounts.push_back(ui->AccTable->item(i, 0)->text().toInt());
         }
     }
 }
@@ -178,13 +190,16 @@ void WReport::on_AllTypes_clicked()
 {
     if (ui->TypesTable->rowCount() == typesReleases.size()) {
         typesReleases.clear();
-        for (int i = 0; i < ui->TypesTable->rowCount(); i++)
+        for (int i = 0; i < ui->TypesTable->rowCount(); i++) {
             ui->TypesTable->item(i, 0)->setBackground(QColor("#ffffff"));
+            ui->TypesTable->item(i, 1)->setBackground(QColor("#ffffff"));
+        }
     } else {
         typesReleases.clear();
         for (int i = 0; i < ui->TypesTable->rowCount(); i++) {
             ui->TypesTable->item(i, 0)->setBackground(QColor("#a3f48a"));
-            typesReleases.push_back(ui->TypesTable->item(i, 0)->text().toStdString());
+            ui->TypesTable->item(i, 1)->setBackground(QColor("#a3f48a"));
+            typesReleases.push_back(ui->TypesTable->item(i, 0)->text().toInt());
         }
     }
 }
@@ -193,13 +208,16 @@ void WReport::on_AllPay_clicked()
 {
     if (ui->PayTable->rowCount() == typesPayments.size()) {
         typesPayments.clear();
-        for (int i = 0; i < ui->PayTable->rowCount(); i++)
+        for (int i = 0; i < ui->PayTable->rowCount(); i++) {
             ui->PayTable->item(i, 0)->setBackground(QColor("#ffffff"));
+            ui->PayTable->item(i, 1)->setBackground(QColor("#ffffff"));
+        }
     } else {
         typesPayments.clear();
         for (int i = 0; i < ui->PayTable->rowCount(); i++) {
             ui->PayTable->item(i, 0)->setBackground(QColor("#a3f48a"));
-            typesPayments.push_back(ui->PayTable->item(i, 0)->text().toStdString());
+            ui->PayTable->item(i, 1)->setBackground(QColor("#a3f48a"));
+            typesPayments.push_back(ui->PayTable->item(i, 1)->text().toStdString());
         }
     }
 }
@@ -210,14 +228,20 @@ void WReport::on_Clean_clicked()
     typesReleases.clear();
     typesPayments.clear();
 
-    for (int i = 0; i < ui->AccTable->rowCount(); i++)
+    for (int i = 0; i < ui->AccTable->rowCount(); i++) {
         ui->AccTable->item(i, 0)->setBackground(QColor("#ffffff"));
+        ui->AccTable->item(i, 1)->setBackground(QColor("#ffffff"));
+    }
 
-    for (int i = 0; i < ui->TypesTable->rowCount(); i++)
+    for (int i = 0; i < ui->TypesTable->rowCount(); i++) {
         ui->TypesTable->item(i, 0)->setBackground(QColor("#ffffff"));
+        ui->TypesTable->item(i, 1)->setBackground(QColor("#ffffff"));
+    }
 
-    for (int i = 0; i < ui->PayTable->rowCount(); i++)
+    for (int i = 0; i < ui->PayTable->rowCount(); i++) {
         ui->PayTable->item(i, 0)->setBackground(QColor("#ffffff"));
+        ui->PayTable->item(i, 1)->setBackground(QColor("#ffffff"));
+    }
 
     ui->In->setChecked(false);
     ui->Out->setChecked(false);
@@ -250,8 +274,8 @@ void WReport::on_Confirm_clicked()
     bool in  = ui->In->isChecked();
     bool out = ui->Out->isChecked();
 
-    list<string> accs;
-    list<string> relTypes;
+    list<int> accs;
+    list<int> relTypes;
     list<string> payTypes;
 
     for (int i = 0; i < accounts.size(); ++i)
@@ -264,6 +288,7 @@ void WReport::on_Confirm_clicked()
         payTypes.push_back(typesPayments.at(i));
 
     report = facade->createReport(accs, relTypes, payTypes, begin, end, lower, upper, in, out);
+
     if (report != nullptr) {
 
         ui->Rep_Releases->setRowCount(0);

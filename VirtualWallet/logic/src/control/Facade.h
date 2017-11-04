@@ -48,20 +48,20 @@ public:
 
     void deleteRelease(int _id);
 
-
-
-
-
-
-
-
-
-
-
-
-
-    Report * createReport(list<string> accounts, list<string> releaseTypes, list<string> paymentTypes,
+    Report * createReport(list<int> accountIds, list<int> releaseTypeIds, list<string> paymentTypes,
                           string begin, string end, double lower, double upper, bool in, bool out);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -167,36 +167,48 @@ void Facade::deleteRelease(int _id)
     bd->removeRelease(_id, currentUser);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Report * Facade::createReport(list<string> accounts, list<string> releaseTypes, list<string> paymentTypes,
+Report * Facade::createReport(list<int> accountIds, list<int> releaseTypeIds, list<string> paymentTypes,
                       string begin, string end, double lower, double upper, bool in, bool out)
 {
-    list<Account*> accs;
-    for (auto & name : accounts)
-        accs.push_back(user->getAccount(name));
+    list<Account*> accounts;
+    for (auto & acc : bd->getAccounts(currentUser))
+        for (auto & accId : accountIds)
+            if (acc->getId() == accId) {
+                accs.push_back(acc);
+                break;
+            }
 
-    ReportBuilder builder(accs, releaseTypes, paymentTypes, begin, end, lower, upper, in, out);
+    list<ReleaseType*> releaseTypes;
+    for (auto & relT : bd->getReleaseTypes(currentUser))
+        for (auto & relTId : releaseTypeIds)
+            if (relT->getId() == relTId) {
+                releaseTypes.push_back(relT);
+                break;
+            }
+
+    ReportBuilder builder(accounts, releaseTypes, paymentTypes, begin, end, lower, upper, in, out);
 
     if (!builder.isValid())
         return nullptr;
 
     return builder.build();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bool Facade::containsAccount(std::string name)
 {

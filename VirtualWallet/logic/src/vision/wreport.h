@@ -64,8 +64,8 @@ private:
     Facade * facade;
     Report * report{nullptr};
 
-    structures::LinkedList<std::string> accounts;
-    structures::LinkedList<std::string> typesReleases;
+    structures::LinkedList<int> accounts;
+    structures::LinkedList<int> typesReleases;
     structures::LinkedList<std::string> typesPayments;
 
     QChartView *chartView{nullptr};

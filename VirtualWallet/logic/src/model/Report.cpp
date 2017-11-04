@@ -4,7 +4,7 @@
 
 namespace project {
 
-Report::Report(list<Account*> &_accounts, list<string> &_releasesTypes, list<string> &_paymentTypes,
+Report::Report(list<Account*> &_accounts, list<ReleaseType*> &_releasesTypes, list<string> &_paymentTypes,
                string _begin, string _end, double _lowerValue, double _upperValue, bool _in, bool _out) :
     accounts(_accounts),
     releasesTypes(_releasesTypes),
@@ -40,8 +40,8 @@ void Report::searchByReleasesType() {
 
     for (auto & rel : aux) {
         bool removeR = true;
-        for (std::string type : releasesTypes)
-            if (rel->getReleaseType() == type)
+        for (auto & type : releasesTypes)
+            if (rel->getReleaseType()->getName() == type->getName())
                 removeR = false;
         if (removeR)
             releases.remove(rel);
@@ -79,13 +79,8 @@ void Report::searchByValue() {
     for (auto & rel : aux) {
         double value = in && out ? abs(rel->getValue()) : in ? rel->getValue() : -rel->getValue();
 
-        std::string x = in ? "in: " : "out: ";
-        std::cout << x << rel->getValue() << " -> " << value << std::endl;
-
-        if (value < lowerValue || value > upperValue) {
+        if (value < lowerValue || value > upperValue)
             releases.remove(rel);
-            std::cout << rel->getDescription() << std::endl;
-        }
     }
 }
 
