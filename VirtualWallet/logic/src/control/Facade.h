@@ -21,8 +21,10 @@ namespace project {
 class Facade {
 public:
     Facade();
-    Facade(std::string _name, std::string _password, std::string _code);
+    explicit Facade(int _currentId);
     ~Facade();
+
+    int getCurrentId();
 
     bool registerUser(std::string _name,std::string _code, std::string _password, std::string _confirm);
     bool login(std::string _name, std::string _password);
@@ -51,30 +53,25 @@ public:
     Report * createReport(list<int> accountIds, list<int> releaseTypeIds, list<string> paymentTypes,
                           string begin, string end, double lower, double upper, bool in, bool out);
 
-
-
-
-
-
-
-
-
-
-
-
-    bool containsAccount(std::string name);
-    size_t accountsAmount();
-    size_t releasesAmount(std::string name);
-
     double accountsBalance();
     std::string getUserName();
 
 
 
+
+
+
+
+
+
+
+
+   /* bool containsAccount(std::string name);
+    size_t accountsAmount();
+    size_t releasesAmount(std::string name);
     bool refreshReleaseType(std::string _oldName, std::string _newName);
     bool refreshAccount(std::string _oldName, std::string _newName, std::string _newNumber, std::string _newAgency, std::string _newBank, double _balance);
-
-    void insertUser(User* _user);
+    void insertUser(User* _user);*/
 
 private:
     int currentUser;

@@ -15,7 +15,7 @@ namespace project {
 class ReleaseBuilder
 {
 public:
-    ReleaseBuilder(int _id, double _value, Account* _account, ReleaseType * _releaseType,
+    ReleaseBuilder(int _id, double _value, Account * _account, ReleaseType * _releaseType,
                    string _paymentType, string _description, string operation, string _date);
     ~ReleaseBuilder();
 

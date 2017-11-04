@@ -21,11 +21,12 @@ public:
     DataBase();
     ~DataBase();
 
+    User * getUser(int _id);
     User * getUserByNameAndPass(string _name, string _password);
     User * getUserByCodeAndPass(string _code, string _password);
     User * getUserByNameAndCode(string _name, string _code);
 
-    void put(User * _user);
+    bool put(User * _user);
 
     list<Wallet*> getWallets(int _userId);
     list<Account*> getAccounts(int _userId);
@@ -50,7 +51,6 @@ public:
 
 private:
     User * user;
-    int accountId{0}, releaseId{0}, releaseTypeId{0};
 
 };
 

@@ -39,7 +39,7 @@ public:
 private:
     int id;
     double value;
-    Account* account;
+    Account * account;
     ReleaseType * releaseType;
     string paymentType, description, operation, date;
     

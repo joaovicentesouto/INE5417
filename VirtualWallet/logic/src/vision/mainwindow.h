@@ -30,7 +30,6 @@ private slots:
     void on_MenuReport_clicked();
     void on_MenuBankAccounts_clicked();
     void on_MenuWallets_clicked();
-    void on_MenuUserDatas_clicked();
     void on_MenuAbout_clicked();
     void on_MenuOut_clicked();
     void build();

@@ -1,10 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <iostream>
+
+using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    facade(nullptr)
+    facade(new Facade(-1))
 {
     ui->setupUi(this);
     ui->Menu->hide();
@@ -12,10 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->MenuButton->setIcon(QIcon(":menubutton.png"));
     ui->MenuButton->setIconSize(QSize(20,20));
 
-    if(facade == nullptr) {
-        facade = new Facade();
+    if(facade->getCurrentId() == -1)
         ui->Stack->setCurrentWidget(ui->NewUser);
-    }
 
     ui->NewWallet->setFacade(facade);
     ui->LoginCenterWidget->setFacade(facade);
@@ -71,9 +73,8 @@ void MainWindow::on_MenuButton_clicked()
 
 void MainWindow::build()
 {
-    string accauntsBalance(24, '\0');
-    snprintf(&accauntsBalance[0], 24, "%.2f", facade->accountsBalance());
-    ui->MenuTotal->setText(QString::fromStdString("Total R$ " + accauntsBalance));
+    double teste = facade->accountsBalance();
+    ui->MenuTotal->setText("Total R$ " + QString::number(teste, 'f', 2));
     emit update();
 }
 
@@ -118,13 +119,6 @@ void MainWindow::on_MenuBankAccounts_clicked()
 void MainWindow::on_MenuWallets_clicked()
 {
     ui->Stack->setCurrentWidget(ui->NewWallet);
-    ui->MenuWidget->hide();
-    build();
-}
-
-void MainWindow::on_MenuUserDatas_clicked()
-{
-    ui->Stack->setCurrentWidget(ui->UserData);
     ui->MenuWidget->hide();
     build();
 }

@@ -14,6 +14,11 @@ DataBase::~DataBase()
 
 }
 
+User * DataBase::getUser(int _id)
+{
+    return user;
+}
+
 User * DataBase::getUserByNameAndPass(string _name, string _password)
 {
     if (!_name.compare(user->getName()) && !_password.compare(user->getPassword()))
@@ -38,9 +43,10 @@ User * DataBase::getUserByNameAndCode(string _name, string _code)
     return nullptr;
 }
 
-void DataBase::put(User * _user)
+bool DataBase::put(User * _user)
 {
     user = _user;
+    return true;
 }
 
 list<Wallet*> DataBase::getWallets(int _userId)

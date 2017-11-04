@@ -81,7 +81,7 @@ void WReport::on_ValueBox_2_valueChanged(double arg1)
 
 void WReport::tableBuilder()
 {
-    ui->AccTable->setRowCount(0);
+    /*ui->AccTable->setRowCount(0);
     for (auto & acc : facade->userAccounts()) {
         ui->AccTable->insertRow(ui->AccTable->rowCount());
         ui->AccTable->setItem(ui->AccTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(acc->getId())));
@@ -104,7 +104,7 @@ void WReport::tableBuilder()
     }
 
     ui->Stack->setCurrentWidget(ui->Generator);
-    on_Clean_clicked();
+    on_Clean_clicked();*/
 }
 
 void WReport::on_AccTable_clicked(const QModelIndex &index)

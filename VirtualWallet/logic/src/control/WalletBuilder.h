@@ -16,7 +16,7 @@ public:
     ~WalletBuilder();
 
     bool isValid();
-    Wallet* build();
+    Wallet * build();
 
 private:
     int id;

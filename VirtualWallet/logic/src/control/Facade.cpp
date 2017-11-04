@@ -1,4 +1,5 @@
 #include "Facade.h"
+#include <iostream>
 
 using namespace std;
 
@@ -9,9 +10,9 @@ Facade::Facade()
 
 }
 
-Facade::Facade(std::string _name, std::string _password, std::string _code)
+Facade::Facade(int _currentId)
 {
-
+    currentUser = _currentId;
 }
 
 Facade::~Facade()
@@ -19,15 +20,19 @@ Facade::~Facade()
 
 }
 
+int Facade::getCurrentId()
+{
+    return currentUser;
+}
+
 bool Facade::registerUser(std::string _name, std::string _code, std::string _password, std::string _confirm)
 {
-    UserBuilder creator(_name, _code, _password, _confirm);
+    UserBuilder builder(_name, _code, _password, _confirm);
 
-    if (!creator.isValid())
+    if (!builder.isValid())
         return false;
 
-    bd->put(creator.build());
-    return true;
+    return bd->put(builder.build());
 }
 
 bool Facade::login(std::string _name, std::string _password)
@@ -196,6 +201,21 @@ Report * Facade::createReport(list<int> accountIds, list<int> releaseTypeIds, li
     return builder.build();
 }
 
+double Facade::accountsBalance() {
+    double totalBalance = 0;
+    list<Account*> accounts = userAccounts();
+    cout << accounts.size() << endl << flush;
+    for (auto & i: accounts) {
+        totalBalance += i->getBalance();
+    }
+    return totalBalance;
+}
+
+std::string Facade::getUserName()
+{
+    return bd->getUser(currentUser)->getName();
+}
+
 
 
 
@@ -216,15 +236,6 @@ Report * Facade::createReport(list<int> accountIds, list<int> releaseTypeIds, li
 
 size_t Facade::accountsAmount() {
     return user->getAccounts().size();
-}
-
-double Facade::accountsBalance() {
-    double totalBalance = 0;
-    list<Account*> accounts = user->getAccounts();
-    for (std::list<Account*>::iterator i = accounts.begin(); i != accounts.end(); ++i) {
-        totalBalance += (*i)->getBalance();
-    }
-    return totalBalance;
 }
 
 size_t Facade::releasesAmount(std::string name) {

@@ -35,7 +35,7 @@ void WNewRelease::setFacade(Facade * _facade) {
 
 void WNewRelease::update() {
 
-    on_Clean_clicked();
+    /*on_Clean_clicked();
     ui->Accounts->clear();
     ui->ReleaseType->clear();
     ui->PaymentType->clear();
@@ -56,7 +56,7 @@ void WNewRelease::update() {
         ui->PaymentType->addItem(QString::fromStdString(payT));
     }
 
-    ui->DateEdit->setDate(QDate::currentDate());
+    ui->DateEdit->setDate(QDate::currentDate());*/
 }
 
 void WNewRelease::on_Clean_clicked()
