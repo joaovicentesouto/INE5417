@@ -8,8 +8,8 @@ Report::Report(list<Account*> &_accounts, list<ReleaseType*> &_releasesTypes, li
                string _begin, string _end, double _lowerValue, double _upperValue, bool _in, bool _out) :
     accounts(_accounts),
     releasesTypes(_releasesTypes),
-    paymentTypes(_paymentTypes),
     begin(_begin),
+    paymentTypes(_paymentTypes),
     end(_end),
     lowerValue(_lowerValue),
     upperValue(_upperValue),

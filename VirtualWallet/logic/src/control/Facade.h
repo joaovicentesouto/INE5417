@@ -31,7 +31,7 @@ public:
 
     list<Account*> userAccounts();
     list<Wallet*> userWallets();
-    list<BankAccount*> * userBankAccounts();
+    list<BankAccount*> userBankAccounts();
     list<Release*> userReleases();
     list<ReleaseType*> userReleaseTypes();
     list<string> userPaymentTypes();
@@ -50,9 +50,6 @@ public:
 
     Report * createReport(list<int> accountIds, list<int> releaseTypeIds, list<string> paymentTypes,
                           string begin, string end, double lower, double upper, bool in, bool out);
-
-
-
 
 
 

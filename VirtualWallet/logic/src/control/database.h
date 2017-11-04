@@ -36,7 +36,7 @@ public:
     bool put(ReleaseType * _type, int _userId);
     void removeReleaseType(int _typeId, int _userId);
     void removeReleasesByType(string _type, int _userId);
-    void removeRelease(int _relId, in _userId);
+    void removeRelease(int _relId, int _userId);
 
     bool put(Wallet * _account, int _userId);
     void removeAccount(int _accId, int _userId);

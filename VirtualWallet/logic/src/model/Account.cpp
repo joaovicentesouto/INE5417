@@ -5,9 +5,9 @@ namespace project {
 
 Account::Account(int _id, string _name, double _balance, bool _type) :
     id(_id),
-    name(_name),
     balance(_balance),
-    type(_type)
+    type(_type),
+    name(_name)
 {
     
 }
@@ -43,12 +43,12 @@ void Account::changeName(string _newName) {
 
 void Account::insertRelease(Release * _release) {
     releases.push_front(_release);
-    balance += _release.getValue();
+    balance += _release->getValue();
 }
 
 void Account::removeRelease(Release * _release) {
     releases.remove(_release);
-    balance -= _release.getValue();
+    balance -= _release->getValue();
 }
 
 }  // namespace project

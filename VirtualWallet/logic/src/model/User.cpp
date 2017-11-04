@@ -7,8 +7,8 @@ User::User(string _name, string _password, string _code) :
     name(_name),
     password(_password),
     code(_code),
-    accounts(),
-    releaseTypes()
+    releaseTypes(),
+    accounts()
 {
     paymentTypes.push_front("Dinheiro");
     paymentTypes.push_front("Crédito");
@@ -126,7 +126,8 @@ bool User::accountExist(string _name)
 
 bool User::insertReleaseType(ReleaseType * _type)
 {
-    return releaseTypes.push_front(_type);
+    releaseTypes.push_front(_type);
+    return true;
 }
 
 void User::removeReleaseType(ReleaseType * _type)
@@ -138,7 +139,7 @@ void User::removeReleases(ReleaseType * _type)
 {
     for (auto & i: accounts)
         for (auto & j : i->getReleases())
-            if (!j->getReleaseType().compare(_type->getName())) {
+            if (!j->getReleaseType()->getName().compare(_type->getName())) {
                 i->removeRelease(j);
                 delete j;
             }

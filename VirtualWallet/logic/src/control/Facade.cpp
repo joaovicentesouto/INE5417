@@ -139,7 +139,18 @@ bool Facade::registerBankAccount(int _accId, std::string _name, double _balance,
 bool Facade::registerRelease(int _relId, double _value, std::string _accountName, std::string _releaseT, std::string _paymentT,
                      std::string _description, std::string _op, std::string _date)
 {
-    Account * account = bd->getAccount(_accountName, currentUser);
+    Account * account = nullptr;
+    for (auto & acc : bd->getAccounts(currentUser))
+        if (acc->getName() == _accountName) {
+            account = acc;
+        }
+
+    ReleaseType * releaseT = nullptr;
+    for (auto & rel : bd->getReleaseTypes(currentUser))
+        if (rel->getName() == _releaseT) {
+            releaseT = rel;
+            break;
+        }
 
     if (account == nullptr)
         return false;
@@ -147,7 +158,7 @@ bool Facade::registerRelease(int _relId, double _value, std::string _accountName
     if (_op == "out")
         _value = - _value;
 
-    ReleaseBuilder builder(_relId, _value, _account, _releaseT, _paymentT, _description, _op, _date);
+    ReleaseBuilder builder(_relId, _value, account, releaseT, _paymentT, _description, _op, _date);
 
     if (!builder.isValid())
         return false;
@@ -155,9 +166,9 @@ bool Facade::registerRelease(int _relId, double _value, std::string _accountName
     account->insertRelease(builder.build());
 
     if (account->getType())
-        bd->put(static_cast<BankAccount*>(account));
+        bd->put(static_cast<BankAccount*>(account), currentUser);
     else
-        bd->put(static_cast<Wallet*>(account));
+        bd->put(static_cast<Wallet*>(account), currentUser);
 
     return true;
 }
@@ -174,7 +185,7 @@ Report * Facade::createReport(list<int> accountIds, list<int> releaseTypeIds, li
     for (auto & acc : bd->getAccounts(currentUser))
         for (auto & accId : accountIds)
             if (acc->getId() == accId) {
-                accs.push_back(acc);
+                accounts.push_back(acc);
                 break;
             }
 
@@ -193,9 +204,6 @@ Report * Facade::createReport(list<int> accountIds, list<int> releaseTypeIds, li
 
     return builder.build();
 }
-
-
-
 
 
 
@@ -345,5 +353,6 @@ bool Facade::refreshAccount(std::string _oldName, std::string _newName, std::str
 void Facade::insertUser(User* _user) {
     user = _user;
 }
+
 
 }
