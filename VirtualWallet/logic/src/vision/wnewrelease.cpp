@@ -44,18 +44,15 @@ void WNewRelease::update() {
     ui->ReleaseType->addItem("Tipo de Lancamento");
     ui->PaymentType->addItem("Tipo de Pagamento");
 
-    list<Account*> accounts = facade->userAccounts();
-    for (auto & acc : accounts) {
+    for (auto & acc : facade->userAccounts()) {
         ui->Accounts->addItem(QString::fromStdString(acc->getName()));
     }
 
-    list<ReleaseType*> releasesTypes = facade->userReleaseTypes();
-    for (auto & release : releasesTypes) {
+    for (auto & release : facade->userReleaseTypes()) {
         ui->ReleaseType->addItem(QString::fromStdString(release->getName()));
     }
 
-    list<string> paymentTypes = facade->userPaymentTypes();
-    for (auto & payT : paymentTypes) {
+    for (auto & payT : facade->userPaymentTypes()) {
         ui->PaymentType->addItem(QString::fromStdString(payT));
     }
 
@@ -137,5 +134,52 @@ void WNewRelease::on_Delete_clicked()
         ui->Erro->setText("Lancamento Excluido com Sucesso!");
         tableBuilder();
         emit build();
+    }
+}
+
+void WNewRelease::on_ReleaseTable_clicked(const QModelIndex &index)
+{
+    int id = ui->ReleaseTable->item(index.row(), 0)->text().toInt();
+    Release * release;
+    for (auto & rel : facade->userReleases())
+        if (rel->getId() == id) {
+            release = rel;
+            break;
+        }
+
+    ui->ValueBox->setValue(release->getValue());
+    ui->DateEdit->setDate(QDate::fromString(QString::fromStdString(release->getDate()), "dd/MM/yyyy"));
+    ui->DescRelease->setText(release->getDescription());
+    ui->Erro->setText("");
+    if (release->getOperation() == in)
+        ui->In->setChecked(true);
+    else
+        ui->Out->setChecked(true);
+
+    int i = 0;
+    for (auto & acc : facade->userAccounts()) {
+        if (release->getAccount()->getId() == acc->getId()) {
+            ui->Accounts->setCurrentIndex(i);
+            break;
+        }
+        i++;
+    }
+
+    i = 0;
+    for (auto & rel : facade->userReleaseTypes()) {
+        if (release->getReleaseType()->getName() == rel->getName()) {
+            ui->ReleaseType->setCurrentIndex(i);
+            break;
+        }
+        i++;
+    }
+
+    i = 0;
+    for (auto & payT : facade->userPaymentTypes()) {
+        if (release->getPaymentType() == payT) {
+            ui->PaymentType->setCurrentIndex(i);
+            break;
+        }
+        i++;
     }
 }

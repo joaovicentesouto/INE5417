@@ -2,7 +2,7 @@
 
 namespace project {
 
-ReleaseBuilder::ReleaseBuilder(int _id, double _value, Account* _account, string _releaseType,
+ReleaseBuilder::ReleaseBuilder(int _id, double _value, Account* _account, ReleaseType * _releaseType,
                                string _paymentType, string _description, string _operation, string _date) :
     id(_id),
     value(_value),

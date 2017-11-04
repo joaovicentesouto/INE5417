@@ -33,6 +33,8 @@ private slots:
 
     void on_Delete_clicked();
 
+    void on_ReleaseTable_clicked(const QModelIndex &index);
+
 signals:
     void build();
 
