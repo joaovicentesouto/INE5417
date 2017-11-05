@@ -21,6 +21,8 @@ public:
     string getName();
     double getBalance();
     list<Release*> getReleases();
+
+    void setId(int _id);
     
     void changeName(string _newName);
     void insertRelease(Release * _release);

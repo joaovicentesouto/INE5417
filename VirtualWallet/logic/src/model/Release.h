@@ -27,6 +27,8 @@ public:
     string getDescription();
     string getOperation();
     string getDate();
+
+    void setId(int _id);
     
     void changeValue(double _value);
     void changeAccount(Account* _account);

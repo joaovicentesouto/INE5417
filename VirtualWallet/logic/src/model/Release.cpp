@@ -56,6 +56,11 @@ string Release::getDate() {
     return date;
 }
 
+void Release::setId(int _id)
+{
+    id = _id;
+}
+
 void Release::changeValue(double _value) {
     value = _value;
 }

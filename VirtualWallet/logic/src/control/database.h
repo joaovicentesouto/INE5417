@@ -50,6 +50,10 @@ public:
     bool put(Release * _release, int _userId);
 
 private:
+    int counterUser{0},
+        counterAccounts{0},
+        counterReleases{0},
+        counterReleaseTypes{6};
     User * user;
 
 };

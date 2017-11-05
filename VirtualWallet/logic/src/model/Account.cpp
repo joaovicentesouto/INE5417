@@ -37,6 +37,11 @@ list<Release*> Account::getReleases() {
     return releases;
 }
 
+void Account::setId(int _id)
+{
+    id = _id;
+}
+
 void Account::changeName(string _newName) {
     name = _newName;
 }

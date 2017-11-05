@@ -87,12 +87,10 @@ void WNewRelease::on_Confirm_clicked()
     std::string date = ui->DateEdit->date().toString("dd/MM/yyyy").toStdString();
     double value = ui->ValueBox->value();
 
-    on_Clean_clicked();
-
     int row = ui->ReleaseTable->currentRow();
 
     if (row > -1)
-        int row = ui->ReleaseTable->item(row, 0)->text().toInt();
+        row = ui->ReleaseTable->item(row, 0)->text().toInt();
 
     on_Clean_clicked();
 
@@ -104,6 +102,7 @@ void WNewRelease::on_Confirm_clicked()
         ui->Msg->setStyleSheet("color: red");
         ui->Msg->setText("Dados Invalidos!");
     }
+
     tableBuilder();
 }
 
@@ -141,32 +140,9 @@ void WNewRelease::on_ReleaseTable_clicked(const QModelIndex &index)
     else
         ui->Out->setChecked(true);
 
-    int i = 0;
-    for (auto & acc : facade->userAccounts()) {
-        if (release->getAccount()->getId() == acc->getId()) {
-            ui->Accounts->setCurrentIndex(i);
-            break;
-        }
-        i++;
-    }
-
-    i = 0;
-    for (auto & rel : facade->userReleaseTypes()) {
-        if (release->getReleaseType()->getName() == rel->getName()) {
-            ui->ReleaseType->setCurrentIndex(i);
-            break;
-        }
-        i++;
-    }
-
-    i = 0;
-    for (auto & payT : facade->userPaymentTypes()) {
-        if (release->getPaymentType() == payT) {
-            ui->PaymentType->setCurrentIndex(i);
-            break;
-        }
-        i++;
-    }
+    ui->Accounts->setCurrentText(QString::fromStdString(release->getAccount()->getName()));
+    ui->ReleaseType->setCurrentText(QString::fromStdString(release->getReleaseType()->getName()));
+    ui->PaymentType->setCurrentText(QString::fromStdString(release->getPaymentType()));
 }
 
 void WNewRelease::on_Delete_clicked()

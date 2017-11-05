@@ -74,8 +74,8 @@ void WNewWallet::tableBuilder()
 
 void WNewWallet::on_WalletTable_clicked(const QModelIndex &index)
 {
-    ui->Name->setText(ui->WalletTable->item(index.row(), 0)->text());
-    ui->Balance->setValue(ui->WalletTable->item(index.row(), 1)->text().toDouble());
+    ui->Name->setText(ui->WalletTable->item(index.row(), 1)->text());
+    ui->Balance->setValue(ui->WalletTable->item(index.row(), 2)->text().toDouble());
 }
 
 void WNewWallet::on_Delete_clicked()

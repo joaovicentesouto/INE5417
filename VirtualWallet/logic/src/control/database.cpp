@@ -45,6 +45,7 @@ User * DataBase::getUserByNameAndCode(string _name, string _code)
 
 bool DataBase::put(User * _user)
 {
+    counterUser++;
     user = _user;
     return true;
 }
@@ -112,6 +113,9 @@ bool DataBase::put(ReleaseType * _type, int _userId)
         }
     }
 
+    if (_type->getId() == -1)
+        _type->setId(counterReleaseTypes++);
+
     return user->insertReleaseType(_type);
 }
 
@@ -152,6 +156,9 @@ bool DataBase::put(Wallet * _account, int _userId)
         }
     }
 
+    if (_account->getId() == -1)
+        _account->setId(counterAccounts++);
+
     return user->insertAccount(_account);
 }
 
@@ -176,6 +183,9 @@ bool DataBase::put(BankAccount * _account, int _userId)
         }
     }
 
+    if (_account->getId() == -1)
+        _account->setId(counterAccounts++);
+
     return user->insertAccount(_account);
 }
 
@@ -188,6 +198,9 @@ bool DataBase::put(Release * _release, int _userId)
                 i->insertRelease(_release);
                 return true;
             }
+
+    if (_release->getId() == -1)
+        _release->setId(counterReleases++);
 
     _release->getAccount()->insertRelease(_release);
     return true;
