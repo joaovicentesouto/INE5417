@@ -1,6 +1,8 @@
 #ifndef USERMAPPER_H
 #define USERMAPPER_H
 
+#include "src/model/User.h"
+
 #include <QDebug>
 #include <QDir>
 #include <QtSql>
@@ -20,7 +22,17 @@ public:
     UserMapper(QSqlDatabase & _conn);
     ~UserMapper();
 
+    User * getById(int id);
+    User * getByName(string name);
+    list<User*> getAllUsers();
+
+    void put(User * user);
+    void remove(int id);
+
 private:
+    void putExistUser(User * user);
+    void putNewUser(User * user);
+
     QSqlDatabase & conn;
 };
 

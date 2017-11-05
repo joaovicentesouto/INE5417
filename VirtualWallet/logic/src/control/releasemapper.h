@@ -12,6 +12,8 @@
 #include <string>
 #include <list>
 
+#include "src/model/Release.h"
+
 namespace project {
 
 class ReleaseMapper
@@ -20,7 +22,16 @@ public:
     ReleaseMapper(QSqlDatabase & _conn);
     ~ReleaseMapper();
 
+    Release * getById(int id);
+    list<Release*> getAllReleases();
+
+    void put(Release * release);
+    void remove(int id);
+
 private:
+    void putExistUser(Release * release);
+    void putNewUser(Release * release);
+
     QSqlDatabase & conn;
 };
 
