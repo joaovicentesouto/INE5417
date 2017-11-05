@@ -3,7 +3,8 @@
 namespace project {
 
 BankAccountMapper::BankAccountMapper(QSqlDatabase & _conn) :
-    conn(_conn)
+    conn(_conn),
+    releaseMapper(_conn)
 {
 
 }

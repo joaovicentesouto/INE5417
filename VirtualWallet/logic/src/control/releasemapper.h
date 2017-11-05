@@ -13,6 +13,8 @@
 #include <list>
 
 #include "src/model/Release.h"
+#include "src/model/releasetype.h"
+#include "src/control/releasetypemapper.h"
 
 namespace project {
 
@@ -33,6 +35,7 @@ private:
     void putNewUser(Release * release);
 
     QSqlDatabase & conn;
+    ReleaseTypeMapper releaseTypeMapper;
 };
 
 } // namespace

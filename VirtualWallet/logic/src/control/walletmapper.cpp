@@ -3,7 +3,8 @@
 namespace project {
 
 WalletMapper::WalletMapper(QSqlDatabase & _conn) :
-    conn(_conn)
+    conn(_conn),
+    releaseMapper(_conn)
 {
 
 }

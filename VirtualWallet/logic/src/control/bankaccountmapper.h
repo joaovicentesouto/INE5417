@@ -13,6 +13,8 @@
 #include <list>
 
 #include "src/model/BankAccount.h"
+#include "src/model/Release.h"
+#include "src/control/releasemapper.h"
 
 namespace project {
 
@@ -34,6 +36,7 @@ private:
     void putNewUser(BankAccount * bankAccount);
 
     QSqlDatabase & conn;
+    ReleaseMapper releaseMapper;
 };
 
 } // namespace

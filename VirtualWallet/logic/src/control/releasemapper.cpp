@@ -3,7 +3,8 @@
 namespace project {
 
 ReleaseMapper::ReleaseMapper(QSqlDatabase & _conn) :
-    conn(_conn)
+    conn(_conn),
+    releaseTypeMapper(_conn)
 {
 
 }

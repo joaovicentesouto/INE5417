@@ -13,6 +13,8 @@
 #include <list>
 
 #include "src/model/Wallet.h"
+#include "src/model/Release.h"
+#include "src/control/releasemapper.h"
 
 namespace project {
 
@@ -34,6 +36,8 @@ private:
     void putNewUser(Wallet * wallet);
 
     QSqlDatabase & conn;
+    ReleaseMapper releaseMapper;
+
 };
 
 } // namespace
