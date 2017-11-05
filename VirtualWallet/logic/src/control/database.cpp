@@ -1,12 +1,19 @@
 #include "database.h"
 
+#include <iostream>
+
 using namespace std;
 
 namespace project {
 
 DataBase::DataBase()
 {
-
+    db = QSqlDatabase::addDatabase("QPSQL");
+    db.setUserName("postgres");
+    db.setPassword("senha");
+    db.setHostName("localhost");
+    db.setDatabaseName("engenharia");
+    db.setPort(5432);
 }
 
 DataBase::~DataBase()
