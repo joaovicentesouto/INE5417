@@ -54,9 +54,10 @@ SOURCES += \
     src/control/database.cpp \
     src/model/releasetype.cpp \
     src/control/usermapper.cpp \
-    src/control/accountmapper.cpp \
     src/control/releasetypemapper.cpp \
-    src/control/releasemapper.cpp
+    src/control/releasemapper.cpp \
+    src/control/walletmapper.cpp \
+    src/control/bankaccountmapper.cpp
 
 HEADERS += \
         ./src/model/Account.h \
@@ -89,9 +90,10 @@ HEADERS += \
     src/control/database.h \
     src/model/releasetype.h \
     src/control/usermapper.h \
-    src/control/accountmapper.h \
     src/control/releasetypemapper.h \
-    src/control/releasemapper.h
+    src/control/releasemapper.h \
+    src/control/walletmapper.h \
+    src/control/bankaccountmapper.h
 
 FORMS += \
         ./src/vision/mainwindow.ui \

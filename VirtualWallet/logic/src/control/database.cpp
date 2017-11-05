@@ -8,12 +8,12 @@ namespace project {
 
 DataBase::DataBase()
 {
-    db = QSqlDatabase::addDatabase("QPSQL");
-    db.setUserName("postgres");
-    db.setPassword("senha");
-    db.setHostName("localhost");
-    db.setDatabaseName("engenharia");
-    db.setPort(5432);
+    conn = QSqlDatabase::addDatabase("QPSQL");
+    conn.setUserName("postgres");
+    conn.setPassword("senha");
+    conn.setHostName("localhost");
+    conn.setDatabaseName("engenharia");
+    conn.setPort(5432);
 }
 
 DataBase::~DataBase()

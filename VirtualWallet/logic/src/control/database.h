@@ -8,6 +8,12 @@
 #include "src/model/BankAccount.h"
 #include "src/model/releasetype.h"
 
+#include "src/control/usermapper.h"
+#include "src/control/walletmapper.h"
+#include "src/control/bankaccountmapper.h"
+#include "src/control/releasemapper.h"
+#include "src/control/releasetypemapper.h"
+
 #include <QDebug>
 #include <QDir>
 #include <QtSql>
@@ -63,7 +69,7 @@ private:
         counterReleases{0},
         counterReleaseTypes{6};
     User * user;
-    QSqlDatabase db;
+    QSqlDatabase conn;
 
 };
 
