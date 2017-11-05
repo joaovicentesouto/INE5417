@@ -52,7 +52,11 @@ SOURCES += \
         ./src/vision/wreport.cpp \
         ./src/control/ReportBuilder.cpp \
     src/control/database.cpp \
-    src/model/releasetype.cpp
+    src/model/releasetype.cpp \
+    src/control/usermapper.cpp \
+    src/control/accountmapper.cpp \
+    src/control/releasetypemapper.cpp \
+    src/control/releasemapper.cpp
 
 HEADERS += \
         ./src/model/Account.h \
@@ -83,7 +87,11 @@ HEADERS += \
         ./src/resources/linked_list.h \
         ./src/control/ReportBuilder.h \
     src/control/database.h \
-    src/model/releasetype.h
+    src/model/releasetype.h \
+    src/control/usermapper.h \
+    src/control/accountmapper.h \
+    src/control/releasetypemapper.h \
+    src/control/releasemapper.h
 
 FORMS += \
         ./src/vision/mainwindow.ui \
