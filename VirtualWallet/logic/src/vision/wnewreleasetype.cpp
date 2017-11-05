@@ -44,9 +44,11 @@ void WNewReleaseType::on_Confirm_clicked()
     if (row > -1)
         row = ui->TypeList->item(row, 0)->text().toInt();
 
+    string name = ui->Name->text().toStdString();
+
     on_Clean_clicked();
 
-    if (facade->registerReleaseType(ui->Name->text().toStdString(), row)) {
+    if (facade->registerReleaseType(name, row)) {
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
@@ -60,11 +62,8 @@ void WNewReleaseType::on_Confirm_clicked()
 
 void WNewReleaseType::tableBuilder()
 {
-    if (facade->userReleaseTypes() == nullptr)
-        return;
-
     ui->TypeList->setRowCount(0);
-    for (auto it: (* facade->userReleaseTypes())) {
+    for (auto it: facade->userReleaseTypes()) {
         ui->TypeList->insertRow(ui->TypeList->rowCount());
         ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem(QString::number(it->getId())));
         ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(it->getName())));

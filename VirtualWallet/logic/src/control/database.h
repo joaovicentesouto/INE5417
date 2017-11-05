@@ -28,13 +28,13 @@ public:
 
     bool put(User * _user);
 
-    list<Wallet*> * getWallets(int _userId);
-    list<Account*> * getAccounts(int _userId);
-    list<BankAccount*> * getBankAccounts(int _userId);
+    list<Wallet*> getWallets(int _userId);
+    list<Account*> getAccounts(int _userId);
+    list<BankAccount*> getBankAccounts(int _userId);
 
-    list<Release*> * getReleases(int _userId);
-    list<string> * getPaymentTypes(int _userId);
-    list<ReleaseType*> * getReleaseTypes(int _userId);
+    list<Release*> getReleases(int _userId);
+    list<string> getPaymentTypes(int _userId);
+    list<ReleaseType*> getReleaseTypes(int _userId);
 
     Account * getAccount(string _accName, int _userId);
 

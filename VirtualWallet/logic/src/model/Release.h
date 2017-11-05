@@ -21,7 +21,7 @@ public:
     
     size_t getId();
     double getValue();
-    Account* getAccount();
+    Account * getAccount();
     ReleaseType * getReleaseType();
     string getPaymentType();
     string getDescription();

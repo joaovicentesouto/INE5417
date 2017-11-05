@@ -30,12 +30,12 @@ public:
     bool refreshName(std::string _code, std::string _password, std::string _newName, std::string _confirm);
     bool refreshPass(std::string _name, std::string _code, std::string _newPass, std::string _confirm);
 
-    list<Account*> * userAccounts();
-    list<Wallet*> * userWallets();
-    list<BankAccount*> * userBankAccounts();
-    list<Release*> * userReleases();
-    list<ReleaseType*> * userReleaseTypes();
-    list<string> * userPaymentTypes();
+    list<Account*> userAccounts();
+    list<Wallet*> userWallets();
+    list<BankAccount*> userBankAccounts();
+    list<Release*> userReleases();
+    list<ReleaseType*> userReleaseTypes();
+    list<string> userPaymentTypes();
 
     bool registerReleaseType(std::string _name, int _typeId);
     void deleteReleaseType(int _typeId);

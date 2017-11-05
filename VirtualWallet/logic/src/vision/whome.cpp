@@ -30,11 +30,8 @@ WHome::~WHome()
 
 void WHome::tableBuilder()
 {
-    if (facade->userAccounts() == nullptr)
-        return;
-
     ui->Table->setRowCount(0);
-    for (auto i : (* facade->userAccounts())) {
+    for (auto i : facade->userAccounts()) {
         ui->Table->insertRow(ui->Table->rowCount());
         ui->Table->setItem(ui->Table->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(i->getName())));
         ui->Table->setItem(ui->Table->rowCount() - 1, 1, new QTableWidgetItem(QString::number(i->getBalance())));

@@ -78,7 +78,7 @@ void WNewBankAccount::on_Confirm_clicked()
 void WNewBankAccount::tableBuilder()
 {
     ui->AccountTable->setRowCount(0);
-    for (auto bankAcc : (* facade->userBankAccounts())) {
+    for (auto bankAcc : facade->userBankAccounts()) {
         ui->AccountTable->insertRow(ui->AccountTable->rowCount());
         ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(bankAcc->getId())));
         ui->AccountTable->setItem(ui->AccountTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(bankAcc->getName())));
