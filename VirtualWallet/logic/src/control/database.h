@@ -69,7 +69,13 @@ private:
         counterReleases{0},
         counterReleaseTypes{6};
     User * user;
+
     QSqlDatabase conn;
+    UserMapper * userMapper;
+    WalletMapper * walletMapper;
+    BankAccountMapper * bankAccountMapper;
+    ReleaseMapper * releaseMapper;
+    ReleaseTypeMapper * releasetTypeMapper;
 
 };
 

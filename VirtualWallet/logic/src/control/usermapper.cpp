@@ -2,7 +2,13 @@
 
 namespace project {
 
-UserMapper::UserMapper()
+UserMapper::UserMapper(QSqlDatabase & _conn) :
+    conn(_conn)
+{
+
+}
+
+UserMapper::~UserMapper()
 {
 
 }

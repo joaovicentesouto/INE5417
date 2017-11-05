@@ -2,7 +2,13 @@
 
 namespace project {
 
-ReleaseTypeMapper::ReleaseTypeMapper()
+ReleaseTypeMapper::ReleaseTypeMapper(QSqlDatabase & _conn) :
+    conn(_conn)
+{
+
+}
+
+ReleaseTypeMapper::~ReleaseTypeMapper()
 {
 
 }

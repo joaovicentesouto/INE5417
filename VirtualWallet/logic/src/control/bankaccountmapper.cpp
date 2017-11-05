@@ -2,7 +2,13 @@
 
 namespace project {
 
-BankAccountMapper::BankAccountMapper()
+BankAccountMapper::BankAccountMapper(QSqlDatabase & _conn) :
+    conn(_conn)
+{
+
+}
+
+BankAccountMapper::~BankAccountMapper()
 {
 
 }

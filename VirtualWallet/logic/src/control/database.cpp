@@ -14,6 +14,12 @@ DataBase::DataBase()
     conn.setHostName("localhost");
     conn.setDatabaseName("engenharia");
     conn.setPort(5432);
+
+    userMapper = new UserMapper(conn);
+    walletMapper = new WalletMapper(conn);
+    bankAccountMapper = new BankAccountMapper(conn);
+    releaseMapper = new ReleaseMapper(conn);
+    releasetTypeMapper = new ReleaseTypeMapper(conn);
 }
 
 DataBase::~DataBase()

@@ -17,10 +17,11 @@ namespace project {
 class UserMapper
 {
 public:
-    UserMapper();
+    UserMapper(QSqlDatabase & _conn);
+    ~UserMapper();
 
 private:
-    QSqlDatabase conn;
+    QSqlDatabase & conn;
 };
 
 } // namespace

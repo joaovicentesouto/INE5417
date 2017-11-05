@@ -2,7 +2,13 @@
 
 namespace project {
 
-WalletMapper::WalletMapper()
+WalletMapper::WalletMapper(QSqlDatabase & _conn) :
+    conn(_conn)
+{
+
+}
+
+WalletMapper::~WalletMapper()
 {
 
 }
