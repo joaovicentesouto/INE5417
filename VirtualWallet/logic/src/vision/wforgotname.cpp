@@ -11,6 +11,7 @@ WForgotName::WForgotName(QWidget *parent) :
     ui->NewName->setPlaceholderText("Novo Nome");
     ui->NameConfirm->setPlaceholderText("Confirme o Nome");
     ui->Password->setEchoMode(QLineEdit::Password);
+    ui->NewName->setFocus();
 }
 
 WForgotName::~WForgotName()

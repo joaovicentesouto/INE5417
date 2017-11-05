@@ -21,9 +21,9 @@ public:
     string getCode();
     string getName();
     string getPassword();
-    list<Account*> getAccounts();
-    list<ReleaseType*> getReleaseTypes();
-    list<string> getPaymentTypes();
+    list<Account*> * getAccounts();
+    list<ReleaseType*> * getReleaseTypes();
+    list<string> * getPaymentTypes();
     Account * getAccount(string _accountName);
 
     bool verifyUser(std::string _name, std::string _password);
@@ -45,9 +45,9 @@ public:
 private:
     int id;
     string name, password, code;
-    list<ReleaseType*> releaseTypes;
-    list<string> paymentTypes;
-    list<Account*> accounts;
+    list<ReleaseType*> * releaseTypes;
+    list<string> * paymentTypes;
+    list<Account*> * accounts;
 };
 
 }  // namespace project

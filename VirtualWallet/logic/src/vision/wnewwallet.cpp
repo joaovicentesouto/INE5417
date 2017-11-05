@@ -64,8 +64,7 @@ void WNewWallet::on_Confirm_clicked()
 void WNewWallet::tableBuilder()
 {
     ui->WalletTable->setRowCount(0);
-    list<Wallet*> accounts = facade->userWallets();
-    for (auto & i : accounts) {
+    for (auto i : (* facade->userWallets())) {
         ui->WalletTable->insertRow(ui->WalletTable->rowCount());
         ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(i->getId())));
         ui->WalletTable->setItem(ui->WalletTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(i->getName())));

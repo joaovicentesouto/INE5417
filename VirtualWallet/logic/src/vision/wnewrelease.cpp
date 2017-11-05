@@ -1,6 +1,8 @@
 #include "wnewrelease.h"
 #include "ui_wnewrelease.h"
 
+#include <iostream>
+
 WNewRelease::WNewRelease(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::WNewRelease)
@@ -35,7 +37,7 @@ void WNewRelease::setFacade(Facade * _facade) {
 
 void WNewRelease::update() {
 
-    /*on_Clean_clicked();
+    on_Clean_clicked();
     ui->Accounts->clear();
     ui->ReleaseType->clear();
     ui->PaymentType->clear();
@@ -43,20 +45,22 @@ void WNewRelease::update() {
     ui->Accounts->addItem("Conta");
     ui->ReleaseType->addItem("Tipo de Lancamento");
     ui->PaymentType->addItem("Tipo de Pagamento");
+    ui->DateEdit->setDate(QDate::currentDate());
 
-    for (auto & acc : facade->userAccounts()) {
+    if (facade->userAccounts() == nullptr || facade->userReleaseTypes() == nullptr || facade->userPaymentTypes() == nullptr)
+        return;
+
+    for (auto acc : (* facade->userAccounts())) {
         ui->Accounts->addItem(QString::fromStdString(acc->getName()));
     }
 
-    for (auto & release : facade->userReleaseTypes()) {
+    for (auto release : (* facade->userReleaseTypes())) {
         ui->ReleaseType->addItem(QString::fromStdString(release->getName()));
     }
 
-    for (auto & payT : facade->userPaymentTypes()) {
+    for (auto payT : (* facade->userPaymentTypes())) {
         ui->PaymentType->addItem(QString::fromStdString(payT));
     }
-
-    ui->DateEdit->setDate(QDate::currentDate());*/
 }
 
 void WNewRelease::on_Clean_clicked()
@@ -110,8 +114,7 @@ void WNewRelease::tableBuilder()
 {
 
     ui->ReleaseTable->setRowCount(0);
-    list<Release*> releases = facade->userReleases();
-    for (auto & rel : releases) {
+    for (auto rel : (* facade->userReleases())) {
         ui->ReleaseTable->insertRow(ui->ReleaseTable->rowCount());
         ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(rel->getId())));
         ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(rel->getAccount()->getName())));
@@ -127,7 +130,7 @@ void WNewRelease::on_ReleaseTable_clicked(const QModelIndex &index)
 {
     int id = ui->ReleaseTable->item(index.row(), 0)->text().toInt();
     Release * release;
-    for (auto & rel : facade->userReleases())
+    for (auto rel : (* facade->userReleases()))
         if (rel->getId() == id) {
             release = rel;
             break;
@@ -143,7 +146,7 @@ void WNewRelease::on_ReleaseTable_clicked(const QModelIndex &index)
         ui->Out->setChecked(true);
 
     int i = 0;
-    for (auto & acc : facade->userAccounts()) {
+    for (auto & acc : (* facade->userAccounts())) {
         if (release->getAccount()->getId() == acc->getId()) {
             ui->Accounts->setCurrentIndex(i);
             break;
@@ -152,7 +155,7 @@ void WNewRelease::on_ReleaseTable_clicked(const QModelIndex &index)
     }
 
     i = 0;
-    for (auto & rel : facade->userReleaseTypes()) {
+    for (auto rel : (* facade->userReleaseTypes())) {
         if (release->getReleaseType()->getName() == rel->getName()) {
             ui->ReleaseType->setCurrentIndex(i);
             break;
@@ -161,7 +164,7 @@ void WNewRelease::on_ReleaseTable_clicked(const QModelIndex &index)
     }
 
     i = 0;
-    for (auto & payT : facade->userPaymentTypes()) {
+    for (auto payT : (* facade->userPaymentTypes())) {
         if (release->getPaymentType() == payT) {
             ui->PaymentType->setCurrentIndex(i);
             break;

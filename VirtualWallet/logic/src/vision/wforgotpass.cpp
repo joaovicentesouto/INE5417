@@ -12,6 +12,7 @@ WForgotPass::WForgotPass(QWidget *parent) :
     ui->PassConfirm->setPlaceholderText("Confirme a Senha");
     ui->PassConfirm->setEchoMode(QLineEdit::Password);
     ui->NewPass->setEchoMode(QLineEdit::Password);
+    ui->NewPass->setFocus();
 }
 
 WForgotPass::~WForgotPass()

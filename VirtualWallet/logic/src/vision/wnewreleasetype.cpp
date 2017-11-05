@@ -1,6 +1,8 @@
 #include "wnewreleasetype.h"
 #include "ui_wnewreleasetype.h"
 
+#include <iostream>
+
 WNewReleaseType::WNewReleaseType(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::WNewReleaseType)
@@ -58,13 +60,15 @@ void WNewReleaseType::on_Confirm_clicked()
 
 void WNewReleaseType::tableBuilder()
 {
-    /*ui->TypeList->setRowCount(0);
-    list<ReleaseType*> _types = facade->userReleaseTypes();
-    for (auto & it: _types) {
+    if (facade->userReleaseTypes() == nullptr)
+        return;
+
+    ui->TypeList->setRowCount(0);
+    for (auto it: (* facade->userReleaseTypes())) {
         ui->TypeList->insertRow(ui->TypeList->rowCount());
         ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 0, new QTableWidgetItem(QString::number(it->getId())));
         ui->TypeList->setItem(ui->TypeList->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(it->getName())));
-    }*/
+    }
 }
 
 void WNewReleaseType::on_TypeList_clicked(const QModelIndex &index)
