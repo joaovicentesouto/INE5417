@@ -12,6 +12,7 @@ WNewUser::WNewUser(QWidget *parent) :
     ui->Code->setPlaceholderText("Codigo");
     ui->Password->setEchoMode(QLineEdit::Password);
     ui->PassConfirm->setEchoMode(QLineEdit::Password);
+    ui->Name->setFocus();
 }
 
 WNewUser::~WNewUser()

@@ -1,6 +1,8 @@
 #include "loginwidget.h"
 #include "ui_loginwidget.h"
 
+#include <iostream>
+
 loginwidget::loginwidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::loginwidget)
@@ -60,4 +62,5 @@ void loginwidget::changeToNewUserMsg()
     on_CleanButton_clicked();
     ui->LoginMsg->setStyleSheet("color: #00c10d; border: none;");
     ui->LoginMsg->setText("Usuario Criado com Sucesso!");
+    ui->LoginName->setFocus();
 }

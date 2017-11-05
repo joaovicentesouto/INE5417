@@ -81,15 +81,21 @@ void WReport::on_ValueBox_2_valueChanged(double arg1)
 
 void WReport::tableBuilder()
 {
-    /*ui->AccTable->setRowCount(0);
-    for (auto & acc : facade->userAccounts()) {
+    ui->Stack->setCurrentWidget(ui->Generator);
+    on_Clean_clicked();
+
+    if (facade->userAccounts() == nullptr || facade->userReleaseTypes() == nullptr || facade->userPaymentTypes() == nullptr)
+        return;
+
+    ui->AccTable->setRowCount(0);
+    for (auto acc : (* facade->userAccounts())) {
         ui->AccTable->insertRow(ui->AccTable->rowCount());
         ui->AccTable->setItem(ui->AccTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(acc->getId())));
         ui->AccTable->setItem(ui->AccTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(acc->getName())));
     }
 
     ui->TypesTable->setRowCount(0);
-    for (auto & relType : facade->userReleaseTypes()) {
+    for (auto relType : (* facade->userReleaseTypes())) {
         ui->TypesTable->insertRow(ui->TypesTable->rowCount());
         ui->TypesTable->setItem(ui->TypesTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(relType->getId())));
         ui->TypesTable->setItem(ui->TypesTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(relType->getName())));
@@ -97,14 +103,11 @@ void WReport::tableBuilder()
 
     int i = 0;
     ui->PayTable->setRowCount(0);
-    for (auto & payType : facade->userPaymentTypes()) {
+    for (auto payType : (* facade->userPaymentTypes())) {
         ui->PayTable->insertRow(ui->PayTable->rowCount());
         ui->PayTable->setItem(ui->PayTable->rowCount() - 1, 0, new QTableWidgetItem(QString::number(i++)));
         ui->PayTable->setItem(ui->PayTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(payType)));
     }
-
-    ui->Stack->setCurrentWidget(ui->Generator);
-    on_Clean_clicked();*/
 }
 
 void WReport::on_AccTable_clicked(const QModelIndex &index)

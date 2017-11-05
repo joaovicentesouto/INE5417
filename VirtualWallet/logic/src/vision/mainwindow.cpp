@@ -8,7 +8,7 @@ using namespace std;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    facade(new Facade(-1))
+    facade(new Facade())
 {
     ui->setupUi(this);
     ui->Menu->hide();
@@ -73,14 +73,12 @@ void MainWindow::on_MenuButton_clicked()
 
 void MainWindow::build()
 {
-    double teste = facade->accountsBalance();
-    ui->MenuTotal->setText("Total R$ " + QString::number(teste, 'f', 2));
+    ui->MenuTotal->setText("Total R$ " + QString::number(facade->accountsBalance(), 'f', 2));
     emit update();
 }
 
 void MainWindow::loginExecuted()
 {
-
     ui->MenuUser->setText(QString::fromStdString(facade->getUserName()));
     ui->Stack->setCurrentWidget(ui->Home);
     ui->MenuWidget->hide();
