@@ -14,7 +14,7 @@ WReport::WReport(QWidget *parent) :
 
     ui->AccTable->setColumnCount(2);
     ui->AccTable->setColumnWidth(0, 40);
-    ui->AccTable->setColumnWidth(1, 401);
+    ui->AccTable->setColumnWidth(1, 400);
     ui->AccTable->setHorizontalHeaderLabels(titles);
     ui->AccTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
@@ -22,7 +22,7 @@ WReport::WReport(QWidget *parent) :
     titles << "Id" << "Tipo de Lancamento";
     ui->TypesTable->setColumnCount(2);
     ui->TypesTable->setColumnWidth(0, 40);
-    ui->TypesTable->setColumnWidth(1, 401);
+    ui->TypesTable->setColumnWidth(1, 400);
     ui->TypesTable->setHorizontalHeaderLabels(titles);
     ui->TypesTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
@@ -30,7 +30,7 @@ WReport::WReport(QWidget *parent) :
     titles << "Id" << "Tipo de Pagamento";
     ui->PayTable->setColumnCount(2);
     ui->PayTable->setColumnWidth(0, 40);
-    ui->PayTable->setColumnWidth(1, 401);
+    ui->PayTable->setColumnWidth(1, 400);
     ui->PayTable->setHorizontalHeaderLabels(titles);
     ui->PayTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
@@ -291,13 +291,15 @@ void WReport::on_Confirm_clicked()
 
     if (report != nullptr) {
 
-        ui->Rep_Releases->setRowCount(0);
         list<Release*> releases = report->getReleases();
 
+        ui->Rep_Releases->setRowCount(0);
         for (auto & rel : releases) {
             ui->Rep_Releases->insertRow(ui->Rep_Releases->rowCount());
             ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 0, new QTableWidgetItem(QString::fromStdString(rel->getDescription())));
             ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(rel->getAccount()->getName())));
+            ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 2, new QTableWidgetItem(QString::number(rel->getReleaseType()->getId())));
+            ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 3, new QTableWidgetItem(QString::fromStdString(rel->getPaymentType())));
             ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 4, new QTableWidgetItem(QString::fromStdString(rel->getDate())));
             ui->Rep_Releases->setItem(ui->Rep_Releases->rowCount() - 1, 5, new QTableWidgetItem(QString::number(rel->getValue())));
         }
@@ -323,7 +325,11 @@ void WReport::on_Confirm_clicked()
 
         for (int i = 0; i < accounts.size(); ++i){
 
-            categories << QString::number(accounts.at(i));
+            for (auto & acc : facade->userAccounts())
+                if (accounts.at(i) == acc->getId()) {
+                    categories << QString::fromStdString(acc->getName());
+                    break;
+                }
 
             int amountIn = 0;
             int amountOut = 0;
@@ -337,10 +343,8 @@ void WReport::on_Confirm_clicked()
                 }
             }
 
-            if (in)
-                *ins << amountIn;
-            if (out)
-                *outs << amountOut;
+            if (in) *ins << amountIn;
+            if (out) *outs << amountOut;
         }
 
         QStackedBarSeries *series = new QStackedBarSeries();

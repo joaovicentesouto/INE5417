@@ -12,16 +12,16 @@ WNewRelease::WNewRelease(QWidget *parent) :
     ui->DateEdit->setDisplayFormat("dd/MM/yyyy");
 
     QStringList titles;
-    titles << "Id" << "Conta/Carteira" << "Tipo de Lcto." << "Tipo de Pgto." << "Operaçao" << "Data" << "Valor (R$)";
+    titles << "Id" << "Conta/Cart." << "Tp. Lcto." << "Tp. Pgto." << "Op." << "Data" << "Valor (R$)";
 
     ui->ReleaseTable->setColumnCount(7);
-    ui->ReleaseTable->setColumnWidth(0, 40);
-    ui->ReleaseTable->setColumnWidth(1, 100);
-    ui->ReleaseTable->setColumnWidth(2, 100);
-    ui->ReleaseTable->setColumnWidth(3, 100);
-    ui->ReleaseTable->setColumnWidth(4, 100);
-    ui->ReleaseTable->setColumnWidth(5, 100);
-    ui->ReleaseTable->setColumnWidth(6, 100);
+    ui->ReleaseTable->setColumnWidth(0, 25);
+    ui->ReleaseTable->setColumnWidth(1, 85);
+    ui->ReleaseTable->setColumnWidth(2, 85);
+    ui->ReleaseTable->setColumnWidth(3, 65);
+    ui->ReleaseTable->setColumnWidth(4, 25);
+    ui->ReleaseTable->setColumnWidth(5, 80);
+    ui->ReleaseTable->setColumnWidth(6, 70);
     ui->ReleaseTable->setHorizontalHeaderLabels(titles);
     ui->ReleaseTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
@@ -94,7 +94,7 @@ void WNewRelease::on_Confirm_clicked()
 
     on_Clean_clicked();
 
-    if (facade->registerRelease(row, value, account, releaseType, paymenteType, description, operation.compare("Saida") ? "in" : operation.compare("error") ? "out" : "error", date)) {
+    if (facade->registerRelease(row, value, account, releaseType, paymenteType, description, operation, date)) {
         ui->Msg->setStyleSheet("color: green");
         ui->Msg->setText("Operaçao Realizada com Sucesso!");
         emit build();
@@ -115,7 +115,7 @@ void WNewRelease::tableBuilder()
         ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 1, new QTableWidgetItem(QString::fromStdString(rel->getAccount()->getName())));
         ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 2, new QTableWidgetItem(QString::fromStdString(rel->getReleaseType()->getName())));
         ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 3, new QTableWidgetItem(QString::fromStdString(rel->getPaymentType())));
-        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 4, new QTableWidgetItem(QString::fromStdString(rel->getOperation().compare("out") ? "Entrada" : "Saida")));
+        ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 4, new QTableWidgetItem(QString::fromStdString(rel->getOperation().compare("out") ? "E" : "S")));
         ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 5, new QTableWidgetItem(QString::fromStdString(rel->getDate())));
         ui->ReleaseTable->setItem(ui->ReleaseTable->rowCount() - 1, 6, new QTableWidgetItem(QString::number(rel->getValue())));
     }
