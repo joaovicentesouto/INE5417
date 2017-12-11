@@ -3,11 +3,12 @@
 
 namespace project {
 
-Account::Account(int _id, string _name, double _balance, bool _type) :
+Account::Account(int _id, string _name, double _balance, bool _type, int _userId) :
     id(_id),
     balance(_balance),
     type(_type),
-    name(_name)
+    name(_name),
+    user_Id(_userId)
 {
     
 }
@@ -20,9 +21,12 @@ int Account::getId() {
     return id;
 }
 
-
 bool Account::getType() {
     return type;
+}
+
+int Account::getUserId() {
+    return user_Id;
 }
 
 string Account::getName() {
@@ -33,27 +37,9 @@ double Account::getBalance() {
     return balance;
 }
 
-list<Release*> Account::getReleases() {
-    return releases;
-}
-
-void Account::setId(int _id)
+void Account::incrementBalance(double _value)
 {
-    id = _id;
-}
-
-void Account::changeName(string _newName) {
-    name = _newName;
-}
-
-void Account::insertRelease(Release * _release) {
-    releases.push_front(_release);
-    balance += _release->getValue();
-}
-
-void Account::removeRelease(Release * _release) {
-    releases.remove(_release);
-    balance -= _release->getValue();
+    balance += _value;
 }
 
 }  // namespace project

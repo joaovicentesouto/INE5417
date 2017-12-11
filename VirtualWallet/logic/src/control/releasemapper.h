@@ -13,7 +13,8 @@
 #include <list>
 
 #include "src/model/Release.h"
-#include "src/model/releasetype.h"
+#include "src/control/walletmapper.h"
+#include "src/control/bankaccountmapper.h"
 #include "src/control/releasetypemapper.h"
 
 namespace project {
@@ -21,21 +22,21 @@ namespace project {
 class ReleaseMapper
 {
 public:
-    ReleaseMapper(QSqlDatabase & _conn);
+    ReleaseMapper(QSqlDatabase & _conn, WalletMapper * _walletMapper,
+                  BankAccountMapper * _bankAccountMapper, ReleaseTypeMapper * _releaseTypeMapper);
     ~ReleaseMapper();
 
     Release * getById(int id);
-    list<Release*> getAllReleases();
+    list<Release*> getAllReleases(int _accId);
 
     void put(Release * release);
     void remove(int id);
 
 private:
-    void putExistUser(Release * release);
-    void putNewUser(Release * release);
-
     QSqlDatabase & conn;
-    ReleaseTypeMapper releaseTypeMapper;
+    WalletMapper * walletMapper;
+    BankAccountMapper * bankAccountMapper;
+    ReleaseTypeMapper * releaseTypeMapper;
 };
 
 } // namespace

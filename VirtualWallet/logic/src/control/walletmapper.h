@@ -13,8 +13,6 @@
 #include <list>
 
 #include "src/model/Wallet.h"
-#include "src/model/Release.h"
-#include "src/control/releasemapper.h"
 
 namespace project {
 
@@ -24,20 +22,15 @@ public:
     WalletMapper(QSqlDatabase & _conn);
     ~WalletMapper();
 
-    Wallet * getById(int id);
-    Wallet * getByName(string name);
-    list<Wallet*> getAllWallets();
+    Wallet * getById(int _id);
+    Wallet * getByName(string _name, int _userId);
+    list<Wallet*> getAllWallets(int _userId);
 
-    void put(Wallet * wallet);
-    void remove(int id);
+    void put(Wallet * _wallet);
+    void remove(int _id);
 
 private:
-    void putExistUser(Wallet * wallet);
-    void putNewUser(Wallet * wallet);
-
     QSqlDatabase & conn;
-    ReleaseMapper releaseMapper;
-
 };
 
 } // namespace

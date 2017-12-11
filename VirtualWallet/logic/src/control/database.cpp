@@ -9,17 +9,22 @@ namespace project {
 DataBase::DataBase()
 {
     conn = QSqlDatabase::addDatabase("QPSQL");
+    conn.setDatabaseName("engenharia");
+    conn.setHostName("localhost");
     conn.setUserName("postgres");
     conn.setPassword("senha");
-    conn.setHostName("localhost");
-    conn.setDatabaseName("engenharia");
     conn.setPort(5432);
+    //conn.open();
+
+    if (conn.open()) {
+        createTables();
+    }
 
     userMapper = new UserMapper(conn);
     walletMapper = new WalletMapper(conn);
     bankAccountMapper = new BankAccountMapper(conn);
-    releaseMapper = new ReleaseMapper(conn);
-    releasetTypeMapper = new ReleaseTypeMapper(conn);
+    releaseTypeMapper = new ReleaseTypeMapper(conn);
+    releaseMapper = new ReleaseMapper(conn, walletMapper, bankAccountMapper, releaseTypeMapper);
 }
 
 DataBase::~DataBase()
@@ -27,46 +32,136 @@ DataBase::~DataBase()
 
 }
 
+void DataBase::createTables()
+{
+    QSqlQuery query(conn);
+    query.exec("CREATE TABLE IF NOT EXISTS USR ("
+                    "ID 	  SERIAL    PRIMARY KEY,"
+                    "NAME 	  VARCHAR(255) UNIQUE NOT NULL,"
+                    "CODE 	  VARCHAR(255) NOT NULL,"
+                    "PASSWORD VARCHAR(255) NOT NULL"
+                    ");"
+                    "CREATE TABLE IF NOT EXISTS ACCOUNT ("
+                    "ID 	 	SERIAL 	    PRIMARY KEY,"
+                    "NAME 	 	VARCHAR(255)   NOT NULL,"
+                    "TYPE 	 	VARCHAR(1)     NOT NULL,"
+                    "BALANCE 	FLOAT       NOT NULL,"
+                    "ACC_NUMBER VARCHAR(255),"
+                    "AGENCY     VARCHAR(255),"
+                    "BANK	 	VARCHAR(255),"
+                    "USER_ID 	INT         NOT NULL,"
+                    "FOREIGN KEY (USER_ID)  REFERENCES USR(ID)"
+                    "); "
+                    "CREATE TABLE IF NOT EXISTS RELEASE_TYPE ("
+                    "ID 	 SERIAL        PRIMARY KEY,"
+                    "NAME 	 VARCHAR(255)     NOT NULL,"
+                    "USER_ID INT  	   	   NOT NULL,"
+                    "FOREIGN KEY (USER_ID) REFERENCES USR(ID)"
+                    ");"
+                    "CREATE TABLE  IF NOT EXISTS RLS ("
+                    "ID 	  SERIAL	PRIMARY KEY,"
+                    "VALUE    FLOAT		NOT NULL,"
+                    "ACC_ID   INT	 	NOT NULL,"
+                    "REL_TYPE INT 		NOT NULL,"
+                    "PAY_TYPE VARCHAR(255) NOT NULL,"
+                    "OP       VARCHAR(3)	NOT NULL,"
+                    "DATE	  VARCHAR(10) 	NOT NULL,"
+                    "DESCP    VARCHAR(255),"
+                    "USER_ID  int       NOT NULL,"
+                    "FOREIGN KEY (ACC_ID) 	REFERENCES ACCOUNT(ID),"
+                    "FOREIGN KEY (REL_TYPE) REFERENCES RELEASE_TYPE(ID),"
+                    "FOREIGN KEY (USER_ID)  REFERENCES USR(ID)"
+                    ");");
+}
+
 User * DataBase::getUser(int _id)
 {
-    return user;
+    return userMapper->getById(_id);
+}
+
+User * DataBase::getUserByName(string _name)
+{
+    return userMapper->getByName(_name);
 }
 
 User * DataBase::getUserByNameAndPass(string _name, string _password)
 {
-    if (!_name.compare(user->getName()) && !_password.compare(user->getPassword()))
-        return user;
+    User * user = userMapper->getByName(_name);
+
+    if (user != nullptr)
+        if (user->verifyUser(_name, _password))
+            return user;
+        else
+            delete user;
 
     return nullptr;
 }
 
 User * DataBase::getUserByCodeAndPass(string _code, string _password)
 {
-    if (!_code.compare(user->getCode()) && !_password.compare(user->getPassword()))
-        return user;
+    list<User*> users = userMapper->getAllUsers();
+
+    for (auto & u : users)
+        if (u->verifyCodePass(_code, _password))
+            return u;
 
     return nullptr;
 }
+
 
 User * DataBase::getUserByNameAndCode(string _name, string _code)
 {
-    if (!_code.compare(user->getCode()) && !_name.compare(user->getName()))
-        return user;
+    list<User*> users = userMapper->getAllUsers();
+
+    for (auto & u : users)
+        if (u->verifyNameCode(_name, _code))
+            return u;
 
     return nullptr;
 }
 
-bool DataBase::put(User * _user)
+void DataBase::put(User * _user)
 {
-    counterUser++;
-    user = _user;
+    userMapper->put(_user);
+}
+
+bool DataBase::existUser()
+{
+    auto list = userMapper->getAllUsers();
+
+    if (!list.size())
+        return false;
+
+    for (auto & usr : list)
+        delete usr;
+
     return true;
+}
+
+Account * DataBase::getAccount(string _accName, int _userId)
+{
+    Account * account = walletMapper->getByName(_accName, _userId);
+
+    if (account == nullptr)
+        account = bankAccountMapper->getByName(_accName, _userId);
+
+    return account;
+}
+
+Release * DataBase::getRelease(int _relId)
+{
+    return releaseMapper->getById(_relId);
+}
+
+ReleaseType * DataBase::getReleaseType(string _typeName, int _userId)
+{
+    return releaseTypeMapper->getByName(_typeName, _userId);
 }
 
 list<Wallet*> DataBase::getWallets(int _userId)
 {
     list<Wallet*> wallets;
-    for (auto acc : user->getAccounts())
+    for (auto acc : walletMapper->getAllWallets(_userId))
         if (!acc->getType())
             wallets.push_back(static_cast<Wallet*>(acc));
 
@@ -75,148 +170,86 @@ list<Wallet*> DataBase::getWallets(int _userId)
 
 list<Account*> DataBase::getAccounts(int _userId)
 {
-    return user->getAccounts();
+    list<Account*> accounts;
+    for (auto & wallet: getWallets(_userId))
+        accounts.push_front(wallet);
+
+    for (auto & bank: getBankAccounts(_userId))
+        accounts.push_front(bank);
+
+    return accounts;
 }
 
 list<BankAccount*> DataBase::getBankAccounts(int _userId)
 {
-    list<BankAccount*> banksAcc;
-    for (auto & acc : user->getAccounts())
-        if (acc->getType())
-            banksAcc.push_back(static_cast<BankAccount*>(acc));
-
-    return banksAcc;
+    return bankAccountMapper->getAllBankAccounts(_userId);
 }
 
 list<Release*> DataBase::getReleases(int _userId)
 {
-    list<Release*> releases;
-
-    for (auto & acc : user->getAccounts())
-        for (auto & rel : acc->getReleases())
-            releases.push_front(rel);
-
-    return releases;
+    return releaseMapper->getAllReleases(_userId);
 }
 
 list<ReleaseType*> DataBase::getReleaseTypes(int _userId)
 {
-    return user->getReleaseTypes();
+    return releaseTypeMapper->getAllReleasesTypes(_userId);
 }
 
-list<string> DataBase::getPaymentTypes(int _userId)
+void DataBase::put(ReleaseType * _type)
 {
-    return user->getPaymentTypes();
-}
-
-Account * DataBase::getAccount(string _accName, int _userId)
-{
-    return user->getAccount(_accName);
-}
-
-bool DataBase::put(ReleaseType * _type, int _userId)
-{
-    for (auto it : user->getReleaseTypes()) {
-        if (!it->getName().compare(_type->getName()))
-            return false;
-
-        if (it->getId() == _type->getId()) {
-            user->removeReleaseType(it);
-            break;
-        }
-    }
-
-    if (_type->getId() == -1)
-        _type->setId(counterReleaseTypes++);
-
-    return user->insertReleaseType(_type);
+    releaseTypeMapper->put(_type);
 }
 
 void DataBase::removeReleaseType(int _typeId, int _userId)
 {
-    for (auto it: user->getReleaseTypes())
-        if (it->getId() == _typeId) {
-            removeReleasesByType(it->getName(), _userId);
-            user->removeReleaseType(it);
-            break;
-        }
+    removeReleasesByType(_typeId, _userId);
+    releaseTypeMapper->remove(_typeId);
 }
 
-void DataBase::removeReleasesByType(string _type, int _userId)
+void DataBase::removeReleasesByType(int _typeId, int _userId)
 {
-    user->removeReleases(_type);
-}
+    for (auto & rel: releaseMapper->getAllReleases(_userId)) {
+        if (rel->getReleaseType()->getId() == _typeId)
+            releaseMapper->remove(rel->getId());
 
-void DataBase::removeRelease(int _relId, int _userId)
-{
-    for (auto & acc : user->getAccounts())
-        for (auto & rel : acc->getReleases())
-            if (rel->getId() == _relId) {
-                acc->removeRelease(rel);
-                break;
-            }
-}
-
-bool DataBase::put(Wallet * _account, int _userId)
-{
-    for (auto & it: user->getAccounts()) {
-        if (!it->getName().compare(_account->getName()))
-            return false;
-
-        if (it->getId() == _account->getId()) {
-            user->removeAccount(it);
-            break;
-        }
+        delete rel;
     }
+}
 
-    if (_account->getId() == -1)
-        _account->setId(counterAccounts++);
+void DataBase::removeReleasesByAccount(int _accId, int _userId)
+{
+    for (auto & rel: releaseMapper->getAllReleases(_userId)) {
+        if (rel->getAccount()->getId() == _accId)
+            releaseMapper->remove(rel->getId());
 
-    return user->insertAccount(_account);
+        delete rel;
+    }
+}
+
+void DataBase::removeRelease(int _relId)
+{
+    releaseMapper->remove(_relId);
+}
+
+void DataBase::put(Wallet * _account)
+{
+    walletMapper->put(_account);
 }
 
 void DataBase::removeAccount(int _accId, int _userId)
 {
-    for (auto & it: user->getAccounts())
-        if (it->getId() == _accId) {
-            user->removeAccount(it->getName());
-            break;
-        }
+    removeReleasesByAccount(_accId, _userId);
+    walletMapper->remove(_accId);
 }
 
-bool DataBase::put(BankAccount * _account, int _userId)
+void DataBase::put(BankAccount * _account)
 {
-    for (auto & it: user->getAccounts()) {
-        if (!it->getName().compare(_account->getName()))
-            return false;
-
-        if (it->getId() == _account->getId()) {
-            user->removeAccount(it);
-            break;
-        }
-    }
-
-    if (_account->getId() == -1)
-        _account->setId(counterAccounts++);
-
-    return user->insertAccount(_account);
+    bankAccountMapper->put(_account);
 }
 
-bool DataBase::put(Release * _release, int _userId)
+void DataBase::put(Release * _release)
 {
-    for (auto & i : getAccounts(_userId))
-        for (auto & j : i->getReleases())
-            if (j->getId() == _release->getId()) {
-                i->removeRelease(j);
-                i->insertRelease(_release);
-                return true;
-            }
-
-    if (_release->getId() == -1)
-        _release->setId(counterReleases++);
-
-    _release->getAccount()->insertRelease(_release);
-    return true;
+    releaseMapper->put(_release);
 }
 
 }

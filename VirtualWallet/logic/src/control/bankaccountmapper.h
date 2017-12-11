@@ -13,8 +13,6 @@
 #include <list>
 
 #include "src/model/BankAccount.h"
-#include "src/model/Release.h"
-#include "src/control/releasemapper.h"
 
 namespace project {
 
@@ -24,19 +22,15 @@ public:
     BankAccountMapper(QSqlDatabase & _conn);
     ~BankAccountMapper();
 
-    BankAccount * getById(int id);
-    BankAccount * getByName(string name);
-    list<BankAccount*> getAllBankAccounts();
+    BankAccount * getById(int _id);
+    BankAccount * getByName(string _name, int _userId);
+    list<BankAccount*> getAllBankAccounts(int _userId);
 
-    void put(BankAccount * bankAccount);
-    void remove(int id);
+    void put(BankAccount * _bankAccount);
+    void remove(int _id);
 
 private:
-    void putExistUser(BankAccount * bankAccount);
-    void putNewUser(BankAccount * bankAccount);
-
     QSqlDatabase & conn;
-    ReleaseMapper releaseMapper;
 };
 
 } // namespace

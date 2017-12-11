@@ -16,10 +16,11 @@ class ReleaseType;
 class Release {
 public:
     Release(int _id, double _value, Account * _account, ReleaseType * _releaseType,
-            string _paymentType, string _description, string _operation, string _date);
+            string _paymentType, string _description, string _operation, string _date, int _user_id);
     ~Release();
-    
-    size_t getId();
+
+    int getId();
+    int getUserId();
     double getValue();
     Account * getAccount();
     ReleaseType * getReleaseType();
@@ -27,19 +28,9 @@ public:
     string getDescription();
     string getOperation();
     string getDate();
-
-    void setId(int _id);
-    
-    void changeValue(double _value);
-    void changeAccount(Account* _account);
-    void changeReleaseType(ReleaseType * _type);
-    void changePaymentType(string _type);
-    void changeDescription(string _description);
-    void changeOperation(string _operation);
-    void changeDate(string _date);
     
 private:
-    int id;
+    int id, user_id;
     double value;
     Account * account;
     ReleaseType * releaseType;
